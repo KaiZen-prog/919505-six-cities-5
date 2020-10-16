@@ -102,6 +102,7 @@ const generateOffer = () => ({
   isPremium: getRandomBool(),
   owner: getRandomArrayElement(USERS),
   reviews: getReviews(getRandomInteger(0, 5)),
+  isInBookmarks: getRandomBool()
 });
 
 const getOffers = () => {

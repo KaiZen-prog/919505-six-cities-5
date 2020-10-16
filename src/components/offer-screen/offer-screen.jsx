@@ -66,7 +66,11 @@ class OfferScreen extends PureComponent {
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
-                    <span className="visually-hidden">To bookmarks</span>
+                    <span className="visually-hidden">{
+                      offer.isInBookmarks
+                        ? `In bookmarks`
+                        : `To bookmarks`
+                    }</span>
                   </button>
                 </div>
                 <div className="property__rating rating">
@@ -168,7 +172,8 @@ OfferScreen.propTypes = {
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired
     }).isRequired,
-    reviews: PropTypes.array.isRequired
+    reviews: PropTypes.array.isRequired,
+    isInBookmarks: PropTypes.bool.isRequired
   }).isRequired,
 };
 
