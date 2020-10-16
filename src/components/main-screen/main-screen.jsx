@@ -2,12 +2,13 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
+import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_DIV_CLASSES} from "../../const";
+
 import OfferList from "../offer-list/offer-list";
 
 class MainScreen extends PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   render() {
@@ -98,9 +99,13 @@ class MainScreen extends PureComponent {
                     <li className="places__option" tabIndex="0">Top rated first</li>
                   </ul>
                 </form>
-                <OfferList
-                  offers={offers}
-                />
+                <div className="cities__places-list places__list tabs__content">
+                  <OfferList
+                    offers={offers}
+                    articleClass = {OFFER_CARD_ARTICLE_CLASSES.MAIN_SCREEN}
+                    divClass = {OFFER_CARD_DIV_CLASSES.MAIN_SCREEN}
+                  />
+                </div>
               </section>
             </div>
           </div>

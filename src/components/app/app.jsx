@@ -37,6 +37,7 @@ const App = (props) => {
           render={({match}) => {
             return (
               <OfferScreen
+                offers={offers}
                 offer={offers.find((offer) => offer.id === String(match.params.id))}
               />
             );
