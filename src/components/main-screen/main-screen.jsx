@@ -2,7 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_DIV_CLASSES} from "../../const";
+import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_IMG_WRAPPER_CLASSES} from "../../const";
 
 import OfferList from "../offer-list/offer-list";
 
@@ -102,8 +102,8 @@ class MainScreen extends PureComponent {
                 <div className="cities__places-list places__list tabs__content">
                   <OfferList
                     offers={offers}
-                    articleClass = {OFFER_CARD_ARTICLE_CLASSES.MAIN_SCREEN}
-                    divClass = {OFFER_CARD_DIV_CLASSES.MAIN_SCREEN}
+                    OfferCardArticleClass={OFFER_CARD_ARTICLE_CLASSES.MAIN_SCREEN}
+                    OfferCardImgWrapperClass={OFFER_CARD_IMG_WRAPPER_CLASSES.MAIN_SCREEN}
                   />
                 </div>
               </section>

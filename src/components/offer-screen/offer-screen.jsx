@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_DIV_CLASSES, RATING_SCALE_MULTIPLIER} from "../../const";
+import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_IMG_WRAPPER_CLASSES, RATING_SCALE_MULTIPLIER} from "../../const";
 import CommentForm from "../comment-form/comment-form";
 import Reviews from "../reviews/reviews";
 import OfferList from "../offer-list/offer-list";
@@ -143,7 +143,7 @@ class OfferScreen extends PureComponent {
                 <OfferList
                   offers={offers}
                   articleClass = {OFFER_CARD_ARTICLE_CLASSES.MAIN_SCREEN}
-                  divClass = {OFFER_CARD_DIV_CLASSES.MAIN_SCREEN}
+                  divClass = {OFFER_CARD_IMG_WRAPPER_CLASSES.MAIN_SCREEN}
                 />
               </div>
             </section>

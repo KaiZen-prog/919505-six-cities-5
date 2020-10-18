@@ -5,7 +5,7 @@ export const OFFER_CARD_ARTICLE_CLASSES = {
   OFFER_SCREEN: `near-places__card place-card`
 };
 
-export const OFFER_CARD_DIV_CLASSES = {
+export const OFFER_CARD_IMG_WRAPPER_CLASSES = {
   MAIN_SCREEN: `cities__image-wrapper place-card__image-wrapper`,
   OFFER_SCREEN: `near-places__image-wrapper place-card__image-wrapper`
 };
