@@ -9,7 +9,7 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {offer, articleClass, divClass, onCardHover} = this.props;
+    const {offer, articleClass, imgWrapperClass, onCardHover} = this.props;
 
     return (
       <article
@@ -22,7 +22,7 @@ class OfferCard extends PureComponent {
           </div>
           : ``
         }
-        <div className={divClass}>
+        <div className={imgWrapperClass}>
           <Link to={`/offer/` + offer.id}>
             <img className="place-card__image" src={`img/${offer.poster}`} width="260" height="200" alt="Place image"/>
           </Link>
@@ -75,7 +75,7 @@ OfferCard.propTypes = {
   }).isRequired,
 
   articleClass: PropTypes.string.isRequired,
-  divClass: PropTypes.string.isRequired,
+  imgWrapperClass: PropTypes.string.isRequired,
   onCardHover: PropTypes.func.isRequired,
 };
 

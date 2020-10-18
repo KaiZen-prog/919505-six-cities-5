@@ -20,8 +20,8 @@ class OfferList extends PureComponent {
         {offers.map((offer) => (
           <OfferCard
             offer={offer}
-            OfferCardArticleClass={OfferCardArticleClass}
-            OfferCardImgWrapperClass={OfferCardImgWrapperClass}
+            articleClass={OfferCardArticleClass}
+            imgWrapperClass={OfferCardImgWrapperClass}
             onCardHover={() => {
               const currentOffer = offers.find((off) => {
                 return off.id === offer.id;
