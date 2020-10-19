@@ -142,8 +142,8 @@ class OfferScreen extends PureComponent {
               <div className="near-places__list places__list">
                 <OfferList
                   offers={offers}
-                  OfferCardArticleClass = {OFFER_CARD_ARTICLE_CLASSES.OFFER_SCREEN}
-                  OfferCardImgWrapperClass = {OFFER_CARD_IMG_WRAPPER_CLASSES.OFFER_SCREEN}
+                  offerCardArticleClass = {OFFER_CARD_ARTICLE_CLASSES.OFFER_SCREEN}
+                  offerCardImgWrapperClass = {OFFER_CARD_IMG_WRAPPER_CLASSES.OFFER_SCREEN}
                 />
               </div>
             </section>

@@ -13,15 +13,15 @@ class OfferList extends PureComponent {
   }
 
   render() {
-    const {offers, OfferCardArticleClass, OfferCardImgWrapperClass} = this.props;
+    const {offers, offerCardArticleClass, offerCardImgWrapperClass} = this.props;
 
     return (
       <React.Fragment>
         {offers.map((offer) => (
           <OfferCard
             offer={offer}
-            articleClass={OfferCardArticleClass}
-            imgWrapperClass={OfferCardImgWrapperClass}
+            articleClass={offerCardArticleClass}
+            imgWrapperClass={offerCardImgWrapperClass}
             onCardHover={() => {
               const currentOffer = offers.find((off) => {
                 return off.id === offer.id;
@@ -43,8 +43,8 @@ OfferList.propTypes = {
     id: PropTypes.string.isRequired
   })).isRequired,
 
-  OfferCardArticleClass: PropTypes.string.isRequired,
-  OfferCardImgWrapperClass: PropTypes.string.isRequired
+  offerCardArticleClass: PropTypes.string.isRequired,
+  offerCardImgWrapperClass: PropTypes.string.isRequired
 };
 
 export default OfferList;
