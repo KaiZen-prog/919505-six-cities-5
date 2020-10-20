@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
 
-const Settings = {
-  OFFERS_QUANTITY: 777
-};
+import getOffers from "./mocks/offers";
+
+const offers = getOffers();
 
 ReactDOM.render(
     <App
-      offersQuantity={Settings.OFFERS_QUANTITY}
+      offers={offers}
     />,
     document.querySelector(`#root`)
 );

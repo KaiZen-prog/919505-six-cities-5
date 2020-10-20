@@ -8,22 +8,40 @@ import FavoritesScreen from "../favorites-screen/favorites-screen";
 import OfferScreen from "../offer-screen/offer-screen";
 
 const App = (props) => {
-  const {offersQuantity} = props;
+  const {offers} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainScreen offersQuantity={offersQuantity} />
+          <MainScreen
+            offers={offers}
+          />
         </Route>
+
         <Route exact path="/login">
           <LoginScreen />
         </Route>
-        <Route exact path="/favorites">
-          <FavoritesScreen />
+
+        <Route
+          exact path="/favorites"
+          render={({history}) => (
+            <FavoritesScreen
+              onLogoClick = {() => history.push(`/`)}
+            />
+          )}>
         </Route>
-        <Route exact path="/offer/:id?">
-          <OfferScreen />
+
+        <Route
+          exact path="/offer/:id"
+          render={({match}) => {
+            return (
+              <OfferScreen
+                offers={offers}
+                offer={offers.find((offer) => offer.id === String(match.params.id))}
+              />
+            );
+          }}>
         </Route>
       </Switch>
     </BrowserRouter>
@@ -31,7 +49,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  offersQuantity: PropTypes.number.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default App;
