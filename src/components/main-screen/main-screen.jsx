@@ -2,9 +2,10 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
-import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_IMG_WRAPPER_CLASSES} from "../../const";
+import {OfferCardArticleClasses, OfferCardImgWrapperClasses} from "../../const";
 
 import OfferList from "../offer-list/offer-list";
+import CityMap from "../city-map/city-map";
 
 class MainScreen extends PureComponent {
   constructor(props) {
@@ -102,13 +103,13 @@ class MainScreen extends PureComponent {
                 <div className="cities__places-list places__list tabs__content">
                   <OfferList
                     offers={offers}
-                    offerCardArticleClass={OFFER_CARD_ARTICLE_CLASSES.MAIN_SCREEN}
-                    offerCardImgWrapperClass={OFFER_CARD_IMG_WRAPPER_CLASSES.MAIN_SCREEN}
+                    offerCardArticleClass={OfferCardArticleClasses.MAIN_SCREEN}
+                    offerCardImgWrapperClass={OfferCardImgWrapperClasses.MAIN_SCREEN}
                   />
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <CityMap offers={offers} />
               </div>
             </div>
           </div>
