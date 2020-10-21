@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import {OFFER_CARD_ARTICLE_CLASSES, OFFER_CARD_IMG_WRAPPER_CLASSES, RATING_SCALE_MULTIPLIER} from "../../const";
+import {OfferCardArticleClasses, OfferCardImgWrapperClasses, RATING_SCALE_MULTIPLIER} from "../../const";
 import CommentForm from "../comment-form/comment-form";
 import Reviews from "../reviews/reviews";
 import OfferList from "../offer-list/offer-list";
@@ -142,8 +142,8 @@ class OfferScreen extends PureComponent {
               <div className="near-places__list places__list">
                 <OfferList
                   offers={offers}
-                  offerCardArticleClass = {OFFER_CARD_ARTICLE_CLASSES.OFFER_SCREEN}
-                  offerCardImgWrapperClass = {OFFER_CARD_IMG_WRAPPER_CLASSES.OFFER_SCREEN}
+                  offerCardArticleClass = {OfferCardArticleClasses.OFFER_SCREEN}
+                  offerCardImgWrapperClass = {OfferCardImgWrapperClasses.OFFER_SCREEN}
                 />
               </div>
             </section>
