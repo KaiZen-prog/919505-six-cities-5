@@ -10,6 +10,11 @@ export const OfferCardImgWrapperClasses = {
   OFFER_SCREEN: `near-places__image-wrapper place-card__image-wrapper`
 };
 
+export const CityMapClasses = {
+  MAIN_SCREEN: `cities__map map`,
+  OFFER_SCREEN: `property__map map`
+};
+
 export const CityMapSettings = {
   CITY: [52.38333, 4.9],
   ZOOM: 12,
