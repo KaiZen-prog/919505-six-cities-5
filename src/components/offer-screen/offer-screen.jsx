@@ -1,10 +1,17 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-import {OfferCardArticleClasses, OfferCardImgWrapperClasses, RATING_SCALE_MULTIPLIER} from "../../const";
+import {
+  CityMapClasses,
+  OfferCardArticleClasses,
+  OfferCardImgWrapperClasses,
+  RATING_SCALE_MULTIPLIER,
+} from "../../const";
+
 import CommentForm from "../comment-form/comment-form";
-import Reviews from "../reviews/reviews";
+import ReviewsList from "../reviews-list/reviews-list";
 import OfferList from "../offer-list/offer-list";
+import CityMap from "../city-map/city-map";
 
 class OfferScreen extends PureComponent {
   constructor(props) {
@@ -13,6 +20,9 @@ class OfferScreen extends PureComponent {
 
   render() {
     const {offers, offer} = this.props;
+    const otherOffers = offers.filter((entity) => (
+      entity.id !== offer.id
+    ));
 
     return (
       <div className="page">
@@ -129,19 +139,24 @@ class OfferScreen extends PureComponent {
                 </div>
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offer.reviews.length}</span></h2>
-                  <Reviews reviews={offer.reviews}/>
+                  {offer.reviews.length > 0
+                    ? <ReviewsList reviews={offer.reviews}/>
+                    : ``}
                   <CommentForm/>
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <CityMap
+              offers={otherOffers}
+              cityMapClass = {CityMapClasses.OFFER_SCREEN}
+            />
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 <OfferList
-                  offers={offers}
+                  offers={otherOffers}
                   offerCardArticleClass = {OfferCardArticleClasses.OFFER_SCREEN}
                   offerCardImgWrapperClass = {OfferCardImgWrapperClasses.OFFER_SCREEN}
                 />
@@ -158,6 +173,7 @@ OfferScreen.propTypes = {
   offers: PropTypes.array.isRequired,
 
   offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     photos: PropTypes.array.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
