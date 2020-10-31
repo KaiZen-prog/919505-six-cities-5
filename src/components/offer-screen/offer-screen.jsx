@@ -72,7 +72,13 @@ class OfferScreen extends PureComponent {
                   <h1 className="property__name">
                     {offer.title}
                   </h1>
-                  <button className="property__bookmark-button button" type="button">
+                  <button
+                    className={
+                      offer.isInBookmarks
+                        ? `property__bookmark-button property__bookmark-button--active button`
+                        : `property__bookmark-button button`
+                    }
+                  >
                     <svg className="property__bookmark-icon" width="31" height="33">
                       <use xlinkHref="#icon-bookmark"></use>
                     </svg>
@@ -124,7 +130,12 @@ class OfferScreen extends PureComponent {
                 <div className="property__host">
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
-                    <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
+                    <div
+                      className={offer.owner.isPro
+                        ? `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper`
+                        : `property__avatar-wrapper user__avatar-wrapper`
+                      }
+                    >
                       <img className="property__avatar user__avatar" src={`img/${offer.owner.avatar}`} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
@@ -186,11 +197,12 @@ OfferScreen.propTypes = {
     description: PropTypes.string.isRequired,
     owner: PropTypes.shape({
       avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired
     }).isRequired,
     reviews: PropTypes.array.isRequired,
     isInBookmarks: PropTypes.bool.isRequired
-  }).isRequired,
+  }).isRequired
 };
 
 export default OfferScreen;

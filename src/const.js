@@ -1,5 +1,14 @@
 export const RATING_SCALE_MULTIPLIER = 20;
 
+export const CITIES = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
+  `Amsterdam`,
+  `Hamburg`,
+  `Dusseldorf`
+];
+
 export const OfferCardArticleClasses = {
   MAIN_SCREEN: `cities__place-card place-card`,
   OFFER_SCREEN: `near-places__card place-card`

@@ -14,3 +14,11 @@ export const createRandomArray = (array) => {
   }
   return newArray;
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export const getCurrentCityOffers = (offers, city) => {
+  return offers.filter((offer) => offer.city === city);
+};
