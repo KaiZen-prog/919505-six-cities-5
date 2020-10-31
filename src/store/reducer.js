@@ -14,10 +14,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         currentCity: action.payload,
-      });
-
-    case ActionType.GET_CITY_OFFERS:
-      return extend(state, {
         currentCityOffers: getCurrentCityOffers(offers, action.payload)
       });
   }
