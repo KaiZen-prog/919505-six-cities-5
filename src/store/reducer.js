@@ -4,7 +4,6 @@ import {CITIES} from "../const";
 import offers from "../mocks/offers";
 
 const initialState = {
-  cities: CITIES,
   currentCity: CITIES[0],
   currentCityOffers: getCurrentCityOffers(offers, CITIES[0])
 };

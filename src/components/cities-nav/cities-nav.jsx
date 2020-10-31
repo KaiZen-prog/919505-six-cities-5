@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {CITIES} from "../../const";
 
-const CitiesNav = ({cities, currentCity, onCityClick}) => {
+const CitiesNav = ({currentCity, onCityClick}) => {
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((city, index) => (
+      {CITIES.map((city, index) => (
         <li
           className="locations__item"
           key={`city-${index}`}
@@ -26,7 +27,6 @@ const CitiesNav = ({cities, currentCity, onCityClick}) => {
 };
 
 CitiesNav.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };

@@ -18,7 +18,6 @@ class MainScreen extends PureComponent {
 
   render() {
     const {
-      cities,
       currentCity,
       currentCityOffers,
       onCityClick
@@ -55,7 +54,6 @@ class MainScreen extends PureComponent {
           <div className="tabs">
             <section className="locations container">
               <CitiesNav
-                cities={cities}
                 currentCity={currentCity}
                 onCityClick={onCityClick}
               />
@@ -105,14 +103,12 @@ class MainScreen extends PureComponent {
 }
 
 MainScreen.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   currentCity: PropTypes.string.isRequired,
   currentCityOffers: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  cities: state.cities,
   currentCity: state.currentCity,
   currentCityOffers: state.currentCityOffers
 });
