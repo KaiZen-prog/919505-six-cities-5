@@ -1,6 +1,8 @@
 import {nanoid} from "nanoid";
 import moment from "moment";
 
+import {CITIES} from "../const.js";
+
 import {
   getRandomArrayElement,
   getRandomBool,
@@ -8,7 +10,7 @@ import {
   createRandomArray
 } from "../utils/common.js";
 
-const OFFERS_QUANTITY = 4;
+const OFFERS_QUANTITY = 24;
 
 const TITLES = [
   `Beautiful & luxurious apartment at great location`,
@@ -21,12 +23,14 @@ const TITLES = [
 const USERS = [
   {
     avatar: `avatar-angelina.jpg`,
-    name: `Angelina`
+    name: `Angelina`,
+    isPro: getRandomBool()
   },
 
   {
     avatar: `avatar-max.jpg`,
-    name: `Max`
+    name: `Max`,
+    isPro: getRandomBool()
   }
 ];
 
@@ -96,6 +100,7 @@ const getReviews = (num) => Array.from({length: num}, generateReview);
 
 const generateOffer = () => ({
   id: nanoid(),
+  city: getRandomArrayElement(CITIES),
   title: getRandomArrayElement(TITLES),
   poster: getRandomArrayElement(POSTERS),
   photos: createRandomArray(POSTERS),
@@ -109,22 +114,20 @@ const generateOffer = () => ({
   isPremium: getRandomBool(),
   owner: getRandomArrayElement(USERS),
   reviews: getReviews(getRandomInteger(0, 5)),
-  isInBookmarks: getRandomBool()
+  isInBookmarks: getRandomBool(),
+  coords: getRandomArrayElement(MAP_PIN_COORDS)
 });
 
 const getOffers = () => {
   const offers = [];
   for (let i = 0; i < OFFERS_QUANTITY; i++) {
     let newOffer = generateOffer();
-    if (i <= MAP_PIN_COORDS.length - 1) {
-      newOffer.coords = MAP_PIN_COORDS[i];
-    } else {
-      newOffer.coords = MAP_PIN_COORDS[0];
-    }
     offers.push(newOffer);
   }
 
   return offers;
 };
 
-export default getOffers;
+const offers = getOffers();
+
+export default offers;
