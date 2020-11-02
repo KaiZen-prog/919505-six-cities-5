@@ -1,11 +1,14 @@
-import {extend, getCurrentCityOffers} from "../utils/common";
+import {extend, getCurrentCityOffers, getSortedOffers} from "../utils/common";
 import {ActionType} from "./action";
-import {CITIES} from "../const";
+import {Cities, SortingTypes} from "../const";
 import offers from "../mocks/offers";
 
 const initialState = {
-  currentCity: CITIES[0],
-  currentCityOffers: getCurrentCityOffers(offers, CITIES[0])
+  currentCity: Cities[0],
+  currentCityOffers: getCurrentCityOffers(offers, Cities[0]),
+  isOffersSortOpened: false,
+  currentOffersSort: SortingTypes.POPULAR,
+  activeCard: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +16,26 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CITY:
       return extend(state, {
         currentCity: action.payload,
-        currentCityOffers: getCurrentCityOffers(offers, action.payload)
+        currentCityOffers: getCurrentCityOffers(offers, action.payload),
+        isOffersSortOpened: false,
+        currentOffersSort: SortingTypes.POPULAR
+      });
+
+    case ActionType.TOGGLE_OFFERS_SORT_PANEL:
+      return extend(state, {
+        isOffersSortOpened: !action.payload
+      });
+
+    case ActionType.CHANGE_OFFERS_SORT:
+      return extend(state, {
+        currentOffersSort: action.payload,
+        isOffersSortOpened: false,
+        currentCityOffers: getSortedOffers(state.currentCityOffers, action.payload)
+      });
+
+    case ActionType.GET_ACTIVE_CARD:
+      return extend(state, {
+        activeCard: action.payload
       });
   }
 

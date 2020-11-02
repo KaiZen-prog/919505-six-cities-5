@@ -1,6 +1,6 @@
 export const RATING_SCALE_MULTIPLIER = 20;
 
-export const CITIES = [
+export const Cities = [
   `Paris`,
   `Cologne`,
   `Brussels`,
@@ -8,6 +8,13 @@ export const CITIES = [
   `Hamburg`,
   `Dusseldorf`
 ];
+
+export const SortingTypes = {
+  POPULAR: `Popular`,
+  LOW_TO_HIGH: `Price: low to high`,
+  HIGH_TO_LOW: `Price: high to low`,
+  TOP_RATED_FIRST: `Top rated first`
+};
 
 export const OfferCardArticleClasses = {
   MAIN_SCREEN: `cities__place-card place-card`,
@@ -27,6 +34,7 @@ export const CityMapClasses = {
 export const CityMapSettings = {
   CITY: [52.38333, 4.9],
   ZOOM: 12,
-  ICON_URL: `img/pin.svg`,
+  DEFAULT_ICON_URL: `img/pin.svg`,
+  ACTIVE_ICON_URL: `img/pin-active.svg`,
   ICON_SIZE: [30, 30]
 };
