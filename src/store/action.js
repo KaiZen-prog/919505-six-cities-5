@@ -2,7 +2,7 @@ export const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   TOGGLE_OFFERS_SORT_PANEL: `TOGGLE_OFFERS_SORT_PANEL`,
   CHANGE_OFFERS_SORT: `CHANGE_OFFERS_SORT`,
-  GET_ACTIVE_CARD: `GET_ACTIVE_CARD`
+  ACTIVATE_CARD: `ACTIVATE_CARD`
 };
 
 export const ActionCreator = {
@@ -21,8 +21,8 @@ export const ActionCreator = {
     payload: sort
   }),
 
-  getActiveCard: (card) => ({
-    type: ActionType.GET_ACTIVE_CARD,
+  activateCard: (card) => ({
+    type: ActionType.ACTIVATE_CARD,
     payload: card
   })
 };

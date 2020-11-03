@@ -11,22 +11,22 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {offer, articleClass, imgWrapperClass, onActiveCard} = this.props;
+    const {offer, articleClass, imgWrapperClass, onCardActivate} = this.props;
 
     return (
       <article
         className={articleClass}
         onMouseEnter={() => {
-          onActiveCard(offer.id);
+          onCardActivate(offer.id);
         }}
         onFocus={() => {
-          onActiveCard(offer.id);
+          onCardActivate(offer.id);
         }}
         onMouseLeave={() => {
-          onActiveCard(null);
+          onCardActivate(null);
         }}
         onBlur={() => {
-          onActiveCard(null);
+          onCardActivate(null);
         }}
       >
         {offer.isPremium
@@ -89,14 +89,14 @@ OfferCard.propTypes = {
 
   articleClass: PropTypes.string.isRequired,
   imgWrapperClass: PropTypes.string.isRequired,
-  onActiveCard: PropTypes.func.isRequired
+  onCardActivate: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = (dispatch) => ({
-  onActiveCard(id) {
-    dispatch(ActionCreator.getActiveCard(id));
+  onCardActivate(id) {
+    dispatch(ActionCreator.activateCard(id));
   }
 });
 

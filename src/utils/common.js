@@ -28,13 +28,13 @@ export const getCurrentCityOffers = (offers, city) => {
 export const getSortedOffers = (offers, type) => {
   switch (type) {
     case SortingTypes.LOW_TO_HIGH:
-      return [...offers.sort((a, b) => (a.price - b.price))];
+      return [...offers].sort((a, b) => (a.price - b.price));
 
     case SortingTypes.HIGH_TO_LOW:
-      return [...offers.sort((a, b) => (b.price - a.price))];
+      return [...offers].sort((a, b) => (b.price - a.price));
 
     case SortingTypes.TOP_RATED_FIRST:
-      return [...offers.sort((a, b) => (b.rating - a.rating))];
+      return [...offers].sort((a, b) => (b.rating - a.rating));
 
     default:
       return offers;

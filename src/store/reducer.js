@@ -30,10 +30,12 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         currentOffersSort: action.payload,
         isOffersSortOpened: false,
-        currentCityOffers: getSortedOffers(state.currentCityOffers, action.payload)
+        currentCityOffers: action.payload === SortingTypes.POPULAR
+          ? getCurrentCityOffers(offers, state.currentCity)
+          : getSortedOffers(state.currentCityOffers, action.payload)
       });
 
-    case ActionType.GET_ACTIVE_CARD:
+    case ActionType.ACTIVATE_CARD:
       return extend(state, {
         activeCard: action.payload
       });

@@ -97,7 +97,6 @@ MainScreen.propTypes = {
   currentCityOffers: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
   onOffersSortChange: PropTypes.func.isRequired,
-  onActiveCard: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -112,10 +111,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onOffersSortChange(sort) {
     dispatch(ActionCreator.changeOffersSort(sort));
-  },
-
-  onActiveCard(card) {
-    dispatch(ActionCreator.getActiveCard(card));
   }
 });
 
