@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {ActionCreator} from "../../store/action";
+import {connect} from "react-redux";
 import {RATING_SCALE_MULTIPLIER} from "../../const";
 
 class OfferCard extends PureComponent {
@@ -9,12 +11,23 @@ class OfferCard extends PureComponent {
   }
 
   render() {
-    const {offer, articleClass, imgWrapperClass, onCardHover} = this.props;
+    const {offer, articleClass, imgWrapperClass, onCardActivate} = this.props;
 
     return (
       <article
         className={articleClass}
-        onMouseEnter={() => onCardHover(offer)}
+        onMouseEnter={() => {
+          onCardActivate(offer.id);
+        }}
+        onFocus={() => {
+          onCardActivate(offer.id);
+        }}
+        onMouseLeave={() => {
+          onCardActivate(null);
+        }}
+        onBlur={() => {
+          onCardActivate(null);
+        }}
       >
         {offer.isPremium
           ? <div className="place-card__mark">
@@ -76,7 +89,16 @@ OfferCard.propTypes = {
 
   articleClass: PropTypes.string.isRequired,
   imgWrapperClass: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired,
+  onCardActivate: PropTypes.func.isRequired
 };
 
-export default OfferCard;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCardActivate(id) {
+    dispatch(ActionCreator.activateCard(id));
+  }
+});
+
+export {OfferCard};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);

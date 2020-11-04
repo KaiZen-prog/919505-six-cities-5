@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {CITIES} from "../../const";
+import {Cities} from "../../const";
 
 const CitiesNav = ({currentCity, onCityClick}) => {
   return (
     <ul className="locations__list tabs__list">
-      {CITIES.map((city, index) => (
+      {Cities.map((city, index) => (
         <li
           className="locations__item"
           key={`city-${index}`}

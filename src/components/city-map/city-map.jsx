@@ -1,12 +1,17 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
-
 import {CityMapSettings} from "../../const";
 
-const icon = leaflet.icon({
-  iconUrl: CityMapSettings.ICON_URL,
+const defaultIcon = leaflet.icon({
+  iconUrl: CityMapSettings.DEFAULT_ICON_URL,
+  iconSize: CityMapSettings.ICON_SIZE
+});
+
+const activeIcon = leaflet.icon({
+  iconUrl: CityMapSettings.ACTIVE_ICON_URL,
   iconSize: CityMapSettings.ICON_SIZE
 });
 
@@ -18,7 +23,7 @@ class CityMap extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    const {offers, activeCard} = this.props;
 
     this.map = leaflet.map(`map`, {
       center: CityMapSettings.CITY,
@@ -33,12 +38,12 @@ class CityMap extends PureComponent {
       })
       .addTo(this.map);
 
-    this.setMap(offers);
+    this.setMap(offers, activeCard);
   }
 
   componentDidUpdate() {
-    const {offers} = this.props;
-    this.setMap(offers);
+    const {offers, activeCard} = this.props;
+    this.setMap(offers, activeCard);
   }
 
   render() {
@@ -51,15 +56,14 @@ class CityMap extends PureComponent {
     );
   }
 
-  setMap(offers) {
+  setMap(offers, activeCard) {
     this.markers.forEach((marker) => {
       this.map.removeLayer(marker);
     });
 
     offers.forEach((offer) => {
       this.markers.push(
-          leaflet.marker(offer.coords, {icon}).addTo(this.map)
-      );
+          leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
     });
 
     this.map.setView(CityMapSettings.CITY, CityMapSettings.ZOOM);
@@ -68,7 +72,13 @@ class CityMap extends PureComponent {
 
 CityMap.propTypes = {
   offers: PropTypes.array.isRequired,
-  cityMapClass: PropTypes.string.isRequired
+  cityMapClass: PropTypes.string.isRequired,
+  activeCard: PropTypes.string
 };
 
-export default CityMap;
+const mapStateToProps = (state) => ({
+  activeCard: state.activeCard
+});
+
+export {CityMap};
+export default connect(mapStateToProps)(CityMap);

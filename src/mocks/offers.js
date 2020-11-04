@@ -1,7 +1,7 @@
 import {nanoid} from "nanoid";
 import moment from "moment";
 
-import {CITIES} from "../const.js";
+import {Cities} from "../const.js";
 
 import {
   getRandomArrayElement,
@@ -84,7 +84,12 @@ const MAP_PIN_COORDS = [
   [52.3909553943508, 4.85309666406198],
   [52.369553943508, 4.85309666406198],
   [52.3909553943508, 4.929309666406198],
-  [52.3809553943508, 4.939309666406198]
+  [52.3809553943508, 4.939309666406198],
+
+  [52.3743433463930, 4.868436930693039],
+  [52.3850860954036, 4.870092591598953],
+  [52.3649350252302, 4.8853275275728929],
+  [52.3908938609303, 4.9248380925784330]
 ];
 
 const DESCRIPTION = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`;
@@ -100,7 +105,7 @@ const getReviews = (num) => Array.from({length: num}, generateReview);
 
 const generateOffer = () => ({
   id: nanoid(),
-  city: getRandomArrayElement(CITIES),
+  city: getRandomArrayElement(Cities),
   title: getRandomArrayElement(TITLES),
   poster: getRandomArrayElement(POSTERS),
   photos: createRandomArray(POSTERS),

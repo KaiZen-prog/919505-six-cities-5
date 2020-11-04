@@ -6,10 +6,6 @@ import OfferCard from "../offer-card/offer-card";
 class OfferList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeCard: null,
-    };
   }
 
   render() {
@@ -22,14 +18,6 @@ class OfferList extends PureComponent {
             offer={offer}
             articleClass={offerCardArticleClass}
             imgWrapperClass={offerCardImgWrapperClass}
-            onCardHover={() => {
-              const currentOffer = offers.find((off) => {
-                return off.id === offer.id;
-              });
-              this.setState({
-                activeCard: currentOffer,
-              });
-            }}
             key={offer.id}
           />
         ))}
