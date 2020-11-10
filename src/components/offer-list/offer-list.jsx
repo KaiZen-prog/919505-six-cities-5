@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
 import OfferCard from "../offer-card/offer-card";
+import {connect} from "react-redux";
 
 class OfferList extends PureComponent {
   constructor(props) {
@@ -9,11 +10,11 @@ class OfferList extends PureComponent {
   }
 
   render() {
-    const {offers, offerCardArticleClass, offerCardImgWrapperClass} = this.props;
+    const {currentCityOffers, offerCardArticleClass, offerCardImgWrapperClass} = this.props;
 
     return (
       <React.Fragment>
-        {offers.map((offer) => (
+        {currentCityOffers.map((offer) => (
           <OfferCard
             offer={offer}
             articleClass={offerCardArticleClass}
@@ -27,7 +28,7 @@ class OfferList extends PureComponent {
 }
 
 OfferList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
+  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired
   })).isRequired,
 
@@ -35,4 +36,9 @@ OfferList.propTypes = {
   offerCardImgWrapperClass: PropTypes.string.isRequired
 };
 
-export default OfferList;
+const mapStateToProps = (state) => ({
+  currentCityOffers: state.currentCityOffers,
+});
+
+export {OfferList};
+export default connect(mapStateToProps)(OfferList);

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {SortingTypes} from "../const";
-import {ActionCreator} from "../store/action";
+import {SortingTypes} from "../../const";
+import {ActionCreator} from "../../store/action";
 
 const OffersSort = ({isOffersSortOpened, currentOffersSort, toggleOffersSortPanel, onOffersSortChange}) => {
   return (

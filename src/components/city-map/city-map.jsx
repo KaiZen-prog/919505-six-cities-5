@@ -23,7 +23,7 @@ class CityMap extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers, activeCard} = this.props;
+    const {currentCityOffers, activeCard} = this.props;
 
     this.map = leaflet.map(`map`, {
       center: CityMapSettings.CITY,
@@ -38,12 +38,12 @@ class CityMap extends PureComponent {
       })
       .addTo(this.map);
 
-    this.setMap(offers, activeCard);
+    this.setMap(currentCityOffers, activeCard);
   }
 
   componentDidUpdate() {
-    const {offers, activeCard} = this.props;
-    this.setMap(offers, activeCard);
+    const {currentCityOffers, activeCard} = this.props;
+    this.setMap(currentCityOffers, activeCard);
   }
 
   render() {
@@ -56,12 +56,12 @@ class CityMap extends PureComponent {
     );
   }
 
-  setMap(offers, activeCard) {
+  setMap(currentCityOffers, activeCard) {
     this.markers.forEach((marker) => {
       this.map.removeLayer(marker);
     });
 
-    offers.forEach((offer) => {
+    currentCityOffers.forEach((offer) => {
       this.markers.push(
           leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
     });
@@ -71,12 +71,13 @@ class CityMap extends PureComponent {
 }
 
 CityMap.propTypes = {
-  offers: PropTypes.array.isRequired,
+  currentCityOffers: PropTypes.array.isRequired,
   cityMapClass: PropTypes.string.isRequired,
   activeCard: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
+  currentCityOffers: state.currentCityOffers,
   activeCard: state.activeCard
 });
 
