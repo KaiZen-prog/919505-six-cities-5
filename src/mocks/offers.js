@@ -10,7 +10,7 @@ import {
   createRandomArray
 } from "../utils/common.js";
 
-const OFFERS_QUANTITY = 24;
+const OFFERS_QUANTITY = 8;
 
 const TITLES = [
   `Beautiful & luxurious apartment at great location`,

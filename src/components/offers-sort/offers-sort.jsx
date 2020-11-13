@@ -81,6 +81,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   toggleOffersSortPanel(isOpened) {
     dispatch(ActionCreator.toggleOffersSortPanel(isOpened));
+  },
+
+  onOffersSortChange(sort) {
+    dispatch(ActionCreator.changeOffersSort(sort));
   }
 });
 

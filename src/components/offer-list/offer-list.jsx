@@ -13,7 +13,7 @@ class OfferList extends PureComponent {
     const {currentCityOffers, offerCardArticleClass, offerCardImgWrapperClass} = this.props;
 
     return (
-      <React.Fragment>
+      <>
         {currentCityOffers.map((offer) => (
           <OfferCard
             offer={offer}
@@ -22,7 +22,7 @@ class OfferList extends PureComponent {
             key={offer.id}
           />
         ))}
-      </React.Fragment>
+      </>
     );
   }
 }

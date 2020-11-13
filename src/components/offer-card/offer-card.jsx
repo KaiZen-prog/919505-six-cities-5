@@ -88,8 +88,6 @@ OfferCard.propTypes = {
   onCardActivate: PropTypes.func.isRequired
 };
 
-const mapStateToProps = () => ({});
-
 const mapDispatchToProps = (dispatch) => ({
   onCardActivate(id) {
     dispatch(ActionCreator.activateCard(id));
@@ -97,4 +95,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {OfferCard};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);
+export default connect(null, mapDispatchToProps)(OfferCard);

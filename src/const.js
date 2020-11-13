@@ -16,6 +16,11 @@ export const SortingTypes = {
   TOP_RATED_FIRST: `Top rated first`
 };
 
+export const CitiesContainerClasses = {
+  WITH_OFFERS: `cities__places-container container`,
+  NO_OFFERS: `cities__places-container cities__places-container--empty container`
+};
+
 export const OfferCardArticleClasses = {
   MAIN_SCREEN: `cities__place-card place-card`,
   OFFER_SCREEN: `near-places__card place-card`
