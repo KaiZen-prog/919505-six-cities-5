@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {CitiesContainersClasses} from "../../const";
 import CitiesNav from "../cities-nav/cities-nav";
 import MainContainer from "../main-container/main-container";
 
@@ -14,15 +13,14 @@ class MainScreen extends React.Component {
   // Перерисовываем компонент только если переключаемся с города,
   // содержащего предложения на город без предложений; или с города без предложений на город с.
   shouldComponentUpdate(nextProps) {
-    if (this.props.currentCityOffers.length > 0 && nextProps.currentCityOffers.length > 0) {
+    if (this.props.withOffers === nextProps.withOffers) {
       return false;
     }
-    return !(this.props.currentCityOffers.length === 0 && nextProps.currentCityOffers.length === 0);
+    return true;
   }
 
   render() {
-    const {currentCityOffers} = this.props;
-    const withOffers = currentCityOffers.length > 0;
+    const {withOffers} = this.props;
 
     return (
       <div className="page page--gray page--main">
@@ -49,10 +47,7 @@ class MainScreen extends React.Component {
           </div>
         </header>
 
-        <main className={withOffers
-          ? CitiesContainersClasses.MAIN.WITH_OFFERS
-          : CitiesContainersClasses.MAIN.NO_OFFERS
-        }>
+        <main className={`page__main page__main--index ${withOffers ? `` : `page__main--index-empty` }`}>
           <h1 className="visually-hidden">Cities</h1>
 
           <div className="tabs">
@@ -70,11 +65,11 @@ class MainScreen extends React.Component {
 }
 
 MainScreen.propTypes = {
-  currentCityOffers: PropTypes.array.isRequired
+  withOffers: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  currentCityOffers: state.currentCityOffers
+  withOffers: state.currentCityOffers.length > 0
 });
 
 export {MainScreen};
