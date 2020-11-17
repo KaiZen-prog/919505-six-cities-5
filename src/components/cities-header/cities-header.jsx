@@ -4,20 +4,20 @@ import {connect} from "react-redux";
 
 const CitiesHeader = ({currentCityOffers, currentCity}) => {
   return (
-    <React.Fragment>
+    <>
       <b className="places__found">{currentCityOffers.length} places to stay in {currentCity}</b>
-    </React.Fragment>
+    </>
   );
 };
 
 CitiesHeader.propTypes = {
   currentCityOffers: PropTypes.array.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentCityOffers: state.currentCityOffers,
-  currentCity: state.currentCity,
+const mapStateToProps = ({APP_ACTIONS}) => ({
+  currentCityOffers: APP_ACTIONS.currentCityOffers,
+  currentCity: APP_ACTIONS.currentCity,
 });
 
 export {CitiesHeader};

@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {ActionCreator} from "../../store/action";
+import {activateCard} from "../../store/action";
 import {connect} from "react-redux";
-import {RATING_SCALE_MULTIPLIER} from "../../const";
+import {AppRoute, RATING_SCALE_MULTIPLIER} from "../../const";
 
 const OfferCard = (props) => {
   const {
@@ -33,8 +33,8 @@ const OfferCard = (props) => {
         : ``
       }
       <div className={imgWrapperClass}>
-        <Link to={`/offer/` + offer.id}>
-          <img className="place-card__image" src={`img/${offer.poster}`} width="260" height="200" alt="Place image"/>
+        <Link to={AppRoute.OFFER + offer.id}>
+          <img className="place-card__image" src={offer.poster} width="260" height="200" alt="Place image"/>
         </Link>
       </div>
       <div className="place-card__info">
@@ -63,7 +63,7 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/` + offer.id}>{offer.title}</Link>
+          <Link to={AppRoute.OFFER + offer.id}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -73,7 +73,7 @@ const OfferCard = (props) => {
 
 OfferCard.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     poster: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -90,7 +90,7 @@ OfferCard.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onCardActivate(id) {
-    dispatch(ActionCreator.activateCard(id));
+    dispatch(activateCard(id));
   }
 });
 

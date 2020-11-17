@@ -1,4 +1,17 @@
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  OFFER: `/offer/`,
+  OFFER_ID: `/offer/:id`
+};
+
 export const RATING_SCALE_MULTIPLIER = 20;
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
 
 export const Cities = [
   `Paris`,

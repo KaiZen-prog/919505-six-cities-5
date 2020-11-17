@@ -73,12 +73,12 @@ class CityMap extends PureComponent {
 CityMap.propTypes = {
   currentCityOffers: PropTypes.array.isRequired,
   cityMapClass: PropTypes.string.isRequired,
-  activeCard: PropTypes.string
+  activeCard: PropTypes.number
 };
 
-const mapStateToProps = (state) => ({
-  currentCityOffers: state.currentCityOffers,
-  activeCard: state.activeCard
+const mapStateToProps = ({APP_ACTIONS}) => ({
+  currentCityOffers: APP_ACTIONS.currentCityOffers,
+  activeCard: APP_ACTIONS.activeCard
 });
 
 export {CityMap};

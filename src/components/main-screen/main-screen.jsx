@@ -68,8 +68,8 @@ MainScreen.propTypes = {
   withOffers: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  withOffers: state.currentCityOffers.length > 0
+const mapStateToProps = ({APP_ACTIONS}) => ({
+  withOffers: APP_ACTIONS.currentCityOffers.length > 0
 });
 
 export {MainScreen};

@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
+import {toggleOffersSortPanel, changeOffersSort} from "../../store/action";
 import {SortingTypes} from "../../const";
-import {ActionCreator} from "../../store/action";
 
-const OffersSort = ({isOffersSortOpened, currentOffersSort, toggleOffersSortPanel, onOffersSortChange}) => {
+const OffersSort = ({isOffersSortOpened, currentOffersSort, togglePanel, onOffersSortChange}) => {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -12,7 +12,7 @@ const OffersSort = ({isOffersSortOpened, currentOffersSort, toggleOffersSortPane
         className="places__sorting-type"
         tabIndex="0"
         onClick={() => {
-          toggleOffersSortPanel(isOffersSortOpened);
+          togglePanel(isOffersSortOpened);
         }}
       >
         {currentOffersSort}
@@ -69,22 +69,22 @@ const OffersSort = ({isOffersSortOpened, currentOffersSort, toggleOffersSortPane
 OffersSort.propTypes = {
   isOffersSortOpened: PropTypes.bool.isRequired,
   currentOffersSort: PropTypes.string.isRequired,
-  toggleOffersSortPanel: PropTypes.func.isRequired,
+  togglePanel: PropTypes.func.isRequired,
   onOffersSortChange: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  isOffersSortOpened: state.isOffersSortOpened,
-  currentOffersSort: state.currentOffersSort
+const mapStateToProps = ({APP_ACTIONS}) => ({
+  isOffersSortOpened: APP_ACTIONS.isOffersSortOpened,
+  currentOffersSort: APP_ACTIONS.currentOffersSort
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleOffersSortPanel(isOpened) {
-    dispatch(ActionCreator.toggleOffersSortPanel(isOpened));
+  togglePanel(isOpened) {
+    dispatch(toggleOffersSortPanel(isOpened));
   },
 
   onOffersSortChange(sort) {
-    dispatch(ActionCreator.changeOffersSort(sort));
+    dispatch(changeOffersSort(sort));
   }
 });
 
