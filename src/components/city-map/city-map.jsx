@@ -26,8 +26,8 @@ class CityMap extends PureComponent {
     const {currentCityOffers, activeCard} = this.props;
 
     this.map = leaflet.map(`map`, {
-      center: CityMapSettings.CITY,
-      zoom: CityMapSettings.ZOOM,
+      center: currentCityOffers[0].cityCoords,
+      zoom: currentCityOffers[0].mapZoom,
       zoomControl: false,
       marker: true
     });
@@ -66,12 +66,15 @@ class CityMap extends PureComponent {
           leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
     });
 
-    this.map.setView(CityMapSettings.CITY, CityMapSettings.ZOOM);
+    this.map.setView(currentCityOffers[0].cityCoords, currentCityOffers[0].mapZoom);
   }
 }
 
 CityMap.propTypes = {
-  currentCityOffers: PropTypes.array.isRequired,
+  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
+    cityCoords: PropTypes.array.isRequired,
+    mapZoom: PropTypes.number.isRequired
+  })).isRequired,
   cityMapClass: PropTypes.string.isRequired,
   activeCard: PropTypes.number
 };

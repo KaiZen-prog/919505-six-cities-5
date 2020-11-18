@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {activateCard} from "../../store/action";
+import {activateCard, clickCard} from "../../store/action";
 import {connect} from "react-redux";
 import {AppRoute, RATING_SCALE_MULTIPLIER} from "../../const";
 
 const OfferCard = (props) => {
   const {
-    offer, articleClass, imgWrapperClass, onCardActivate
+    offer, articleClass, imgWrapperClass, onCardActivate, onCardClick
   } = props;
 
   return (
@@ -33,7 +33,11 @@ const OfferCard = (props) => {
         : ``
       }
       <div className={imgWrapperClass}>
-        <Link to={AppRoute.OFFER + offer.id}>
+        <Link
+          onClick={() => {
+            onCardClick(offer.id);
+          }}
+          to={AppRoute.OFFER + offer.id}>
           <img className="place-card__image" src={offer.poster} width="260" height="200" alt="Place image"/>
         </Link>
       </div>
@@ -63,7 +67,12 @@ const OfferCard = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={AppRoute.OFFER + offer.id}>{offer.title}</Link>
+          <Link
+            onClick={() => {
+              onCardClick(offer.id);
+            }}
+            to={AppRoute.OFFER + offer.id}>
+            {offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -85,12 +94,17 @@ OfferCard.propTypes = {
 
   articleClass: PropTypes.string.isRequired,
   imgWrapperClass: PropTypes.string.isRequired,
-  onCardActivate: PropTypes.func.isRequired
+  onCardActivate: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onCardActivate(id) {
     dispatch(activateCard(id));
+  },
+
+  onCardClick(id) {
+    dispatch(clickCard(id));
   }
 });
 

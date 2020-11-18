@@ -5,6 +5,7 @@ export const ActionType = {
   TOGGLE_OFFERS_SORT_PANEL: `TOGGLE_OFFERS_SORT_PANEL`,
   CHANGE_OFFERS_SORT: `CHANGE_OFFERS_SORT`,
   ACTIVATE_CARD: `ACTIVATE_CARD`,
+  CLICK_CARD: `CLICK_CARD`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`
 };
@@ -36,6 +37,11 @@ export const changeOffersSort = (sort) => ({
 
 export const activateCard = (card) => ({
   type: ActionType.ACTIVATE_CARD,
+  payload: card
+});
+
+export const clickCard = (card) => ({
+  type: ActionType.CLICK_CARD,
   payload: card
 });
 

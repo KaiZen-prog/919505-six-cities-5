@@ -216,7 +216,7 @@ OfferScreen.propTypes = {
 
 const mapStateToProps = ({APP_ACTIONS}) => ({
   offers: APP_ACTIONS.currentCityOffers,
-  offer: APP_ACTIONS.currentCityOffers.find((offer) => offer.id === APP_ACTIONS.activeCard),
+  offer: APP_ACTIONS.currentCityOffers.find((offer) => offer.id === APP_ACTIONS.clickedCard),
   reviews: APP_ACTIONS.reviews
 });
 

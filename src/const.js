@@ -50,8 +50,6 @@ export const CityMapClasses = {
 };
 
 export const CityMapSettings = {
-  CITY: [52.38333, 4.9],
-  ZOOM: 12,
   DEFAULT_ICON_URL: `img/pin.svg`,
   ACTIVE_ICON_URL: `img/pin-active.svg`,
   ICON_SIZE: [30, 30]

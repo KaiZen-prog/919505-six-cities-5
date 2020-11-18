@@ -9,7 +9,8 @@ const initialState = {
   currentCityOffers: [],
   isOffersSortOpened: false,
   currentOffersSort: SortingTypes.POPULAR,
-  activeCard: null
+  activeCard: null,
+  clickedCard: null
 };
 
 const appActions = (state = initialState, action) => {
@@ -50,6 +51,11 @@ const appActions = (state = initialState, action) => {
     case ActionType.ACTIVATE_CARD:
       return extend(state, {
         activeCard: action.payload
+      });
+
+    case ActionType.CLICK_CARD:
+      return extend(state, {
+        clickedCard: action.payload
       });
   }
 
