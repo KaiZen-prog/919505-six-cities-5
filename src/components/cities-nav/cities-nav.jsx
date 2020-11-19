@@ -33,8 +33,8 @@ CitiesNav.propTypes = {
   onCityClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  currentCity: APP_ACTIONS.currentCity,
+const mapStateToProps = ({APP_PROCESS}) => ({
+  currentCity: APP_PROCESS.currentCity,
 });
 
 const mapDispatchToProps = (dispatch) => ({

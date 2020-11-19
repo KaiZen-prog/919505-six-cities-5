@@ -73,9 +73,9 @@ OffersSort.propTypes = {
   onOffersSortChange: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  isOffersSortOpened: APP_ACTIONS.isOffersSortOpened,
-  currentOffersSort: APP_ACTIONS.currentOffersSort
+const mapStateToProps = ({APP_PROCESS}) => ({
+  isOffersSortOpened: APP_PROCESS.isOffersSortOpened,
+  currentOffersSort: APP_PROCESS.currentOffersSort
 });
 
 const mapDispatchToProps = (dispatch) => ({

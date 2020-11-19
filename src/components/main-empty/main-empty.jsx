@@ -24,8 +24,8 @@ MainEmpty.propTypes = {
   currentCity: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  currentCity: APP_ACTIONS.currentCity,
+const mapStateToProps = ({APP_PROCESS}) => ({
+  currentCity: APP_PROCESS.currentCity,
 });
 
 export {MainEmpty};

@@ -1,9 +1,9 @@
 import {extend} from "../../../utils/common";
 import {ActionType} from "../../action";
-import offers from "../../../mocks/offers";
 
 const initialState = {
-  offers
+  offers: [],
+  reviews: []
 };
 
 const appData = (state = initialState, action) => {
@@ -11,6 +11,11 @@ const appData = (state = initialState, action) => {
     case ActionType.GET_OFFERS:
       return extend(state, {
         offers: action.payload,
+      });
+
+    case ActionType.GET_REVIEWS:
+      return extend(state, {
+        reviews: action.payload,
       });
   }
 

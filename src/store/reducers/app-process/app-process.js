@@ -1,35 +1,20 @@
-import {extend, getCurrentCityOffers, getSortedOffers} from "../../../utils/common";
+import {extend} from "../../../utils/common";
 import {ActionType} from "../../action";
 import {Cities, SortingTypes} from "../../../const";
 
 const initialState = {
-  offers: [],
-  reviews: [],
   currentCity: Cities[0],
-  currentCityOffers: [],
   isOffersSortOpened: false,
   currentOffersSort: SortingTypes.POPULAR,
   activeCard: null,
   clickedCard: null
 };
 
-const appActions = (state = initialState, action) => {
+const appProcess = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_OFFERS:
-      return extend(state, {
-        offers: action.payload,
-        currentCityOffers: getCurrentCityOffers(action.payload, Cities[0])
-      });
-
-    case ActionType.GET_REVIEWS:
-      return extend(state, {
-        reviews: action.payload
-      });
-
     case ActionType.CHANGE_CITY:
       return extend(state, {
         currentCity: action.payload,
-        currentCityOffers: getCurrentCityOffers(state.offers, action.payload),
         isOffersSortOpened: false,
         currentOffersSort: SortingTypes.POPULAR
       });
@@ -43,9 +28,6 @@ const appActions = (state = initialState, action) => {
       return extend(state, {
         currentOffersSort: action.payload,
         isOffersSortOpened: false,
-        currentCityOffers: action.payload === SortingTypes.POPULAR
-          ? getCurrentCityOffers(state.offers, state.currentCity)
-          : getSortedOffers(state.currentCityOffers, action.payload)
       });
 
     case ActionType.ACTIVATE_CARD:
@@ -55,11 +37,12 @@ const appActions = (state = initialState, action) => {
 
     case ActionType.CLICK_CARD:
       return extend(state, {
-        clickedCard: action.payload
+        clickedCard: action.payload,
+        activeCard: null
       });
   }
 
   return state;
 };
 
-export {appActions};
+export {appProcess};

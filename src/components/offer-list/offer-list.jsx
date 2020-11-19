@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import OfferCard from "../offer-card/offer-card";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 class OfferList extends PureComponent {
   constructor(props) {
@@ -35,9 +36,12 @@ OfferList.propTypes = {
   offerCardImgWrapperClass: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  currentCityOffers: APP_ACTIONS.currentCityOffers,
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    currentCityOffers: selectCurrentCityOffers(data)
+  };
+};
 
 export {OfferList};
 export default connect(mapStateToProps)(OfferList);

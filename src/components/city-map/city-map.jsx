@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {CityMapSettings} from "../../const";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 const defaultIcon = leaflet.icon({
   iconUrl: CityMapSettings.DEFAULT_ICON_URL,
@@ -79,10 +80,13 @@ CityMap.propTypes = {
   activeCard: PropTypes.number
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  currentCityOffers: APP_ACTIONS.currentCityOffers,
-  activeCard: APP_ACTIONS.activeCard
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    currentCityOffers: selectCurrentCityOffers(data),
+    activeCard: state.APP_PROCESS.activeCard
+  };
+};
 
 export {CityMap};
 export default connect(mapStateToProps)(CityMap);

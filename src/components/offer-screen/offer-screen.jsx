@@ -14,6 +14,7 @@ import OfferList from "../offer-list/offer-list";
 import CityMap from "../city-map/city-map";
 import {connect} from "react-redux";
 import {fetchReviewsList} from "../../store/api-actions";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 class OfferScreen extends PureComponent {
   constructor(props) {
@@ -214,11 +215,14 @@ OfferScreen.propTypes = {
   getReviewsAction: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  offers: APP_ACTIONS.currentCityOffers,
-  offer: APP_ACTIONS.currentCityOffers.find((offer) => offer.id === APP_ACTIONS.clickedCard),
-  reviews: APP_ACTIONS.reviews
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    offers: selectCurrentCityOffers(data),
+    offer: state.APP_DATA.offers.find((offer) => offer.id === state.APP_PROCESS.clickedCard),
+    reviews: state.APP_DATA.reviews
+  };
+};
 
 const mapDispatchToProps = ((dispatch) => ({
   getReviewsAction(offerId) {

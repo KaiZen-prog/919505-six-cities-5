@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 const CitiesHeader = ({currentCityOffers, currentCity}) => {
   return (
@@ -15,10 +16,13 @@ CitiesHeader.propTypes = {
   currentCity: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({APP_ACTIONS}) => ({
-  currentCityOffers: APP_ACTIONS.currentCityOffers,
-  currentCity: APP_ACTIONS.currentCity,
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    currentCityOffers: selectCurrentCityOffers(data),
+    currentCity: state.APP_PROCESS.currentCity,
+  };
+};
 
 export {CitiesHeader};
 export default connect(mapStateToProps)(CitiesHeader);
