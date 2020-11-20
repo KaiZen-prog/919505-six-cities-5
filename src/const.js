@@ -6,6 +6,12 @@ export const AppRoute = {
   OFFER_ID: `/offer/:id`
 };
 
+export const APIRoute = {
+  LOGIN: `/login`,
+  COMMENTS: `/comments/`,
+  HOTELS: `/hotels`
+};
+
 export const RATING_SCALE_MULTIPLIER = 20;
 
 export const AuthorizationStatus = {
