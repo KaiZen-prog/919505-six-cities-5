@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {CityMapSettings} from "../../const";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 const defaultIcon = leaflet.icon({
   iconUrl: CityMapSettings.DEFAULT_ICON_URL,
@@ -26,8 +27,8 @@ class CityMap extends PureComponent {
     const {currentCityOffers, activeCard} = this.props;
 
     this.map = leaflet.map(`map`, {
-      center: CityMapSettings.CITY,
-      zoom: CityMapSettings.ZOOM,
+      center: currentCityOffers[0].cityCoords,
+      zoom: currentCityOffers[0].mapZoom,
       zoomControl: false,
       marker: true
     });
@@ -66,20 +67,26 @@ class CityMap extends PureComponent {
           leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
     });
 
-    this.map.setView(CityMapSettings.CITY, CityMapSettings.ZOOM);
+    this.map.setView(currentCityOffers[0].cityCoords, currentCityOffers[0].mapZoom);
   }
 }
 
 CityMap.propTypes = {
-  currentCityOffers: PropTypes.array.isRequired,
+  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
+    cityCoords: PropTypes.array.isRequired,
+    mapZoom: PropTypes.number.isRequired
+  })).isRequired,
   cityMapClass: PropTypes.string.isRequired,
-  activeCard: PropTypes.string
+  activeCard: PropTypes.number
 };
 
-const mapStateToProps = (state) => ({
-  currentCityOffers: state.currentCityOffers,
-  activeCard: state.activeCard
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    currentCityOffers: selectCurrentCityOffers(data),
+    activeCard: state.APP_PROCESS.activeCard
+  };
+};
 
 export {CityMap};
 export default connect(mapStateToProps)(CityMap);

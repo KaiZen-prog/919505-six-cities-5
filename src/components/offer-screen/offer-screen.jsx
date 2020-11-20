@@ -12,14 +12,22 @@ import CommentForm from "../comment-form/comment-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import OfferList from "../offer-list/offer-list";
 import CityMap from "../city-map/city-map";
+import {connect} from "react-redux";
+import {fetchReviewsList} from "../../store/api-actions";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 class OfferScreen extends PureComponent {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    const {getReviewsAction, offer} = this.props;
+    getReviewsAction(offer.id);
+  }
+
   render() {
-    const {offers, offer} = this.props;
+    const {offers, offer, reviews} = this.props;
     const otherOffers = offers.filter((entity) => (
       entity.id !== offer.id
     ));
@@ -55,7 +63,7 @@ class OfferScreen extends PureComponent {
               <div className="property__gallery">
                 {offer.photos.map((photo, i) => (
                   <div key={i} className="property__image-wrapper">
-                    <img className="property__image" src={`img/${photo}`} alt="Photo studio"/>
+                    <img className="property__image" src={photo} alt="Photo studio"/>
                   </div>
                 ))}
               </div>
@@ -136,7 +144,7 @@ class OfferScreen extends PureComponent {
                         : `property__avatar-wrapper user__avatar-wrapper`
                       }
                     >
-                      <img className="property__avatar user__avatar" src={`img/${offer.owner.avatar}`} width="74" height="74" alt="Host avatar"/>
+                      <img className="property__avatar user__avatar" src={offer.owner.avatar} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
                       {offer.owner.name}
@@ -149,9 +157,9 @@ class OfferScreen extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offer.reviews.length}</span></h2>
-                  {offer.reviews.length > 0
-                    ? <ReviewsList reviews={offer.reviews}/>
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+                  {reviews.length > 0
+                    ? <ReviewsList reviews={reviews}/>
                     : ``}
                   <CommentForm/>
                 </section>
@@ -184,7 +192,7 @@ OfferScreen.propTypes = {
   offers: PropTypes.array.isRequired,
 
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     photos: PropTypes.array.isRequired,
     isPremium: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
@@ -200,9 +208,27 @@ OfferScreen.propTypes = {
       name: PropTypes.string.isRequired,
       isPro: PropTypes.bool.isRequired
     }).isRequired,
-    reviews: PropTypes.array.isRequired,
     isInBookmarks: PropTypes.bool.isRequired
-  }).isRequired
+  }).isRequired,
+
+  reviews: PropTypes.array.isRequired,
+  getReviewsAction: PropTypes.func.isRequired
 };
 
-export default OfferScreen;
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    offers: selectCurrentCityOffers(data),
+    offer: state.APP_DATA.offers.find((offer) => offer.id === state.APP_PROCESS.clickedCard),
+    reviews: state.APP_DATA.reviews
+  };
+};
+
+const mapDispatchToProps = ((dispatch) => ({
+  getReviewsAction(offerId) {
+    dispatch(fetchReviewsList(offerId));
+  },
+}));
+
+export {OfferScreen};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferScreen);

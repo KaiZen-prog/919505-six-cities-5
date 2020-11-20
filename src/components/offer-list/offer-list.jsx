@@ -1,8 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
-import OfferCard from "../offer-card/offer-card";
 import {connect} from "react-redux";
+import OfferCard from "../offer-card/offer-card";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 class OfferList extends PureComponent {
   constructor(props) {
@@ -29,16 +29,19 @@ class OfferList extends PureComponent {
 
 OfferList.propTypes = {
   currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired
+    id: PropTypes.number.isRequired
   })).isRequired,
 
   offerCardArticleClass: PropTypes.string.isRequired,
   offerCardImgWrapperClass: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  currentCityOffers: state.currentCityOffers,
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    currentCityOffers: selectCurrentCityOffers(data)
+  };
+};
 
 export {OfferList};
 export default connect(mapStateToProps)(OfferList);

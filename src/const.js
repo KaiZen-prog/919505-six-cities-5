@@ -1,4 +1,17 @@
+export const AppRoute = {
+  ROOT: `/`,
+  LOGIN: `/login`,
+  FAVORITES: `/favorites`,
+  OFFER: `/offer/`,
+  OFFER_ID: `/offer/:id`
+};
+
 export const RATING_SCALE_MULTIPLIER = 20;
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
 
 export const Cities = [
   `Paris`,
@@ -37,8 +50,6 @@ export const CityMapClasses = {
 };
 
 export const CityMapSettings = {
-  CITY: [52.38333, 4.9],
-  ZOOM: 12,
   DEFAULT_ICON_URL: `img/pin.svg`,
   ACTIVE_ICON_URL: `img/pin-active.svg`,
   ICON_SIZE: [30, 30]

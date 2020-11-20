@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import CitiesNav from "../cities-nav/cities-nav";
 import MainContainer from "../main-container/main-container";
+import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
 class MainScreen extends React.Component {
   constructor(props) {
@@ -13,10 +14,7 @@ class MainScreen extends React.Component {
   // Перерисовываем компонент только если переключаемся с города,
   // содержащего предложения на город без предложений; или с города без предложений на город с.
   shouldComponentUpdate(nextProps) {
-    if (this.props.withOffers === nextProps.withOffers) {
-      return false;
-    }
-    return true;
+    return this.props.withOffers !== nextProps.withOffers;
   }
 
   render() {
@@ -68,9 +66,12 @@ MainScreen.propTypes = {
   withOffers: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-  withOffers: state.currentCityOffers.length > 0
-});
+const mapStateToProps = (state) => {
+  const data = {state};
+  return {
+    withOffers: selectCurrentCityOffers(data).length > 0,
+  };
+};
 
 export {MainScreen};
 export default connect(mapStateToProps)(MainScreen);

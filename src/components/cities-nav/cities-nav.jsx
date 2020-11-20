@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Cities} from "../../const";
-import {ActionCreator} from "../../store/action";
+import {changeCity} from "../../store/action";
 import {connect} from "react-redux";
 
 const CitiesNav = ({currentCity, onCityClick}) => {
@@ -33,13 +33,13 @@ CitiesNav.propTypes = {
   onCityClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  currentCity: state.currentCity,
+const mapStateToProps = ({APP_PROCESS}) => ({
+  currentCity: APP_PROCESS.currentCity,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
-    dispatch(ActionCreator.changeCity(city));
+    dispatch(changeCity(city));
   },
 });
 
