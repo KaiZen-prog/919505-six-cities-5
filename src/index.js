@@ -8,10 +8,12 @@ import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {redirect} from "./store/middlewares/redirect";
 import rootReducer from "./store/reducers/root-reducer";
-import {fetchOffersList} from "./store/api-actions";
+import {requireAuthorization} from "./store/action";
+import {fetchOffersList, checkAuth} from "./store/api-actions";
+import {AuthorizationStatus} from "./const";
 
 const api = createAPI(
-    () => store.dispatch()
+    () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
 );
 
 const store = createStore(
@@ -23,6 +25,7 @@ const store = createStore(
 );
 
 Promise.all([
+  store.dispatch(checkAuth()),
   store.dispatch(fetchOffersList())
 ])
   .then(() => {

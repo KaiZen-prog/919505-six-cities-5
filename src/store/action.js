@@ -45,9 +45,12 @@ export const clickCard = (card) => ({
   payload: card
 });
 
-export const requireAuthorization = (status) => ({
+export const requireAuthorization = (status, data) => ({
   type: ActionType.REQUIRED_AUTHORIZATION,
-  payload: status,
+  payload: {
+    status,
+    data
+  }
 });
 
 export const redirectToRoute = (url) => ({

@@ -2,6 +2,16 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+export const adaptUserToApp = (data) => {
+  return {
+    avatarUrl: data.avatar_url,
+    email: data.email,
+    id: data.id,
+    isPro: data.is_pro,
+    name: data.name
+  };
+};
+
 export const adaptOfferToApp = (offer) => {
   return {
     id: offer.id,

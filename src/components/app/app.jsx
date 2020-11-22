@@ -1,6 +1,6 @@
 import React from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
-import history from "../../browser-history";
+import {Switch, Route, Router as BrowserRouter} from "react-router-dom";
+import browserHistory from "../../browser-history";
 import PrivateRoute from "../private-route/private-route";
 import MainScreen from "../main-screen/main-screen";
 import LoginScreen from "../login-sreen/login-screen";
@@ -10,7 +10,7 @@ import {AppRoute} from "../../const";
 
 const App = () => {
   return (
-    <BrowserRouter history={history}>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <MainScreen/>
