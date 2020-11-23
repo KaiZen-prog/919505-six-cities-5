@@ -1,61 +1,40 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import {
   CityMapClasses,
   OfferCardArticleClasses,
   OfferCardImgWrapperClasses,
   RATING_SCALE_MULTIPLIER,
+  AuthorizationStatus
 } from "../../const";
 
+import MainHeader from "../main-header/main-header";
 import CommentForm from "../comment-form/comment-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import OfferList from "../offer-list/offer-list";
 import CityMap from "../city-map/city-map";
-import {connect} from "react-redux";
-import {fetchReviewsList} from "../../store/api-actions";
 import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
 
-class OfferScreen extends PureComponent {
+class OfferScreen extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  componentDidMount() {
-    const {getReviewsAction, offer} = this.props;
-    getReviewsAction(offer.id);
+  shouldComponentUpdate(nextProps) {
+    return this.props.offers === nextProps.offers;
   }
 
   render() {
-    const {offers, offer, reviews} = this.props;
+    const {offers, offer, authorizationStatus} = this.props;
     const otherOffers = offers.filter((entity) => (
       entity.id !== offer.id
     ));
 
     return (
       <div className="page">
-        <header className="header">
-          <div className="container">
-            <div className="header__wrapper">
-              <div className="header__left">
-                <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-                </a>
-              </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </header>
+        <MainHeader/>
 
         <main className="page__main page__main--property">
           <section className="property">
@@ -157,11 +136,11 @@ class OfferScreen extends PureComponent {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                  {reviews.length > 0
-                    ? <ReviewsList reviews={reviews}/>
+                  <ReviewsList offerId={offer.id} />
+
+                  {authorizationStatus === AuthorizationStatus.AUTH
+                    ? <CommentForm/>
                     : ``}
-                  <CommentForm/>
                 </section>
               </div>
             </div>
@@ -211,8 +190,7 @@ OfferScreen.propTypes = {
     isInBookmarks: PropTypes.bool.isRequired
   }).isRequired,
 
-  reviews: PropTypes.array.isRequired,
-  getReviewsAction: PropTypes.func.isRequired
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -220,15 +198,9 @@ const mapStateToProps = (state) => {
   return {
     offers: selectCurrentCityOffers(data),
     offer: state.APP_DATA.offers.find((offer) => offer.id === state.APP_PROCESS.clickedCard),
-    reviews: state.APP_DATA.reviews
+    authorizationStatus: state.USER.authorizationStatus
   };
 };
 
-const mapDispatchToProps = ((dispatch) => ({
-  getReviewsAction(offerId) {
-    dispatch(fetchReviewsList(offerId));
-  },
-}));
-
 export {OfferScreen};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferScreen);
+export default connect(mapStateToProps)(OfferScreen);

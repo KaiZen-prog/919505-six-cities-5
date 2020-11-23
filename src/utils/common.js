@@ -54,3 +54,16 @@ export const adaptReviewToApp = (comment) => {
     date: comment.date,
   };
 };
+
+export const adaptReviewToServer = (review, rating) => {
+  return {
+    comment: review,
+    rating
+  };
+};
+
+export const sortReviewsByDate = (reviews) => {
+  return reviews.slice().sort((left, right) => {
+    return (new Date(right.date) - new Date(left.date));
+  });
+};

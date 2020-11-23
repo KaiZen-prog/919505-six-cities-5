@@ -1,4 +1,4 @@
-import {extend} from "../../../utils/common";
+import {extend, sortReviewsByDate} from "../../../utils/common";
 import {ActionType} from "../../action";
 
 const initialState = {
@@ -15,7 +15,7 @@ const appData = (state = initialState, action) => {
 
     case ActionType.GET_REVIEWS:
       return extend(state, {
-        reviews: action.payload,
+        reviews: sortReviewsByDate(action.payload)
       });
   }
 

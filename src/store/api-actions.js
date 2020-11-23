@@ -1,7 +1,7 @@
-import {adaptOfferToApp, adaptReviewToApp} from "../utils/common";
-import {getOffers, getReviews, requireAuthorization, redirectToRoute} from "./action";
+import {adaptOfferToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/common";
+import {getOffers, getReviews, setReviewFormStateAction, requireAuthorization, redirectToRoute} from "./action";
 import {adaptUserToApp} from "../utils/common";
-import {AppRoute, APIRoute, AuthorizationStatus} from "../const";
+import {AppRoute, APIRoute, AuthorizationStatus, ReviewFormState} from "../const";
 
 export const fetchOffersList = () => (dispatch, _getState, api) => {
   return api.get(APIRoute.HOTELS)
@@ -23,4 +23,14 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then((response) => dispatch(requireAuthorization(AuthorizationStatus.AUTH, adaptUserToApp(response.data))))
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
+);
+
+export const postReview = ({review, rating, offerId}) => (dispatch, _getState, api) => (
+  api.post(APIRoute.COMMENTS + offerId, adaptReviewToServer(review, rating))
+    .then(({data}) => {
+      dispatch(getReviews(data.map(adaptReviewToApp)));
+      dispatch(setReviewFormStateAction(ReviewFormState.DEFAULT));
+      dispatch(setReviewFormStateAction(ReviewFormState.EDITING));
+    })
+    .catch(() => dispatch(setReviewFormStateAction(ReviewFormState.SENDING_ERROR)))
 );
