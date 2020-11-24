@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
-import {CityMapSettings} from "../../const";
-import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
+import {CityMapSettings, CityMapClasses} from "../../const";
 
 const defaultIcon = leaflet.icon({
   iconUrl: CityMapSettings.DEFAULT_ICON_URL,
@@ -24,11 +23,11 @@ class CityMap extends PureComponent {
   }
 
   componentDidMount() {
-    const {currentCityOffers, activeCard} = this.props;
+    const {offers, activeCard, cityMapClass, clickedOfferCoords} = this.props;
 
     this.map = leaflet.map(`map`, {
-      center: currentCityOffers[0].cityCoords,
-      zoom: currentCityOffers[0].mapZoom,
+      center: offers[0].cityCoords,
+      zoom: offers[0].mapZoom,
       zoomControl: false,
       marker: true
     });
@@ -39,12 +38,13 @@ class CityMap extends PureComponent {
       })
       .addTo(this.map);
 
-    this.setMap(currentCityOffers, activeCard);
+    this.setMap(offers, activeCard, cityMapClass, clickedOfferCoords);
   }
 
   componentDidUpdate() {
-    const {currentCityOffers, activeCard} = this.props;
-    this.setMap(currentCityOffers, activeCard);
+    const {offers, activeCard, cityMapClass, clickedOfferCoords} = this.props;
+    this.markers = [];
+    this.setMap(offers, activeCard, cityMapClass, clickedOfferCoords);
   }
 
   render() {
@@ -57,34 +57,39 @@ class CityMap extends PureComponent {
     );
   }
 
-  setMap(currentCityOffers, activeCard) {
+  setMap(offers, activeCard, cityMapClass, clickedOfferCoords) {
     this.markers.forEach((marker) => {
       this.map.removeLayer(marker);
     });
 
-    currentCityOffers.forEach((offer) => {
+    offers.forEach((offer) => {
       this.markers.push(
           leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
     });
 
-    this.map.setView(currentCityOffers[0].cityCoords, currentCityOffers[0].mapZoom);
+    if (cityMapClass === CityMapClasses.OFFER_SCREEN) {
+      this.markers.push(
+          leaflet.marker(clickedOfferCoords, {icon: activeIcon}).addTo(this.map));
+    }
+
+    this.map.setView(offers[0].cityCoords, offers[0].mapZoom);
   }
 }
 
 CityMap.propTypes = {
-  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
+  offers: PropTypes.arrayOf(PropTypes.shape({
     cityCoords: PropTypes.array.isRequired,
     mapZoom: PropTypes.number.isRequired
   })).isRequired,
   cityMapClass: PropTypes.string.isRequired,
-  activeCard: PropTypes.number
+  activeCard: PropTypes.number,
+  clickedOfferCoords: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
-  const data = {state};
   return {
-    currentCityOffers: selectCurrentCityOffers(data),
-    activeCard: state.APP_PROCESS.activeCard
+    activeCard: state.APP_PROCESS.activeCard,
+    clickedCard: state.APP_PROCESS.clickedCard
   };
 };
 

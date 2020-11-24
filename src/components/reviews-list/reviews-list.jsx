@@ -46,6 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => {
   return {
+    offerId: state.APP_PROCESS.clickedCard,
     reviews: state.APP_DATA.reviews,
   };
 };

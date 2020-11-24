@@ -1,5 +1,9 @@
 export const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
+  OFFER_DETAILS_REQUESTED: `OFFER_DETAILS_REQUESTED`,
+  GET_OFFER_DETAILS: `GET_OFFER_DETAILS`,
+  NEARBY_OFFERS_REQUESTED: `NEARBY_OFFERS_REQUESTED`,
+  GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
   GET_REVIEWS: `GET_REVIEWS`,
   POST_REVIEW: `POST_REVIEW`,
   CHANGE_CITY: `CHANGE_CITY`,
@@ -14,6 +18,24 @@ export const ActionType = {
 
 export const getOffers = (offers) => ({
   type: ActionType.GET_OFFERS,
+  payload: offers,
+});
+
+export const requestOfferDetails = () => ({
+  type: ActionType.OFFER_DETAILS_REQUESTED
+});
+
+export const getOfferDetails = (offerDetails) => ({
+  type: ActionType.GET_OFFER_DETAILS,
+  payload: offerDetails
+});
+
+export const requestNearbyOffers = () => ({
+  type: ActionType.NEARBY_OFFERS_REQUESTED,
+});
+
+export const getNearbyOffers = (offers) => ({
+  type: ActionType.GET_NEARBY_OFFERS,
   payload: offers,
 });
 
@@ -57,7 +79,7 @@ export const requireAuthorization = (status, data) => ({
 
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
-  payload: url,
+  payload: url
 });
 
 export const setReviewFormStateAction = (data) => ({

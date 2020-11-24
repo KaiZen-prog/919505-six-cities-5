@@ -27,14 +27,6 @@ class CommentForm extends PureComponent {
           isFormDisabled: false
         }));
         break;
-      case ReviewFormState.DEFAULT:
-        this.setState(() => ({
-          review: ``,
-          rating: 0,
-          isFormDisabled: false
-        }));
-        break;
-
       case ReviewFormState.POSTING_REVIEW:
         this.setState(() => ({
           isFormDisabled: true
@@ -43,6 +35,7 @@ class CommentForm extends PureComponent {
 
       case ReviewFormState.EDITING:
         this.setState(() => ({
+          isFormDisabled: false,
           isSubmitDisabled: !this.state.rating ||
             this.state.review.length < ReviewLength.MIN ||
             this.state.review.length > ReviewLength.MAX
@@ -67,6 +60,11 @@ class CommentForm extends PureComponent {
     const {review, rating} = this.state;
     const {offerId, onSubmit} = this.props;
     onSubmit(review, rating, offerId);
+    this.setState(() => ({
+      review: ``,
+      rating: 0,
+      isFormDisabled: false
+    }));
   }
 
   render() {

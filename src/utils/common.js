@@ -12,14 +12,28 @@ export const adaptUserToApp = (data) => {
   };
 };
 
-export const adaptOfferToApp = (offer) => {
+export const adaptOfferCardToApp = (offer) => {
   return {
     id: offer.id,
-    city: offer.city.name,
-    title: offer.title,
+    isPremium: offer.is_premium,
     poster: offer.preview_image,
-    photos: offer.images,
+    price: offer.price,
+    rating: offer.rating,
+    title: offer.title,
     type: offer.type,
+    isInBookmarks: offer.is_favorite,
+    city: offer.city.name,
+    cityCoords: [offer.city.location.latitude, offer.city.location.longitude],
+    coords: [offer.location.latitude, offer.location.longitude],
+    mapZoom: offer.city.location.zoom,
+    detailsMapZoom: offer.location.zoom,
+  };
+};
+
+export const adaptOfferDetailsToApp = (offer) => {
+  return {
+    id: offer.id,
+    photos: offer.images,
     price: offer.price,
     rating: offer.rating,
     bedroomsQuantity: offer.bedrooms,
@@ -35,9 +49,6 @@ export const adaptOfferToApp = (offer) => {
     },
     cityCoords: [offer.city.location.latitude, offer.city.location.longitude],
     coords: [offer.location.latitude, offer.location.longitude],
-    mapZoom: offer.city.location.zoom,
-    detailsMapZoom: offer.location.zoom,
-    isInBookmarks: offer.is_favorite,
   };
 };
 

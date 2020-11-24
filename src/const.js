@@ -9,7 +9,8 @@ export const AppRoute = {
 export const APIRoute = {
   LOGIN: `/login`,
   COMMENTS: `/comments/`,
-  HOTELS: `/hotels`
+  HOTELS: `/hotels/`,
+  NEARBY: `/nearby/`
 };
 
 export const RATING_SCALE_MULTIPLIER = 20;
@@ -19,7 +20,7 @@ export const STAR_VALUES = [
   {starValue: 4, title: `good`},
   {starValue: 3, title: `not bad`},
   {starValue: 2, title: `badly`},
-  {starValue: 1, title: `terribly`},
+  {starValue: 1, title: `terribly`}
 ];
 
 export const ReviewLength = {
@@ -30,13 +31,12 @@ export const ReviewLength = {
 export const ReviewFormState = {
   SENDING_ERROR: `SENDING_ERROR`,
   EDITING: `EDITING`,
-  POSTING_REVIEW: `POSTING_REVIEW`,
-  DEFAULT: `DEFAULT`
+  POSTING_REVIEW: `POSTING_REVIEW`
 };
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
+  NO_AUTH: `NO_AUTH`
 };
 
 export const Cities = [
