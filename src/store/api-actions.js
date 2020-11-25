@@ -1,4 +1,4 @@
-import {adaptOfferCardToApp, adaptOfferDetailsToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/common";
+import {adaptOfferToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/common";
 import {
   getOffers,
   getReviews,
@@ -22,27 +22,27 @@ import {AppRoute, APIRoute, AuthorizationStatus, ReviewFormState, FavoriteStatus
 
 export const fetchOffersList = () => (dispatch, _getState, api) => {
   return api.get(APIRoute.HOTELS)
-    .then(({data}) => dispatch(getOffers(data.map(adaptOfferCardToApp))));
+    .then(({data}) => dispatch(getOffers(data.map(adaptOfferToApp))));
 };
 
 export const fetchOfferDetails = (offerId) => (dispatch, _state, api) => {
   dispatch(requestOfferDetails());
   return api.get(APIRoute.HOTELS + offerId)
-    .then(({data}) => adaptOfferDetailsToApp(data))
+    .then(({data}) => adaptOfferToApp(data))
     .then((offer) => dispatch(getOfferDetails(offer)));
 };
 
 export const fetchNearbyOffers = (offerId) => (dispatch, _state, api) => {
   dispatch(requestNearbyOffers());
   return api.get(APIRoute.HOTELS + offerId + APIRoute.NEARBY)
-    .then(({data}) => data.map(adaptOfferCardToApp))
+    .then(({data}) => data.map(adaptOfferToApp))
     .then((offers) => dispatch(getNearbyOffers(offers)));
 };
 
 export const fetchFavoriteOffers = () => (dispatch, _state, api) => {
   dispatch(requestFavoriteOffers());
   return api.get(APIRoute.FAVORITE)
-    .then(({data}) => data.map(adaptOfferCardToApp))
+    .then(({data}) => data.map(adaptOfferToApp))
     .then((offers) => dispatch(getFavoriteOffers(offers)));
 };
 
@@ -75,7 +75,7 @@ export const postReview = ({review, rating, offerId}) => (dispatch, _getState, a
 export const changeFavoriteStatus = (offerId, favoriteButtonType, isInBookmark) => (dispatch, _state, api) => {
   const actionType = isInBookmark ? FavoriteStatus.REMOVE : FavoriteStatus.ADD;
   return api.post(`${APIRoute.FAVORITE}/${offerId}/${actionType}`)
-    .then(({data}) => adaptOfferCardToApp(data))
+    .then(({data}) => adaptOfferToApp(data))
     .then((offer) => dispatch(changeOffersFavoriteStatus(offer)))
     .then((action) => {
       switch (favoriteButtonType) {

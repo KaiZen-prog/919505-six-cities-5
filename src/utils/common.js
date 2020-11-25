@@ -33,7 +33,7 @@ export const adaptUserToApp = (data) => {
   };
 };
 
-export const adaptOfferCardToApp = (offer) => {
+export const adaptOfferToApp = (offer) => {
   return {
     id: offer.id,
     isPremium: offer.is_premium,
@@ -48,29 +48,19 @@ export const adaptOfferCardToApp = (offer) => {
     coords: [offer.location.latitude, offer.location.longitude],
     mapZoom: offer.city.location.zoom,
     detailsMapZoom: offer.location.zoom,
-  };
-};
 
-export const adaptOfferDetailsToApp = (offer) => {
-  return {
-    id: offer.id,
     photos: offer.images,
-    price: offer.price,
-    rating: offer.rating,
     bedroomsQuantity: offer.bedrooms,
     maxAdults: offer.max_adults,
     features: offer.goods,
     description: offer.description,
-    isPremium: offer.is_premium,
-    isInBookmarks: offer.is_favorite,
+
     owner: {
       avatar: offer.host.avatar_url,
       name: offer.host.name,
       isPro: offer.host.is_pro,
       id: offer.host.id,
     },
-    cityCoords: [offer.city.location.latitude, offer.city.location.longitude],
-    coords: [offer.location.latitude, offer.location.longitude],
   };
 };
 
