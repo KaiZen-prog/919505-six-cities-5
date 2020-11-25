@@ -1,3 +1,5 @@
+import {ReviewCount} from "../const";
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
@@ -85,8 +87,8 @@ export const adaptReviewToServer = (review, rating) => {
   };
 };
 
-export const sortReviewsByDate = (reviews) => {
+export const formatReviewsArray = (reviews) => {
   return reviews.slice().sort((left, right) => {
     return (new Date(right.date) - new Date(left.date));
-  });
+  }).slice(ReviewCount.MIN, ReviewCount.MAX);
 };

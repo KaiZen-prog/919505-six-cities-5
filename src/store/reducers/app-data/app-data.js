@@ -1,4 +1,4 @@
-import {extend, sortReviewsByDate, removeItem, replaceItem} from "../../../utils/common";
+import {extend, formatReviewsArray, removeItem, replaceItem} from "../../../utils/common";
 import {ActionType} from "../../action";
 
 const initialState = {
@@ -43,7 +43,7 @@ const appData = (state = initialState, action) => {
 
     case ActionType.GET_REVIEWS:
       return extend(state, {
-        reviews: sortReviewsByDate(action.payload)
+        reviews: formatReviewsArray(action.payload)
       });
 
     case ActionType.NEARBY_OFFERS_REQUESTED:

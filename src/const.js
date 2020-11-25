@@ -29,6 +29,11 @@ export const ReviewLength = {
   MAX: 300
 };
 
+export const ReviewCount = {
+  MIN: 0,
+  MAX: 10
+};
+
 export const ReviewFormState = {
   SENDING_ERROR: `SENDING_ERROR`,
   EDITING: `EDITING`,
