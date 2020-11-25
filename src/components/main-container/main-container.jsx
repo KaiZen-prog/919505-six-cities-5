@@ -7,7 +7,7 @@ import OfferList from "../offer-list/offer-list";
 import CityMap from "../city-map/city-map";
 import MainEmpty from "../main-empty/main-empty";
 
-const MainContainer = ({withOffers}) => {
+const MainContainer = ({currentCityOffers, withOffers}) => {
   return (
     <>
       <div className="cities">
@@ -19,6 +19,7 @@ const MainContainer = ({withOffers}) => {
               <OffersSort/>
               <div className="cities__places-list places__list tabs__content">
                 <OfferList
+                  offers={currentCityOffers}
                   offerCardArticleClass={OfferCardArticleClasses.MAIN_SCREEN}
                   offerCardImgWrapperClass={OfferCardImgWrapperClasses.MAIN_SCREEN}
                 />
@@ -26,6 +27,7 @@ const MainContainer = ({withOffers}) => {
             </section>
             <div className="cities__right-section">
               <CityMap
+                offers={currentCityOffers}
                 cityMapClass = {CityMapClasses.MAIN_SCREEN}
               />
             </div>
@@ -40,7 +42,10 @@ const MainContainer = ({withOffers}) => {
 };
 
 MainContainer.propTypes = {
-  withOffers: PropTypes.bool.isRequired
+  withOffers: PropTypes.bool.isRequired,
+  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired
+  })).isRequired
 };
 
 export default MainContainer;

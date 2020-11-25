@@ -1,234 +1,84 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from 'react';
 import PropTypes from "prop-types";
-
-import {
-  CityMapClasses,
-  OfferCardArticleClasses,
-  OfferCardImgWrapperClasses,
-  RATING_SCALE_MULTIPLIER,
-} from "../../const";
-
-import CommentForm from "../comment-form/comment-form";
-import ReviewsList from "../reviews-list/reviews-list";
-import OfferList from "../offer-list/offer-list";
-import CityMap from "../city-map/city-map";
 import {connect} from "react-redux";
-import {fetchReviewsList} from "../../store/api-actions";
-import {selectCurrentCityOffers} from "../../store/selectors/offers/select-city-offers";
+import {OfferCardArticleClasses, OfferCardImgWrapperClasses} from "../../const";
+import MainHeader from "../main-header/main-header";
+import OfferDetails from "../offer-details/offer-details";
+import {fetchOfferDetails, fetchNearbyOffers} from "../../store/api-actions";
+import OfferList from "../offer-list/offer-list";
 
-class OfferScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const OfferScreen = (props) => {
+  const {fetchOffer, fetchNearby, currentOfferId, nearbyOffers, isOfferDetailsLoaded, isNearbyOffersLoaded} = props;
 
-  componentDidMount() {
-    const {getReviewsAction, offer} = this.props;
-    getReviewsAction(offer.id);
-  }
+  useEffect(() => {
+    fetchOffer(currentOfferId);
+    fetchNearby(currentOfferId);
+  }, [currentOfferId]);
 
-  render() {
-    const {offers, offer, reviews} = this.props;
-    const otherOffers = offers.filter((entity) => (
-      entity.id !== offer.id
-    ));
+  return (
+    <div className="page">
+      <MainHeader/>
+      <main className="page__main page__main--property">
+        {isOfferDetailsLoaded && isNearbyOffersLoaded
+          ? <OfferDetails/>
+          : ``}
 
-    return (
-      <div className="page">
-        <header className="header">
-          <div className="container">
-            <div className="header__wrapper">
-              <div className="header__left">
-                <a className="header__logo-link" href="main.html">
-                  <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-                </a>
-              </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <a className="header__nav-link header__nav-link--profile" href="#">
-                      <div className="header__avatar-wrapper user__avatar-wrapper">
-                      </div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </header>
-
-        <main className="page__main page__main--property">
-          <section className="property">
-            <div className="property__gallery-container container">
-              <div className="property__gallery">
-                {offer.photos.map((photo, i) => (
-                  <div key={i} className="property__image-wrapper">
-                    <img className="property__image" src={photo} alt="Photo studio"/>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="property__container container">
-              <div className="property__wrapper">
-                {offer.isPremium
-                  ? <div className="property__mark">
-                    <span>Premium</span>
-                  </div>
-                  : ``
-                }
-                <div className="property__name-wrapper">
-                  <h1 className="property__name">
-                    {offer.title}
-                  </h1>
-                  <button
-                    className={
-                      offer.isInBookmarks
-                        ? `property__bookmark-button property__bookmark-button--active button`
-                        : `property__bookmark-button button`
-                    }
-                  >
-                    <svg className="property__bookmark-icon" width="31" height="33">
-                      <use xlinkHref="#icon-bookmark"></use>
-                    </svg>
-                    <span className="visually-hidden">{
-                      offer.isInBookmarks
-                        ? `In bookmarks`
-                        : `To bookmarks`
-                    }</span>
-                  </button>
-                </div>
-                <div className="property__rating rating">
-                  <div className="property__stars rating__stars">
-                    <span style={{width: `${Math.round(offer.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
-                    <span className="visually-hidden">Rating</span>
-                  </div>
-                  <span className="property__rating-value rating__value">{offer.rating}</span>
-                </div>
-                <ul className="property__features">
-                  <li className="property__feature property__feature--entire">
-                    {offer.type}
-                  </li>
-                  <li className="property__feature property__feature--bedrooms">
-                    {offer.bedroomsQuantity === 1
-                      ? offer.bedroomsQuantity + ` Bedroom`
-                      : offer.bedroomsQuantity + ` Bedrooms`
-                    }
-                  </li>
-                  <li className="property__feature property__feature--adults">
-                    {offer.maxAdults === 1
-                      ? `Max ` + offer.maxAdults + ` adult`
-                      : `Max ` + offer.maxAdults + ` adults`
-                    }
-                  </li>
-                </ul>
-                <div className="property__price">
-                  <b className="property__price-value">&euro;{offer.price}</b>
-                  <span className="property__price-text">&nbsp;night</span>
-                </div>
-                <div className="property__inside">
-                  <h2 className="property__inside-title">What&apos;s inside</h2>
-                  <ul className="property__inside-list">
-                    {offer.features.map((feature, i) => (
-                      <li key={i} className="property__inside-item">
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="property__host">
-                  <h2 className="property__host-title">Meet the host</h2>
-                  <div className="property__host-user user">
-                    <div
-                      className={offer.owner.isPro
-                        ? `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper`
-                        : `property__avatar-wrapper user__avatar-wrapper`
-                      }
-                    >
-                      <img className="property__avatar user__avatar" src={offer.owner.avatar} width="74" height="74" alt="Host avatar"/>
-                    </div>
-                    <span className="property__user-name">
-                      {offer.owner.name}
-                    </span>
-                  </div>
-                  <div className="property__description">
-                    <p className="property__text">
-                      {offer.description}
-                    </p>
-                  </div>
-                </div>
-                <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                  {reviews.length > 0
-                    ? <ReviewsList reviews={reviews}/>
-                    : ``}
-                  <CommentForm/>
-                </section>
-              </div>
-            </div>
-            <CityMap
-              offers={otherOffers}
-              cityMapClass = {CityMapClasses.OFFER_SCREEN}
-            />
-          </section>
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <OfferList
-                  offers={otherOffers}
+        <div className="container">
+          <section className="near-places places">
+            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <div className="near-places__list places__list">
+              {isNearbyOffersLoaded
+                ? <OfferList
+                  offers={nearbyOffers}
                   offerCardArticleClass = {OfferCardArticleClasses.OFFER_SCREEN}
                   offerCardImgWrapperClass = {OfferCardImgWrapperClasses.OFFER_SCREEN}
                 />
-              </div>
-            </section>
-          </div>
-        </main>
-      </div>
-    );
-  }
-}
+                : ``}
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+};
 
 OfferScreen.propTypes = {
-  offers: PropTypes.array.isRequired,
+  nearbyOffers: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        isPremium: PropTypes.bool.isRequired,
+        title: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        type: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        isInBookmarks: PropTypes.bool.isRequired
+      })
+  ),
 
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    photos: PropTypes.array.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    title: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroomsQuantity: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    features: PropTypes.array.isRequired,
-    description: PropTypes.string.isRequired,
-    owner: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired
-    }).isRequired,
-    isInBookmarks: PropTypes.bool.isRequired
-  }).isRequired,
-
-  reviews: PropTypes.array.isRequired,
-  getReviewsAction: PropTypes.func.isRequired
+  currentOfferId: PropTypes.number.isRequired,
+  offerDetails: PropTypes.shape().isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  fetchOffer: PropTypes.func.isRequired,
+  fetchNearby: PropTypes.func.isRequired,
+  isOfferDetailsLoaded: PropTypes.bool.isRequired,
+  isNearbyOffersLoaded: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
-  const data = {state};
   return {
-    offers: selectCurrentCityOffers(data),
-    offer: state.APP_DATA.offers.find((offer) => offer.id === state.APP_PROCESS.clickedCard),
-    reviews: state.APP_DATA.reviews
+    nearbyOffers: state.APP_DATA.nearbyOffers,
+    currentOfferId: state.APP_PROCESS.clickedCard,
+    offerDetails: state.APP_DATA.offerDetails,
+    isOfferDetailsLoaded: state.APP_DATA.isOfferDetailsLoaded,
+    isNearbyOffersLoaded: state.APP_DATA.isNearbyOffersLoaded,
+    authorizationStatus: state.USER.authorizationStatus,
   };
 };
 
-const mapDispatchToProps = ((dispatch) => ({
-  getReviewsAction(offerId) {
-    dispatch(fetchReviewsList(offerId));
-  },
-}));
+const mapDispatchToProps = (dispatch) => ({
+  fetchOffer: (offerId) => dispatch(fetchOfferDetails(offerId)),
+  fetchNearby: (offerId) => dispatch(fetchNearbyOffers(offerId)),
+});
 
 export {OfferScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferScreen);

@@ -11,14 +11,9 @@ class MainScreen extends React.Component {
     super(props);
   }
 
-  // Перерисовываем компонент только если переключаемся с города,
-  // содержащего предложения на город без предложений; или с города без предложений на город с.
-  shouldComponentUpdate(nextProps) {
-    return this.props.withOffers !== nextProps.withOffers;
-  }
-
   render() {
-    const {withOffers} = this.props;
+    const {currentCityOffers} = this.props;
+    const withOffers = currentCityOffers.length > 0;
 
     return (
       <div className="page page--gray page--main">
@@ -32,6 +27,7 @@ class MainScreen extends React.Component {
             </section>
           </div>
           <MainContainer
+            currentCityOffers={currentCityOffers}
             withOffers = {withOffers}
           />
         </main>
@@ -41,13 +37,15 @@ class MainScreen extends React.Component {
 }
 
 MainScreen.propTypes = {
-  withOffers: PropTypes.bool.isRequired
+  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired
+  })).isRequired
 };
 
 const mapStateToProps = (state) => {
   const data = {state};
   return {
-    withOffers: selectCurrentCityOffers(data).length > 0,
+    currentCityOffers: selectCurrentCityOffers(data)
   };
 };
 
