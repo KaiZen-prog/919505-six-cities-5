@@ -1,5 +1,7 @@
 export const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
+  FAVORITE_OFFERS_REQUESTED: `FAVORITE_OFFERS_REQUESTED`,
+  GET_FAVORITE_OFFERS: `GET_FAVORITE_OFFERS`,
   OFFER_DETAILS_REQUESTED: `OFFER_DETAILS_REQUESTED`,
   GET_OFFER_DETAILS: `GET_OFFER_DETAILS`,
   NEARBY_OFFERS_REQUESTED: `NEARBY_OFFERS_REQUESTED`,
@@ -13,11 +15,24 @@ export const ActionType = {
   CLICK_CARD: `CLICK_CARD`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
-  SET_STATE_REVIEW_FORM: `SET_STATE_REVIEW_FORM`
+  SET_STATE_REVIEW_FORM: `SET_STATE_REVIEW_FORM`,
+  CHANGE_OFFERS_FAVORITE_STATUS: `CHANGE_OFFERS_FAVORITE_STATUS`,
+  REMOVE_FROM_FAVORITE: `REMOVE_FROM_FAVORITE`,
+  CHANGE_NEARBY_OFFERS_FAVORITE_STATUS: `CHANGE_NEARBY_OFFERS_FAVORITE_STATUS`,
+  CHANGE_OFFER_FAVORITE_STATUS: `CHANGE_OFFER_FAVORITE_STATUS`
 };
 
 export const getOffers = (offers) => ({
   type: ActionType.GET_OFFERS,
+  payload: offers,
+});
+
+export const requestFavoriteOffers = () => ({
+  type: ActionType.FAVORITE_OFFERS_REQUESTED,
+});
+
+export const getFavoriteOffers = (offers) => ({
+  type: ActionType.GET_FAVORITE_OFFERS,
   payload: offers,
 });
 
@@ -85,4 +100,24 @@ export const redirectToRoute = (url) => ({
 export const setReviewFormStateAction = (data) => ({
   type: ActionType.SET_STATE_REVIEW_FORM,
   payload: data
+});
+
+export const changeOffersFavoriteStatus = (offer) => ({
+  type: ActionType.CHANGE_OFFERS_FAVORITE_STATUS,
+  payload: offer,
+});
+
+export const removeOfferFromFavorite = (offer) => ({
+  type: ActionType.REMOVE_FROM_FAVORITE,
+  payload: offer,
+});
+
+export const changeNearbyOffersFavoriteStatus = (offer) => ({
+  type: ActionType.CHANGE_NEARBY_OFFERS_FAVORITE_STATUS,
+  payload: offer,
+});
+
+export const changeOfferFavoriteStatus = (offer) => ({
+  type: ActionType.CHANGE_OFFER_FAVORITE_STATUS,
+  payload: offer,
 });

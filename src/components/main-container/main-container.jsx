@@ -1,6 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {CitiesContainerClasses, CityMapClasses, OfferCardArticleClasses, OfferCardImgWrapperClasses} from "../../const";
+import {
+  CitiesContainerClasses,
+  CityMapClasses,
+  FavoriteButtonTypes,
+  OfferCardArticleClasses,
+  OfferCardImgWrapperClasses,
+} from "../../const";
 import CitiesHeader from "../cities-header/cities-header";
 import OffersSort from "../offers-sort/offers-sort";
 import OfferList from "../offer-list/offer-list";
@@ -22,6 +28,7 @@ const MainContainer = ({currentCityOffers, withOffers}) => {
                   offers={currentCityOffers}
                   offerCardArticleClass={OfferCardArticleClasses.MAIN_SCREEN}
                   offerCardImgWrapperClass={OfferCardImgWrapperClasses.MAIN_SCREEN}
+                  favoriteButtonType={FavoriteButtonTypes.OFFER_SCREEN}
                 />
               </div>
             </section>

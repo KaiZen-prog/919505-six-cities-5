@@ -2,6 +2,27 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+const findIndex = (array, item) => {
+  return array.findIndex((it) => it.id === item.id);
+};
+
+export const replaceItem = (array, item) => {
+  const itemIndex = findIndex(array, item);
+  return [
+    ...array.slice(0, itemIndex),
+    item,
+    ...array.slice(itemIndex + 1)
+  ];
+};
+
+export const removeItem = (array, item) => {
+  const itemIndex = findIndex(array, item);
+  return [
+    ...array.slice(0, itemIndex),
+    ...array.slice(itemIndex + 1)
+  ];
+};
+
 export const adaptUserToApp = (data) => {
   return {
     avatarUrl: data.avatar_url,
@@ -41,6 +62,7 @@ export const adaptOfferDetailsToApp = (offer) => {
     features: offer.goods,
     description: offer.description,
     isPremium: offer.is_premium,
+    isInBookmarks: offer.is_favorite,
     owner: {
       avatar: offer.host.avatar_url,
       name: offer.host.name,

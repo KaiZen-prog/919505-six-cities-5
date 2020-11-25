@@ -1,19 +1,34 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import browserHistory from "../../browser-history";
 
 import {
   CityMapClasses,
   RATING_SCALE_MULTIPLIER,
-  AuthorizationStatus
+  AuthorizationStatus,
+  AppRoute,
+  FavoriteButtonTypes
 } from "../../const";
 
 import CommentForm from "../comment-form/comment-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import CityMap from "../city-map/city-map";
+import {changeFavoriteStatus} from "../../store/api-actions";
 
 const OfferDetails = (props) => {
-  const {offerDetails, nearbyOffers, authorizationStatus} = props;
+  const {offerDetails, nearbyOffers, authorizationStatus, changeFavoriteStatusAction} = props;
+
+  const handleFavoriteButtonClick = (evt) => {
+    evt.preventDefault();
+
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      browserHistory.push(AppRoute.LOGIN);
+      return;
+    }
+
+    changeFavoriteStatusAction(offerDetails.id, FavoriteButtonTypes.OFFER_SCREEN, offerDetails.isInBookmarks);
+  };
 
   return (
     <section className="property">
@@ -39,6 +54,7 @@ const OfferDetails = (props) => {
               {offerDetails.title}
             </h1>
             <button
+              onClick={handleFavoriteButtonClick}
               className={
                 offerDetails.isInBookmarks
                   ? `property__bookmark-button property__bookmark-button--active button`
@@ -146,7 +162,8 @@ OfferDetails.propTypes = {
   ),
 
   offerDetails: PropTypes.shape().isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  changeFavoriteStatusAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -157,5 +174,11 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  changeFavoriteStatusAction: (id, favoriteButtonType, isInBookmark) => (
+    dispatch(changeFavoriteStatus(id, favoriteButtonType, isInBookmark)
+    )),
+});
+
 export {OfferDetails};
-export default connect(mapStateToProps)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);

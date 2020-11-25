@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {OfferCardArticleClasses, OfferCardImgWrapperClasses} from "../../const";
+import {OfferCardArticleClasses, OfferCardImgWrapperClasses, FavoriteButtonTypes} from "../../const";
 import MainHeader from "../main-header/main-header";
 import OfferDetails from "../offer-details/offer-details";
 import {fetchOfferDetails, fetchNearbyOffers} from "../../store/api-actions";
@@ -32,6 +32,7 @@ const OfferScreen = (props) => {
                   offers={nearbyOffers}
                   offerCardArticleClass = {OfferCardArticleClasses.OFFER_SCREEN}
                   offerCardImgWrapperClass = {OfferCardImgWrapperClasses.OFFER_SCREEN}
+                  favoriteButtonType={FavoriteButtonTypes.NEARBY_OFFER}
                 />
                 : ``}
             </div>
@@ -43,6 +44,9 @@ const OfferScreen = (props) => {
 };
 
 OfferScreen.propTypes = {
+  fetchOffer: PropTypes.func.isRequired,
+  fetchNearby: PropTypes.func.isRequired,
+  currentOfferId: PropTypes.number.isRequired,
   nearbyOffers: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -55,11 +59,6 @@ OfferScreen.propTypes = {
       })
   ),
 
-  currentOfferId: PropTypes.number.isRequired,
-  offerDetails: PropTypes.shape().isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  fetchOffer: PropTypes.func.isRequired,
-  fetchNearby: PropTypes.func.isRequired,
   isOfferDetailsLoaded: PropTypes.bool.isRequired,
   isNearbyOffersLoaded: PropTypes.bool.isRequired
 };
@@ -71,7 +70,6 @@ const mapStateToProps = (state) => {
     offerDetails: state.APP_DATA.offerDetails,
     isOfferDetailsLoaded: state.APP_DATA.isOfferDetailsLoaded,
     isNearbyOffersLoaded: state.APP_DATA.isNearbyOffersLoaded,
-    authorizationStatus: state.USER.authorizationStatus,
   };
 };
 
