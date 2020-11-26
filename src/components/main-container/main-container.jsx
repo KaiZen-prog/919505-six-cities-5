@@ -50,9 +50,7 @@ const MainContainer = ({currentCityOffers, withOffers}) => {
 
 MainContainer.propTypes = {
   withOffers: PropTypes.bool.isRequired,
-  currentCityOffers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired
-  })).isRequired
+  currentCityOffers: PropTypes.array.isRequired
 };
 
 export default MainContainer;

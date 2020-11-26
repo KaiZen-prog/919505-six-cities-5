@@ -159,7 +159,7 @@ OfferDetails.propTypes = {
         price: PropTypes.number.isRequired,
         isInBookmarks: PropTypes.bool.isRequired
       })
-  ),
+  ).isRequired,
 
   offerDetails: PropTypes.shape().isRequired,
   authorizationStatus: PropTypes.string.isRequired,

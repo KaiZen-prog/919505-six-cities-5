@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../../../const";
+import {AppRoute} from "../../const";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-const AuthHeader = (props) => {
+const MainHeaderAuth = (props) => {
   const {userData} = props;
   return (
     <div className="header__nav-link header__nav-link--profile">
@@ -16,8 +16,7 @@ const AuthHeader = (props) => {
   );
 };
 
-
-AuthHeader.propTypes = {
+MainHeaderAuth.propTypes = {
   userData: PropTypes.shape({
     avatarUrl: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired
@@ -30,5 +29,5 @@ const mapStateToProps = ({USER}) => {
   };
 };
 
-export {AuthHeader};
-export default connect(mapStateToProps)(AuthHeader);
+export {MainHeaderAuth};
+export default connect(mapStateToProps)(MainHeaderAuth);

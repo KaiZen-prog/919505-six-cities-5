@@ -34,11 +34,7 @@ const FavoritesItem = ({city, offers}) => {
 
 FavoritesItem.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(
-      PropTypes.shape({
-
-      }).isRequired
-  ).isRequired,
+  offers: PropTypes.array.isRequired
 };
 
 export default FavoritesItem;

@@ -47,17 +47,7 @@ OfferScreen.propTypes = {
   fetchOffer: PropTypes.func.isRequired,
   fetchNearby: PropTypes.func.isRequired,
   currentOfferId: PropTypes.number.isRequired,
-  nearbyOffers: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        isPremium: PropTypes.bool.isRequired,
-        title: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        type: PropTypes.string.isRequired,
-        price: PropTypes.number.isRequired,
-        isInBookmarks: PropTypes.bool.isRequired
-      })
-  ),
+  nearbyOffers: PropTypes.array.isRequired,
 
   isOfferDetailsLoaded: PropTypes.bool.isRequired,
   isNearbyOffersLoaded: PropTypes.bool.isRequired

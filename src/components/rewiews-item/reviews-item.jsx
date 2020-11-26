@@ -1,45 +1,39 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
 import {RATING_SCALE_MULTIPLIER} from "../../const";
 
-class ReviewsItem extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+const ReviewsItem = (props) => {
+  const {review} = props;
 
-  render() {
-    const {review} = this.props;
-
-    return (
-      <React.Fragment>
-        <li className="reviews__item">
-          <div className="reviews__user user">
-            <div className="reviews__avatar-wrapper user__avatar-wrapper">
-              <img className="reviews__avatar user__avatar" src={review.author.avatar} width="54" height="54" alt="ReviewsList avatar"/>
-            </div>
-            <span className="reviews__user-name">
-              {review.author.name}
-            </span>
+  return (
+    <React.Fragment>
+      <li className="reviews__item">
+        <div className="reviews__user user">
+          <div className="reviews__avatar-wrapper user__avatar-wrapper">
+            <img className="reviews__avatar user__avatar" src={review.author.avatar} width="54" height="54" alt="ReviewsList avatar"/>
           </div>
-          <div className="reviews__info">
-            <div className="reviews__rating rating">
-              <div className="reviews__stars rating__stars">
-                <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
-                <span className="visually-hidden">Rating</span>
-              </div>
+          <span className="reviews__user-name">
+            {review.author.name}
+          </span>
+        </div>
+        <div className="reviews__info">
+          <div className="reviews__rating rating">
+            <div className="reviews__stars rating__stars">
+              <span style={{width: `${Math.round(review.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
+              <span className="visually-hidden">Rating</span>
             </div>
-            <p className="reviews__text">
-              {review.text}
-            </p>
-            <time className="reviews__time" dateTime={review.date}>{moment(review.date).format(`MMMM YYYY`)}</time>
           </div>
-        </li>
-      </React.Fragment>
-    );
-  }
-}
+          <p className="reviews__text">
+            {review.text}
+          </p>
+          <time className="reviews__time" dateTime={review.date}>{moment(review.date).format(`MMMM YYYY`)}</time>
+        </div>
+      </li>
+    </React.Fragment>
+  );
+};
 
 ReviewsItem.propTypes = {
   review: PropTypes.shape({
