@@ -24,20 +24,9 @@ export const STAR_VALUES = [
   {starValue: 1, title: `terribly`}
 ];
 
-export const ReviewLength = {
-  MIN: 50,
-  MAX: 300
-};
-
 export const ReviewCount = {
   MIN: 0,
   MAX: 10
-};
-
-export const ReviewFormState = {
-  SENDING_ERROR: `SENDING_ERROR`,
-  EDITING: `EDITING`,
-  POSTING_REVIEW: `POSTING_REVIEW`
 };
 
 export const AuthorizationStatus = {

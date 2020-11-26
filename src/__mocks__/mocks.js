@@ -1,4 +1,4 @@
-import {Cities, ReviewFormState, SortingTypes} from "../const";
+import {Cities, SortingTypes} from "../const";
 
 export const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -14,7 +14,9 @@ export const InitialState = {
     isOfferDetailsLoaded: false,
     nearbyOffers: [],
     isNearbyOffersLoaded: false,
-    reviews: []
+    reviews: [],
+    isReviewRequestPosted: false,
+    postReviewError: null
   },
 
   APP_PROCESS: {
@@ -22,8 +24,7 @@ export const InitialState = {
     isOffersSortOpened: false,
     currentOffersSort: SortingTypes.POPULAR,
     activeCard: null,
-    clickedCard: null,
-    reviewFormState: ReviewFormState.EDITING
+    clickedCard: null
   },
 
   USER: {

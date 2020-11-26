@@ -2,13 +2,15 @@ import {adaptOfferToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/c
 import {
   getOffers,
   getReviews,
+  postReviewRequested,
+  reviewPost,
+  writeError,
   getFavoriteOffers,
   getOfferDetails,
   requestOfferDetails,
   getNearbyOffers,
   requestNearbyOffers,
   requestFavoriteOffers,
-  setReviewFormStateAction,
   requireAuthorization,
   redirectToRoute,
   changeOffersFavoriteStatus,
@@ -18,7 +20,7 @@ import {
 } from "./action";
 
 import {adaptUserToApp} from "../utils/common";
-import {AppRoute, APIRoute, AuthorizationStatus, ReviewFormState, FavoriteStatus, FavoriteButtonTypes} from "../const";
+import {AppRoute, APIRoute, AuthorizationStatus, FavoriteStatus, FavoriteButtonTypes} from "../const";
 
 export const fetchOffersList = () => (dispatch, _getState, api) => {
   return api.get(APIRoute.HOTELS)
@@ -63,14 +65,18 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
 );
 
-export const postReview = ({review, rating, offerId}) => (dispatch, _getState, api) => (
-  api.post(APIRoute.COMMENTS + offerId, adaptReviewToServer(review, rating))
+export const postReview = ({review, rating, offerId}) => (dispatch, _getState, api) => {
+  dispatch(postReviewRequested());
+  dispatch(writeError(null));
+  return api.post(APIRoute.COMMENTS + offerId, adaptReviewToServer(review, rating))
     .then(({data}) => {
       dispatch(getReviews(data.map(adaptReviewToApp)));
-      dispatch(setReviewFormStateAction(ReviewFormState.EDITING));
-    })
-    .catch(() => dispatch(setReviewFormStateAction(ReviewFormState.SENDING_ERROR)))
-);
+    }).then(() => dispatch(reviewPost()))
+    .catch((error) => {
+      dispatch(reviewPost());
+      dispatch(writeError(error.response.statusText));
+    });
+};
 
 export const changeFavoriteStatus = (offerId, favoriteButtonType, isInBookmark) => (dispatch, _state, api) => {
   const actionType = isInBookmark ? FavoriteStatus.REMOVE : FavoriteStatus.ADD;

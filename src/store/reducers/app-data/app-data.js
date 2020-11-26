@@ -9,7 +9,9 @@ const initialState = {
   isOfferDetailsLoaded: false,
   nearbyOffers: [],
   isNearbyOffersLoaded: false,
-  reviews: []
+  reviews: [],
+  isReviewRequestPosted: false,
+  postReviewError: null
 };
 
 const appData = (state = initialState, action) => {
@@ -44,6 +46,21 @@ const appData = (state = initialState, action) => {
     case ActionType.GET_REVIEWS:
       return extend(state, {
         reviews: formatReviewsArray(action.payload)
+      });
+
+    case ActionType.POST_REVIEW_REQUESTED:
+      return extend(state, {
+        isReviewRequestPosted: true,
+      });
+
+    case ActionType.POST_REVIEW:
+      return extend(state, {
+        isReviewRequestPosted: false,
+      });
+
+    case ActionType.WRITE_ERROR:
+      return extend(state, {
+        postReviewError: action.payload,
       });
 
     case ActionType.NEARBY_OFFERS_REQUESTED:

@@ -11,7 +11,7 @@ import {
   FavoriteButtonTypes
 } from "../../const";
 
-import CommentForm from "../comment-form/comment-form";
+import CommentForm from "../review-form/review-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import CityMap from "../city-map/city-map";
 import {changeFavoriteStatus} from "../../store/api-actions";
