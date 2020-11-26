@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CitiesHeader render correctly 1`] = `
+<b
+  className="places__found"
+>
+  3
+   places to stay in 
+  Paris
+</b>
+`;

@@ -63,6 +63,7 @@ export const offers = [{
     `Baby seat`,
     `Breakfast`
   ],
+  poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
   photosUrl: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/15.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg`,
@@ -80,7 +81,7 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/13.jpg`
   ],
   isPremium: false,
-  isInBookmark: false,
+  isInBookmarks: false,
   hostName: `Angelina`,
   hostDescription: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
   hostAvatar: `img/avatar-angelina.jpg`,
@@ -114,6 +115,7 @@ export const offers = [{
     `Breakfast`,
     `Fridge`
   ],
+  poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
   photosUrl: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/10.jpg`,
@@ -131,7 +133,7 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/4.jpg`
   ],
   isPremium: false,
-  isInBookmark: false,
+  isInBookmarks: false,
   hostName: `Angelina`,
   hostDescription: `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
   hostAvatar: `img/avatar-angelina.jpg`,
@@ -160,6 +162,7 @@ export const offers = [{
     `Air conditioning`,
     `Baby seat`
   ],
+  poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
   photosUrl: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/2.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/1.jpg`,
@@ -177,7 +180,7 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg`
   ],
   isPremium: false,
-  isInBookmark: false,
+  isInBookmarks: false,
   hostName: `Angelina`,
   hostDescription: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`,
   hostAvatar: `img/avatar-angelina.jpg`,
