@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import browserHistory from "../../browser-history";
-import {activateCard, clickCard} from "../../store/action";
+import {activateCard, clickCard} from "../../store/actions";
 import {connect} from "react-redux";
 import {AppRoute, RATING_SCALE_MULTIPLIER, AuthorizationStatus} from "../../const";
 import {changeFavoriteStatus} from "../../store/api-actions";

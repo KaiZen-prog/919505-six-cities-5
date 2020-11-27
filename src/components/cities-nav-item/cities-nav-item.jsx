@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {changeCity} from "../../store/action";
+import {changeCity} from "../../store/actions";
 import {connect} from "react-redux";
 
 const CitiesNavItem = ({city, currentCity, onCityClick}) => {

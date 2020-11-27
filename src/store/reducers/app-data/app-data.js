@@ -1,5 +1,5 @@
 import {extend, formatReviewsArray, removeItem, replaceItem} from "../../../utils/common";
-import {ActionType} from "../../action";
+import {ActionType} from "../../actions";
 
 const initialState = {
   offers: [],

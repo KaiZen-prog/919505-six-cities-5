@@ -1,5 +1,5 @@
 import {extend} from "../../../utils/common";
-import {ActionType} from "../../action";
+import {ActionType} from "../../actions";
 import {Cities, SortingTypes} from "../../../const";
 
 const initialState = {

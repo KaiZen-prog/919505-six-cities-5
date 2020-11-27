@@ -1,5 +1,5 @@
 import {appProcess} from './app-process';
-import {ActionType} from "../../action";
+import {ActionType} from "../../actions";
 
 const city = `Paris`;
 const isOpened = false;

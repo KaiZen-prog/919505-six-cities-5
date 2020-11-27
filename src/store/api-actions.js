@@ -17,7 +17,7 @@ import {
   removeOfferFromFavorite,
   changeNearbyOffersFavoriteStatus,
   changeOfferFavoriteStatus
-} from "./action";
+} from "./actions";
 
 import {adaptUserToApp} from "../utils/common";
 import {AppRoute, APIRoute, AuthorizationStatus, FavoriteStatus, FavoriteButtonTypes} from "../const";

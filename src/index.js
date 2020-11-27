@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {redirect} from "./store/middlewares/redirect";
 import rootReducer from "./store/reducers/root-reducer";
-import {requireAuthorization} from "./store/action";
+import {requireAuthorization} from "./store/actions";
 import {fetchOffersList, checkAuth} from "./store/api-actions";
 import {AuthorizationStatus} from "./const";
 

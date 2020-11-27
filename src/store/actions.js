@@ -25,16 +25,16 @@ export const ActionType = {
 
 export const getOffers = (offers) => ({
   type: ActionType.GET_OFFERS,
-  payload: offers,
+  payload: offers
 });
 
 export const requestFavoriteOffers = () => ({
-  type: ActionType.FAVORITE_OFFERS_REQUESTED,
+  type: ActionType.FAVORITE_OFFERS_REQUESTED
 });
 
 export const getFavoriteOffers = (offers) => ({
   type: ActionType.GET_FAVORITE_OFFERS,
-  payload: offers,
+  payload: offers
 });
 
 export const requestOfferDetails = () => ({
@@ -47,12 +47,12 @@ export const getOfferDetails = (offerDetails) => ({
 });
 
 export const requestNearbyOffers = () => ({
-  type: ActionType.NEARBY_OFFERS_REQUESTED,
+  type: ActionType.NEARBY_OFFERS_REQUESTED
 });
 
 export const getNearbyOffers = (offers) => ({
   type: ActionType.GET_NEARBY_OFFERS,
-  payload: offers,
+  payload: offers
 });
 
 export const getReviews = (reviews) => ({
@@ -61,16 +61,16 @@ export const getReviews = (reviews) => ({
 });
 
 export const postReviewRequested = () => ({
-  type: ActionType.POST_REVIEW_REQUESTED,
+  type: ActionType.POST_REVIEW_REQUESTED
 });
 
 export const reviewPost = () => ({
-  type: ActionType.POST_REVIEW,
+  type: ActionType.POST_REVIEW
 });
 
 export const writeError = (error) => ({
   type: ActionType.WRITE_ERROR,
-  payload: error,
+  payload: error
 });
 
 export const changeCity = (city) => ({
@@ -113,20 +113,20 @@ export const redirectToRoute = (url) => ({
 
 export const changeOffersFavoriteStatus = (offer) => ({
   type: ActionType.CHANGE_OFFERS_FAVORITE_STATUS,
-  payload: offer,
+  payload: offer
 });
 
 export const removeOfferFromFavorite = (offer) => ({
   type: ActionType.REMOVE_FROM_FAVORITE,
-  payload: offer,
+  payload: offer
 });
 
 export const changeNearbyOffersFavoriteStatus = (offer) => ({
   type: ActionType.CHANGE_NEARBY_OFFERS_FAVORITE_STATUS,
-  payload: offer,
+  payload: offer
 });
 
 export const changeOfferFavoriteStatus = (offer) => ({
   type: ActionType.CHANGE_OFFER_FAVORITE_STATUS,
-  payload: offer,
+  payload: offer
 });

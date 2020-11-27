@@ -1,5 +1,5 @@
 import {user} from './user';
-import {ActionType} from "../../action";
+import {ActionType} from "../../actions";
 
 const authorizationStatus = `NO_AUTH`;
 const data = null;

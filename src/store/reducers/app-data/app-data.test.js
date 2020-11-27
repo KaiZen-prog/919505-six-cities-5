@@ -1,5 +1,5 @@
 import {appData} from './app-data';
-import {ActionType} from "../../action";
+import {ActionType} from "../../actions";
 import {offers, reviews} from "../../../__mocks__/mocks";
 import {formatReviewsArray, removeItem, replaceItem} from "../../../utils/common";
 
