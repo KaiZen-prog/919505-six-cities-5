@@ -106,11 +106,6 @@ export const requireAuthorization = (status, data) => ({
   }
 });
 
-export const redirectToRoute = (url) => ({
-  type: ActionType.REDIRECT_TO_ROUTE,
-  payload: url
-});
-
 export const changeOffersFavoriteStatus = (offer) => ({
   type: ActionType.CHANGE_OFFERS_FAVORITE_STATUS,
   payload: offer

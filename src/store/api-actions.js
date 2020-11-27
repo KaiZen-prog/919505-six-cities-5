@@ -1,3 +1,4 @@
+import browserHistory from "../browser-history";
 import {adaptOfferToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/common";
 import {
   getOffers,
@@ -12,7 +13,6 @@ import {
   requestNearbyOffers,
   requestFavoriteOffers,
   requireAuthorization,
-  redirectToRoute,
   changeOffersFavoriteStatus,
   removeOfferFromFavorite,
   changeNearbyOffersFavoriteStatus,
@@ -48,11 +48,6 @@ export const fetchFavoriteOffers = () => (dispatch, _state, api) => {
     .then((offers) => dispatch(getFavoriteOffers(offers)));
 };
 
-export const fetchReviewsList = (offerId) => (dispatch, _getState, api) => {
-  return api.get(APIRoute.COMMENTS + offerId)
-    .then(({data}) => dispatch(getReviews(data.map(adaptReviewToApp))));
-};
-
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(APIRoute.LOGIN)
     .then((response) => dispatch(requireAuthorization(AuthorizationStatus.AUTH, adaptUserToApp(response.data))))
@@ -62,8 +57,13 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({email, password}) => (dispatch, _getState, api) => (
   api.post(APIRoute.LOGIN, {email, password})
     .then((response) => dispatch(requireAuthorization(AuthorizationStatus.AUTH, adaptUserToApp(response.data))))
-    .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
+    .then(() => browserHistory.push(AppRoute.ROOT))
 );
+
+export const fetchReviewsList = (offerId) => (dispatch, _getState, api) => {
+  return api.get(APIRoute.COMMENTS + offerId)
+    .then(({data}) => dispatch(getReviews(data.map(adaptReviewToApp))));
+};
 
 export const postReview = ({review, rating, offerId}) => (dispatch, _getState, api) => {
   dispatch(postReviewRequested());

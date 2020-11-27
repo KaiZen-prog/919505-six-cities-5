@@ -9,7 +9,6 @@ const sort = `POPULAR`;
 const card = 1;
 const status = `NO_AUTH`;
 const data = {};
-const url = `www.111.ru`;
 
 describe(`Actions work correctly`, () => {
   it(`Action getOffers work correctly`, () => {
@@ -126,13 +125,6 @@ describe(`Actions work correctly`, () => {
         status,
         data
       }
-    });
-  });
-
-  it(`Action redirectToRoute work correctly`, () => {
-    expect(actions.redirectToRoute(url)).toEqual({
-      type: ActionType.REDIRECT_TO_ROUTE,
-      payload: url
     });
   });
 
