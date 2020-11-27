@@ -78,14 +78,17 @@ const appData = (state = initialState, action) => {
       return extend(state, {
         favoriteOffers: removeItem(state.favoriteOffers, action.payload)
       });
+
     case ActionType.CHANGE_OFFERS_FAVORITE_STATUS:
       return extend(state, {
         offers: replaceItem(state.offers, action.payload)
       });
+
     case ActionType.CHANGE_NEARBY_OFFERS_FAVORITE_STATUS:
       return extend(state, {
         nearbyOffers: replaceItem(state.nearbyOffers, action.payload)
       });
+
     case ActionType.CHANGE_OFFER_FAVORITE_STATUS:
       return extend(state, {
         offerDetails: action.payload
