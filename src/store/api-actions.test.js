@@ -13,7 +13,7 @@ const adaptedOfferDetails = adaptOfferToApp(offerFromServer);
 const api = createAPI(() => {});
 const dispatch = jest.fn();
 
-const offerId = APIRoute.HOTELS + offerFromServer.id;
+const offerId = adaptedOffers[0].id;
 
 const fetchOffers = apiActions.fetchOffersList();
 const fetchDetails = apiActions.fetchOfferDetails();
@@ -21,7 +21,7 @@ const fetchDetails = apiActions.fetchOfferDetails();
 
 new MockAdapter(api)
   .onGet(APIRoute.HOTELS).reply(200, offersFromServer)
-  .onGet(APIRoute.HOTELS + offerId + APIRoute.NEARBY).reply(200, offersFromServer);
+  .onGet(APIRoute.HOTELS + offerId).reply(200, offersFromServer[0]);
 
 describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /hotels`, () => {
