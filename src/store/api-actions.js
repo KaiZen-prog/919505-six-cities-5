@@ -88,10 +88,10 @@ export const changeFavoriteStatus = (offerId, favoriteButtonType, isInBookmark) 
         case FavoriteButtonTypes.FAVORITES_SCREEN:
           dispatch(removeOfferFromFavorite(action.payload));
           break;
-        case FavoriteButtonTypes.NEARBY_OFFER:
+        case FavoriteButtonTypes.OFFER_SCREEN:
           dispatch(changeNearbyOffersFavoriteStatus(action.payload));
           break;
-        case FavoriteButtonTypes.OFFER_SCREEN:
+        case FavoriteButtonTypes.MAIN_SCREEN:
           dispatch(changeOfferFavoriteStatus(action.payload));
           break;
       }

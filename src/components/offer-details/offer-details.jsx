@@ -19,6 +19,23 @@ import {changeFavoriteStatus} from "../../store/api-actions";
 const OfferDetails = (props) => {
   const {offerDetails, nearbyOffers, authorizationStatus, changeFavoriteStatusAction} = props;
 
+  const {
+    photos,
+    isPremium,
+    id,
+    isInBookmarks,
+    title,
+    rating,
+    type,
+    bedroomsQuantity,
+    maxAdults,
+    price,
+    features,
+    description,
+    coords,
+    owner
+  } = offerDetails;
+
   const handleFavoriteButtonClick = (evt) => {
     evt.preventDefault();
 
@@ -27,14 +44,14 @@ const OfferDetails = (props) => {
       return;
     }
 
-    changeFavoriteStatusAction(offerDetails.id, FavoriteButtonTypes.OFFER_SCREEN, offerDetails.isInBookmarks);
+    changeFavoriteStatusAction(id, FavoriteButtonTypes.MAIN_SCREEN, offerDetails.isInBookmarks);
   };
 
   return (
     <section className="property">
       <div className="property__gallery-container container">
         <div className="property__gallery">
-          {offerDetails.photos.map((photo, i) => (
+          {photos.map((photo, i) => (
             <div key={i} className="property__image-wrapper">
               <img className="property__image" src={photo} alt="Photo studio"/>
             </div>
@@ -43,7 +60,7 @@ const OfferDetails = (props) => {
       </div>
       <div className="property__container container">
         <div className="property__wrapper">
-          {offerDetails.isPremium
+          {isPremium
             ? <div className="property__mark">
               <span>Premium</span>
             </div>
@@ -51,12 +68,12 @@ const OfferDetails = (props) => {
           }
           <div className="property__name-wrapper">
             <h1 className="property__name">
-              {offerDetails.title}
+              {title}
             </h1>
             <button
               onClick={handleFavoriteButtonClick}
               className={
-                offerDetails.isInBookmarks
+                isInBookmarks
                   ? `property__bookmark-button property__bookmark-button--active button`
                   : `property__bookmark-button button`
               }
@@ -65,7 +82,7 @@ const OfferDetails = (props) => {
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
               <span className="visually-hidden">{
-                offerDetails.isInBookmarks
+                isInBookmarks
                   ? `In bookmarks`
                   : `To bookmarks`
               }</span>
@@ -73,36 +90,36 @@ const OfferDetails = (props) => {
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={{width: `${Math.round(offerDetails.rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
+              <span style={{width: `${Math.round(rating * RATING_SCALE_MULTIPLIER)}%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
-            <span className="property__rating-value rating__value">{offerDetails.rating}</span>
+            <span className="property__rating-value rating__value">{rating}</span>
           </div>
           <ul className="property__features">
             <li className="property__feature property__feature--entire">
-              {offerDetails.type}
+              {type}
             </li>
             <li className="property__feature property__feature--bedrooms">
-              {offerDetails.bedroomsQuantity === 1
-                ? offerDetails.bedroomsQuantity + ` Bedroom`
-                : offerDetails.bedroomsQuantity + ` Bedrooms`
+              {bedroomsQuantity === 1
+                ? bedroomsQuantity + ` Bedroom`
+                : bedroomsQuantity + ` Bedrooms`
               }
             </li>
             <li className="property__feature property__feature--adults">
-              {offerDetails.maxAdults === 1
-                ? `Max ` + offerDetails.maxAdults + ` adult`
-                : `Max ` + offerDetails.maxAdults + ` adults`
+              {maxAdults === 1
+                ? `Max ` + maxAdults + ` adult`
+                : `Max ` + maxAdults + ` adults`
               }
             </li>
           </ul>
           <div className="property__price">
-            <b className="property__price-value">&euro;{offerDetails.price}</b>
+            <b className="property__price-value">&euro;{price}</b>
             <span className="property__price-text">&nbsp;night</span>
           </div>
           <div className="property__inside">
             <h2 className="property__inside-title">What&apos;s inside</h2>
             <ul className="property__inside-list">
-              {offerDetails.features.map((feature, i) => (
+              {features.map((feature, i) => (
                 <li key={i} className="property__inside-item">
                   {feature}
                 </li>
@@ -113,20 +130,20 @@ const OfferDetails = (props) => {
             <h2 className="property__host-title">Meet the host</h2>
             <div className="property__host-user user">
               <div
-                className={offerDetails.owner.isPro
+                className={owner.isPro
                   ? `property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper`
                   : `property__avatar-wrapper user__avatar-wrapper`
                 }
               >
-                <img className="property__avatar user__avatar" src={offerDetails.owner.avatar} width="74" height="74" alt="Host avatar"/>
+                <img className="property__avatar user__avatar" src={owner.avatar} width="74" height="74" alt="Host avatar"/>
               </div>
               <span className="property__user-name">
-                {offerDetails.owner.name}
+                {owner.name}
               </span>
             </div>
             <div className="property__description">
               <p className="property__text">
-                {offerDetails.description}
+                {description}
               </p>
             </div>
           </div>
@@ -142,11 +159,13 @@ const OfferDetails = (props) => {
       <CityMap
         offers={nearbyOffers}
         cityMapClass = {CityMapClasses.OFFER_SCREEN}
-        clickedOfferCoords={offerDetails.coords}
+        clickedOfferCoords={coords}
       />
     </section>
   );
 };
+
+OfferDetails.defaultProps = {offerDetails: {photos: []}};
 
 OfferDetails.propTypes = {
   nearbyOffers: PropTypes.arrayOf(
@@ -161,7 +180,28 @@ OfferDetails.propTypes = {
       })
   ).isRequired,
 
-  offerDetails: PropTypes.shape().isRequired,
+  offerDetails: PropTypes.shape({
+    photos: PropTypes.arrayOf(
+        PropTypes.string.isRequired
+    ).isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    isInBookmarks: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    bedroomsQuantity: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    price: PropTypes.number.isRequired,
+    features: PropTypes.array.isRequired,
+    description: PropTypes.string.isRequired,
+    coords: PropTypes.array.isRequired,
+    owner: PropTypes.shape({
+      isPro: PropTypes.bool.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    }).isRequired
+  }).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   changeFavoriteStatusAction: PropTypes.func.isRequired
 };

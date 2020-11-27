@@ -28,7 +28,7 @@ const MainContainer = ({currentCityOffers, withOffers}) => {
                   offers={currentCityOffers}
                   offerCardArticleClass={OfferCardArticleClasses.MAIN_SCREEN}
                   offerCardImgWrapperClass={OfferCardImgWrapperClasses.MAIN_SCREEN}
-                  favoriteButtonType={FavoriteButtonTypes.OFFER_SCREEN}
+                  favoriteButtonType={FavoriteButtonTypes.MAIN_SCREEN}
                 />
               </div>
             </section>

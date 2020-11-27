@@ -1,36 +1,31 @@
-import React, {PureComponent} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 import ReviewsItem from "../rewiews-item/reviews-item";
 import {fetchReviewsList} from "../../store/api-actions";
 
-class ReviewsList extends PureComponent {
-  constructor(props) {
-    super(props);
+const ReviewsList = (props) => {
+  const {offerId, reviews, getReviewsAction} = props;
 
-    const {getReviewsAction, offerId} = this.props;
+  useEffect(() => {
     getReviewsAction(offerId);
-  }
+  }, []);
 
-  render() {
-    const {reviews} = this.props;
-
-    return (
-      <>
-        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-        <ul className="reviews__list">
-          {reviews.map((review, i) => (
-            <ReviewsItem
-              review={review}
-              key={i}
-            />
-          ))}
-        </ul>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+      <ul className="reviews__list">
+        {reviews.map((review, i) => (
+          <ReviewsItem
+            review={review}
+            key={i}
+          />
+        ))}
+      </ul>
+    </>
+  );
+};
 
 ReviewsList.propTypes = {
   offerId: PropTypes.number.isRequired,

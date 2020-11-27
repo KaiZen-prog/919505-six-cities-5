@@ -85,6 +85,6 @@ export const FavoriteStatus = {
 
 export const FavoriteButtonTypes = {
   FAVORITES_SCREEN: `FAVORITES_SCREEN`,
+  MAIN_SCREEN: `MAIN_SCREEN`,
   OFFER_SCREEN: `OFFER_SCREEN`,
-  NEARBY_OFFER: `NEARBY_OFFER`,
 };

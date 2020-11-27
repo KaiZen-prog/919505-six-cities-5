@@ -32,7 +32,7 @@ const OfferScreen = (props) => {
                   offers={nearbyOffers}
                   offerCardArticleClass = {OfferCardArticleClasses.OFFER_SCREEN}
                   offerCardImgWrapperClass = {OfferCardImgWrapperClasses.OFFER_SCREEN}
-                  favoriteButtonType={FavoriteButtonTypes.NEARBY_OFFER}
+                  favoriteButtonType={FavoriteButtonTypes.OFFER_SCREEN}
                 />
                 : ``}
             </div>

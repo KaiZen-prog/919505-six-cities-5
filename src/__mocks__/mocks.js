@@ -33,13 +33,6 @@ export const InitialState = {
   }
 };
 
-export const FilterType = {
-  POPULAR: `Popular`,
-  PRICE_LOW_TO_HIGH: `Price: low to high`,
-  PRICE_HIGH_TO_LOW: `Price: high to low`,
-  TOP_RATED_FIRST: `Top rated first`,
-};
-
 export const offers = [{
   city: `Cologne`,
   cityCoords: [50.938361, 6.959974],
@@ -49,12 +42,11 @@ export const offers = [{
   title: `The house among olive `,
   rating: 3.8,
   type: `house`,
-  bedrooms: 3,
+  maxAdults: 3,
   price: 493,
-  description: `The house among olive `,
   id: 1,
-  bedroomsCount: 3,
-  facilities: [
+  bedroomsQuantity: 3,
+  features: [
     `Laptop friendly workspace`,
     `Washer`,
     `Towels`,
@@ -64,7 +56,7 @@ export const offers = [{
     `Breakfast`
   ],
   poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
-  photosUrl: [
+  photos: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/15.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/9.jpg`,
@@ -80,14 +72,14 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/5.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/13.jpg`
   ],
+  owner: {
+    avatar: `img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    isPro: true
+  },
   isPremium: false,
   isInBookmarks: false,
-  hostName: `Angelina`,
-  hostDescription: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
-  hostAvatar: `img/avatar-angelina.jpg`,
-  isHostPremium: true,
-  maxCapacity: 4,
-  previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg`
+  description: `Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.`,
 },
 {
   city: `Brussels`,
@@ -98,12 +90,11 @@ export const offers = [{
   title: `Amazing and Extremely Central Flat`,
   rating: 4.3,
   type: `apartment`,
-  bedrooms: 3,
+  maxAdults: 3,
   price: 323,
-  description: `Amazing and Extremely Central Flat`,
   id: 2,
-  bedroomsCount: 3,
-  facilities: [
+  bedroomsQuantity: 3,
+  features: [
     `Towels`,
     `Baby seat`,
     `Laptop friendly workspace`,
@@ -116,7 +107,7 @@ export const offers = [{
     `Fridge`
   ],
   poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
-  photosUrl: [
+  photos: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/10.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/11.jpg`,
@@ -132,14 +123,14 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/9.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/4.jpg`
   ],
+  owner: {
+    avatar: `img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    isPro: true
+  },
   isPremium: false,
   isInBookmarks: false,
-  hostName: `Angelina`,
-  hostDescription: `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
-  hostAvatar: `img/avatar-angelina.jpg`,
-  isHostPremium: true,
-  maxCapacity: 8,
-  previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/8.jpg`
+  description: `This is a place for dreamers to reset, reflect, and create. Designed with a 'slow' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.`,
 },
 {
   city: `Brussels`,
@@ -150,12 +141,11 @@ export const offers = [{
   title: `The house among olive `,
   rating: 4.6,
   type: `apartment`,
-  bedrooms: 4,
+  maxAdults: 4,
   price: 218,
-  description: `The house among olive `,
   id: 3,
-  bedroomsCount: 4,
-  facilities: [
+  bedroomsQuantity: 4,
+  features: [
     `Washer`,
     `Laptop friendly workspace`,
     `Breakfast`,
@@ -163,7 +153,7 @@ export const offers = [{
     `Baby seat`
   ],
   poster: `"https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"`,
-  photosUrl: [
+  photos: [
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/2.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/1.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg`,
@@ -179,14 +169,14 @@ export const offers = [{
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/10.jpg`,
     `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg`
   ],
+  owner: {
+    avatar: `img/avatar-angelina.jpg`,
+    name: `Angelina`,
+    isPro: true
+  },
   isPremium: false,
   isInBookmarks: false,
-  hostName: `Angelina`,
-  hostDescription: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`,
-  hostAvatar: `img/avatar-angelina.jpg`,
-  isHostPremium: true,
-  maxCapacity: 7,
-  previewImage: `https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg`
+  description: `Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.`,
 }
 ];
 
@@ -194,35 +184,55 @@ export const offersFromServer = [{"city": {"name": `Cologne`, "location": {"lati
 
 export const reviewsFromServer = [{"id": 1, "user": {"id": 1, "is_pro": false, "name": `xyz`, "avatar_url": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`}, "rating": 4, "comment": `12311231123112311231123112311231123112311231123112311231`, "date": `2020-11-18T15:41:58.083Z`}, {"id": 2, "user": {"id": 1, "is_pro": false, "name": `xyz`, "avatar_url": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`}, "rating": 3, "comment": `52525252525252525252525252525252525252525252525252`, "date": `2020-11-19T07:00:10.385Z`}];
 
-export const info = {
-  "avatar_url": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
-  "email": `xyz@xyz.com`,
-  "id": 1,
-  "name": `xyz`,
+export const userData = {
+  avatarUrl: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`,
+  email: `qwe@qwe.com`,
+  id: 1,
+  name: `Some User`,
 };
 
 export const infoFromServer = {"id": 1, "email": `xyz@xyz.com`, "name": `xyz`, "avatar_url": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg`, "is_pro": false};
 
 export const reviews = [{
-  "id": 1,
-  "rating": 4,
-  "date": `2020-11-15T13:58:19.494Z`,
-  "reviewText": `421421`,
-  "photoUrl": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/3.jpg`,
-  "name": `xyz`,
-  "isUserPremium": false,
-  "userId": 1
-}, {
-  "id": 2,
-  "rating": 3,
-  "date": `2020-10-15T13:58:19.494Z`,
-  "reviewText": `1111`,
-  "photoUrl": `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/4.jpg`,
-  "name": `xyza`,
-  "isUserPremium": true,
-  "userId": 2
+  id: 1,
+  author: {
+    avatar: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/3.jpg`,
+    name: `Paul`,
+    isPro: false,
+  },
+  rating: 4,
+  text: `Nice`,
+  date: `2020-11-15T13:58:19.494Z`,
+},
+
+{
+  id: 2,
+  author: {
+    avatar: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/4.jpg`,
+    name: `John`,
+    isPro: true,
+  },
+  rating: 3,
+  text: `Not too good`,
+  date: `2020-10-15T13:58:19.494Z`,
 }
 ];
+
+
+export const adaptReviewToApp = (comment) => {
+  return {
+    id: comment.id,
+    author: {
+      avatar: comment.user.avatar_url,
+      name: comment.user.name,
+      isPro: comment.user.is_pro
+    },
+    rating: comment.rating,
+    text: comment.comment,
+    date: comment.date,
+  };
+};
+
 
 export const user = {
   "email": `Oliver.conner@gmail.com`,

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainHeaderAuth render correctly 1`] = `
+<div
+  className="header__nav-link header__nav-link--profile"
+>
+  <img
+    alt="avatar"
+    className="header__avatar-wrapper"
+    src="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/5.jpg"
+  />
+  <span
+    className="header__user-name user__name"
+  >
+    <a
+      href="/favorites"
+      onClick={[Function]}
+    >
+       
+      qwe@qwe.com
+       
+    </a>
+  </span>
+</div>
+`;
