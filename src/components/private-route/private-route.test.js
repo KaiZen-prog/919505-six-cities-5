@@ -6,7 +6,6 @@ import browserHistory from "../../browser-history";
 import {Provider} from "react-redux";
 import configureStore from 'redux-mock-store';
 import {AppRoute} from "../../const";
-import {AuthorizationStatus} from "../../__mocks__/mocks";
 import {FavoritesScreen} from "../favorites-screen/favorites-screen";
 
 const mockStore = configureStore();
@@ -15,7 +14,7 @@ describe(`PrivateRoute render correctly`, () => {
   it(`PrivateRoute auth`, () => {
     const initialState = {
       USER: {
-        authorizationStatus: AuthorizationStatus.AUTH
+        authorizationStatus: `AUTH`
       }
     };
 
@@ -26,7 +25,7 @@ describe(`PrivateRoute render correctly`, () => {
           <Provider store={store}>
             <BrowserRouter history={browserHistory}>
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.AUTH}
+                authorizationStatus={`AUTH`}
                 exact
                 path={AppRoute.FAVORITES}
                 render={() => {
@@ -45,7 +44,7 @@ describe(`PrivateRoute render correctly`, () => {
   it(`PrivateRoute noauth`, () => {
     const initialState = {
       USER: {
-        authorizationStatus: AuthorizationStatus.NO_AUTH
+        authorizationStatus: `NO_AUTH`
       }
     };
 
@@ -56,7 +55,7 @@ describe(`PrivateRoute render correctly`, () => {
           <Provider store={store}>
             <BrowserRouter history={browserHistory}>
               <PrivateRoute
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                authorizationStatus={`NO_AUTH`}
                 exact
                 path={AppRoute.FAVORITES}
                 render={() => {

@@ -340,6 +340,11 @@ exports[`OfferScreen render correctly 1`] = `
               <li
                 className="property__inside-item"
               >
+                Coffee machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
                 Breakfast
               </li>
             </ul>
@@ -542,8 +547,6 @@ exports[`OfferScreen render correctly 1`] = `
         >
           <article
             className="near-places__card place-card"
-            onBlur={[Function]}
-            onFocus={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -553,6 +556,7 @@ exports[`OfferScreen render correctly 1`] = `
             >
               <a
                 href="/offer/1"
+                id="card-image-link"
                 onClick={[Function]}
               >
                 <img
@@ -631,6 +635,7 @@ exports[`OfferScreen render correctly 1`] = `
               >
                 <a
                   href="/offer/1"
+                  id="card-name-link"
                   onClick={[Function]}
                 >
                   The house among olive 
@@ -645,8 +650,6 @@ exports[`OfferScreen render correctly 1`] = `
           </article>
           <article
             className="near-places__card place-card"
-            onBlur={[Function]}
-            onFocus={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -656,6 +659,7 @@ exports[`OfferScreen render correctly 1`] = `
             >
               <a
                 href="/offer/2"
+                id="card-image-link"
                 onClick={[Function]}
               >
                 <img
@@ -734,6 +738,7 @@ exports[`OfferScreen render correctly 1`] = `
               >
                 <a
                   href="/offer/2"
+                  id="card-name-link"
                   onClick={[Function]}
                 >
                   Amazing and Extremely Central Flat
@@ -748,8 +753,6 @@ exports[`OfferScreen render correctly 1`] = `
           </article>
           <article
             className="near-places__card place-card"
-            onBlur={[Function]}
-            onFocus={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
           >
@@ -759,6 +762,7 @@ exports[`OfferScreen render correctly 1`] = `
             >
               <a
                 href="/offer/3"
+                id="card-image-link"
                 onClick={[Function]}
               >
                 <img
@@ -837,6 +841,7 @@ exports[`OfferScreen render correctly 1`] = `
               >
                 <a
                   href="/offer/3"
+                  id="card-name-link"
                   onClick={[Function]}
                 >
                   The house among olive 

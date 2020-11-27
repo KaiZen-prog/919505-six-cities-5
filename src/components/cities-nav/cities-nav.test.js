@@ -1,17 +1,22 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {CitiesNav} from "./cities-nav";
-import {Cities} from "../../const";
+import CitiesNav from "./cities-nav";
+import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import {InitialState} from "../../__mocks__/mocks";
+import configureStore from "redux-mock-store";
 
-const noop = () => {};
+const mockStore = configureStore();
 
 test(`CitiesNav render correctly`, () => {
+  const store = mockStore(InitialState);
   const tree = renderer
     .create(
-        <CitiesNav
-          currentCity={Cities[0]}
-          onCityClick={noop}
-        />
+        <Provider store={store}>
+          <BrowserRouter>
+            <CitiesNav/>
+          </BrowserRouter>
+        </Provider>
     )
     .toJSON();
 

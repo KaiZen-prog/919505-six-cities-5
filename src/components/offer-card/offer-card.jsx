@@ -30,22 +30,16 @@ const OfferCard = (props) => {
     changeFavoriteStatusAction(offer.id, favoriteButtonType, offer.isInBookmarks);
   };
 
+  const handleCardEnter = () => {
+    onCardActivate(offer.id);
+  };
+
+  const handleCardLeave = () => {
+    onCardActivate(null);
+  };
+
   return (
-    <article
-      className={articleClass}
-      onMouseEnter={() => {
-        onCardActivate(offer.id);
-      }}
-      onFocus={() => {
-        onCardActivate(offer.id);
-      }}
-      onMouseLeave={() => {
-        onCardActivate(null);
-      }}
-      onBlur={() => {
-        onCardActivate(null);
-      }}
-    >
+    <article className={articleClass} onMouseEnter={handleCardEnter} onMouseLeave={handleCardLeave}>
       {offer.isPremium
         ? <div className="place-card__mark">
           <span>Premium</span>
@@ -54,6 +48,7 @@ const OfferCard = (props) => {
       }
       <div className={imgWrapperClass}>
         <Link
+          id="card-image-link"
           onClick={() => {
             onCardClick(offer.id);
           }}
@@ -89,6 +84,7 @@ const OfferCard = (props) => {
         </div>
         <h2 className="place-card__name">
           <Link
+            id="card-name-link"
             onClick={() => {
               onCardClick(offer.id);
             }}

@@ -4,8 +4,6 @@ exports[`OfferList render correctly OfferList on favorites screen 1`] = `
 Array [
   <article
     className="favorites__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -15,6 +13,7 @@ Array [
     >
       <a
         href="/offer/1"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -93,6 +92,7 @@ Array [
       >
         <a
           href="/offer/1"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 
@@ -107,8 +107,6 @@ Array [
   </article>,
   <article
     className="favorites__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -118,6 +116,7 @@ Array [
     >
       <a
         href="/offer/2"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -196,6 +195,7 @@ Array [
       >
         <a
           href="/offer/2"
+          id="card-name-link"
           onClick={[Function]}
         >
           Amazing and Extremely Central Flat
@@ -210,8 +210,6 @@ Array [
   </article>,
   <article
     className="favorites__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -221,6 +219,7 @@ Array [
     >
       <a
         href="/offer/3"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -299,6 +298,7 @@ Array [
       >
         <a
           href="/offer/3"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 
@@ -318,8 +318,6 @@ exports[`OfferList render correctly OfferList on main screen 1`] = `
 Array [
   <article
     className="cities__place-card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -329,6 +327,7 @@ Array [
     >
       <a
         href="/offer/1"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -407,6 +406,7 @@ Array [
       >
         <a
           href="/offer/1"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 
@@ -421,8 +421,6 @@ Array [
   </article>,
   <article
     className="cities__place-card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -432,6 +430,7 @@ Array [
     >
       <a
         href="/offer/2"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -510,6 +509,7 @@ Array [
       >
         <a
           href="/offer/2"
+          id="card-name-link"
           onClick={[Function]}
         >
           Amazing and Extremely Central Flat
@@ -524,8 +524,6 @@ Array [
   </article>,
   <article
     className="cities__place-card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -535,6 +533,7 @@ Array [
     >
       <a
         href="/offer/3"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -613,6 +612,7 @@ Array [
       >
         <a
           href="/offer/3"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 
@@ -632,8 +632,6 @@ exports[`OfferList render correctly OfferList on nearby offers 1`] = `
 Array [
   <article
     className="near-places__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -643,6 +641,7 @@ Array [
     >
       <a
         href="/offer/1"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -721,6 +720,7 @@ Array [
       >
         <a
           href="/offer/1"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 
@@ -735,8 +735,6 @@ Array [
   </article>,
   <article
     className="near-places__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -746,6 +744,7 @@ Array [
     >
       <a
         href="/offer/2"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -824,6 +823,7 @@ Array [
       >
         <a
           href="/offer/2"
+          id="card-name-link"
           onClick={[Function]}
         >
           Amazing and Extremely Central Flat
@@ -838,8 +838,6 @@ Array [
   </article>,
   <article
     className="near-places__card place-card"
-    onBlur={[Function]}
-    onFocus={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -849,6 +847,7 @@ Array [
     >
       <a
         href="/offer/3"
+        id="card-image-link"
         onClick={[Function]}
       >
         <img
@@ -927,6 +926,7 @@ Array [
       >
         <a
           href="/offer/3"
+          id="card-name-link"
           onClick={[Function]}
         >
           The house among olive 

@@ -6,7 +6,7 @@ import browserHistory from "../../browser-history";
 import {Provider} from "react-redux";
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import {AuthorizationStatus, offers, reviews} from "../../__mocks__/mocks";
+import {offers, reviews} from "../../__mocks__/mocks";
 import axios from "axios";
 
 const mockStore = configureStore([thunk.withExtraArgument(axios.create({}))]);
@@ -28,7 +28,7 @@ describe(`OfferDetails render correctly`, () => {
       },
 
       USER: {
-        authorizationStatus: AuthorizationStatus.AUTH,
+        authorizationStatus: `AUTH`,
       }
     };
     const store = mockStore(initialState);
@@ -40,7 +40,7 @@ describe(`OfferDetails render correctly`, () => {
               <OfferDetails
                 nearbyOffers={offers}
                 offerDetails={offers[0]}
-                authorizationStatus={AuthorizationStatus.AUTH}
+                authorizationStatus={`AUTH`}
                 changeFavoriteStatusAction={noop}
               />
             </BrowserRouter>
@@ -64,7 +64,7 @@ describe(`OfferDetails render correctly`, () => {
       },
 
       USER: {
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        authorizationStatus: `NO_AUTH`,
       }
     };
 
@@ -77,7 +77,7 @@ describe(`OfferDetails render correctly`, () => {
               <OfferDetails
                 nearbyOffers={offers}
                 offerDetails={offers[0]}
-                authorizationStatus={AuthorizationStatus.NO_AUTH}
+                authorizationStatus={`NO_AUTH`}
                 changeFavoriteStatusAction={noop}
               />
             </BrowserRouter>

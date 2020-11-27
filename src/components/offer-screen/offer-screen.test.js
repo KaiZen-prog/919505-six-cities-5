@@ -5,7 +5,7 @@ import {Router as BrowserRouter} from "react-router-dom";
 import browserHistory from "../../browser-history";
 import {Provider} from "react-redux";
 import configureStore from 'redux-mock-store';
-import {offers, reviews, AuthorizationStatus} from "../../__mocks__/mocks";
+import {offers, reviews} from "../../__mocks__/mocks";
 
 const mockStore = configureStore();
 
@@ -21,7 +21,7 @@ const initialState = {
   },
 
   USER: {
-    authorizationStatus: AuthorizationStatus.NO_AUTH
+    authorizationStatus: `NO_AUTH`
   }
 };
 

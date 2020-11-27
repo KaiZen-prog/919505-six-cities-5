@@ -37,7 +37,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
           onClick={[Function]}
           tabIndex="0"
         >
-          Popular
+          POPULAR
           <svg
             className="places__sorting-arrow"
             height="4"
@@ -52,7 +52,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
           className="places__options places__options--custom places__options--closed"
         >
           <li
-            className="places__option places__option--active"
+            className="places__option false"
             onClick={[Function]}
             tabIndex="0"
           >
@@ -86,8 +86,6 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
       >
         <article
           className="cities__place-card place-card"
-          onBlur={[Function]}
-          onFocus={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -97,6 +95,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
           >
             <a
               href="/offer/1"
+              id="card-image-link"
               onClick={[Function]}
             >
               <img
@@ -175,6 +174,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
             >
               <a
                 href="/offer/1"
+                id="card-name-link"
                 onClick={[Function]}
               >
                 The house among olive 
@@ -189,8 +189,6 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
         </article>
         <article
           className="cities__place-card place-card"
-          onBlur={[Function]}
-          onFocus={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -200,6 +198,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
           >
             <a
               href="/offer/2"
+              id="card-image-link"
               onClick={[Function]}
             >
               <img
@@ -278,6 +277,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
             >
               <a
                 href="/offer/2"
+                id="card-name-link"
                 onClick={[Function]}
               >
                 Amazing and Extremely Central Flat
@@ -292,8 +292,6 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
         </article>
         <article
           className="cities__place-card place-card"
-          onBlur={[Function]}
-          onFocus={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -303,6 +301,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
           >
             <a
               href="/offer/3"
+              id="card-image-link"
               onClick={[Function]}
             >
               <img
@@ -381,6 +380,7 @@ exports[`MainContainer render correctly MainContainer with loaded offers 1`] = `
             >
               <a
                 href="/offer/3"
+                id="card-name-link"
                 onClick={[Function]}
               >
                 The house among olive 

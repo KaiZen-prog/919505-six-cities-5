@@ -276,6 +276,11 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
           <li
             className="property__inside-item"
           >
+            Coffee machine
+          </li>
+          <li
+            className="property__inside-item"
+          >
             Breakfast
           </li>
         </ul>
@@ -905,6 +910,11 @@ exports[`OfferDetails render correctly OfferDetails with unauthorized user 1`] =
             className="property__inside-item"
           >
             Baby seat
+          </li>
+          <li
+            className="property__inside-item"
+          >
+            Coffee machine
           </li>
           <li
             className="property__inside-item"

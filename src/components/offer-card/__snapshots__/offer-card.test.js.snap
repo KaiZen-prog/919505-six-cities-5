@@ -3,8 +3,6 @@
 exports[`OfferCard with authorized user OfferCard on favorites screen 1`] = `
 <article
   className="favorites__card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -14,6 +12,7 @@ exports[`OfferCard with authorized user OfferCard on favorites screen 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -92,6 +91,7 @@ exports[`OfferCard with authorized user OfferCard on favorites screen 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
@@ -109,8 +109,6 @@ exports[`OfferCard with authorized user OfferCard on favorites screen 1`] = `
 exports[`OfferCard with authorized user OfferCard on main screen 1`] = `
 <article
   className="cities__place-card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -120,6 +118,7 @@ exports[`OfferCard with authorized user OfferCard on main screen 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -198,6 +197,7 @@ exports[`OfferCard with authorized user OfferCard on main screen 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
@@ -215,8 +215,6 @@ exports[`OfferCard with authorized user OfferCard on main screen 1`] = `
 exports[`OfferCard with authorized user OfferCard on nearby offers 1`] = `
 <article
   className="near-places__card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -226,6 +224,7 @@ exports[`OfferCard with authorized user OfferCard on nearby offers 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -304,6 +303,7 @@ exports[`OfferCard with authorized user OfferCard on nearby offers 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
@@ -321,8 +321,6 @@ exports[`OfferCard with authorized user OfferCard on nearby offers 1`] = `
 exports[`OfferCard with unauthorized user OfferCard on favorites screen 1`] = `
 <article
   className="favorites__card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -332,6 +330,7 @@ exports[`OfferCard with unauthorized user OfferCard on favorites screen 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -410,6 +409,7 @@ exports[`OfferCard with unauthorized user OfferCard on favorites screen 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
@@ -427,8 +427,6 @@ exports[`OfferCard with unauthorized user OfferCard on favorites screen 1`] = `
 exports[`OfferCard with unauthorized user OfferCard on main screen 1`] = `
 <article
   className="cities__place-card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -438,6 +436,7 @@ exports[`OfferCard with unauthorized user OfferCard on main screen 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -516,6 +515,7 @@ exports[`OfferCard with unauthorized user OfferCard on main screen 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
@@ -533,8 +533,6 @@ exports[`OfferCard with unauthorized user OfferCard on main screen 1`] = `
 exports[`OfferCard with unauthorized user OfferCard on nearby offers 1`] = `
 <article
   className="near-places__card place-card"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
 >
@@ -544,6 +542,7 @@ exports[`OfferCard with unauthorized user OfferCard on nearby offers 1`] = `
   >
     <a
       href="/offer/1"
+      id="card-image-link"
       onClick={[Function]}
     >
       <img
@@ -622,6 +621,7 @@ exports[`OfferCard with unauthorized user OfferCard on nearby offers 1`] = `
     >
       <a
         href="/offer/1"
+        id="card-name-link"
         onClick={[Function]}
       >
         The house among olive 
