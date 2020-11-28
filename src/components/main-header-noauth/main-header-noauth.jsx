@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../../../const";
+import {AppRoute} from "../../const";
 
-export const notAuthHeader = () => {
+export const NotAuthHeader = () => {
   return (
     <div className="header__nav-link header__nav-link--profile">
       <div className="header__avatar-wrapper user__avatar-wrapper">

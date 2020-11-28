@@ -1,5 +1,28 @@
+import {ReviewCount} from "../const";
+
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
+};
+
+const findIndex = (array, item) => {
+  return array.findIndex((it) => it.id === item.id);
+};
+
+export const replaceItem = (array, item) => {
+  const itemIndex = findIndex(array, item);
+  return [
+    ...array.slice(0, itemIndex),
+    item,
+    ...array.slice(itemIndex + 1)
+  ];
+};
+
+export const removeItem = (array, item) => {
+  const itemIndex = findIndex(array, item);
+  return [
+    ...array.slice(0, itemIndex),
+    ...array.slice(itemIndex + 1)
+  ];
 };
 
 export const adaptUserToApp = (data) => {
@@ -12,7 +35,7 @@ export const adaptUserToApp = (data) => {
   };
 };
 
-export const adaptOfferCardToApp = (offer) => {
+export const adaptOfferToApp = (offer) => {
   return {
     id: offer.id,
     isPremium: offer.is_premium,
@@ -27,28 +50,19 @@ export const adaptOfferCardToApp = (offer) => {
     coords: [offer.location.latitude, offer.location.longitude],
     mapZoom: offer.city.location.zoom,
     detailsMapZoom: offer.location.zoom,
-  };
-};
 
-export const adaptOfferDetailsToApp = (offer) => {
-  return {
-    id: offer.id,
     photos: offer.images,
-    price: offer.price,
-    rating: offer.rating,
     bedroomsQuantity: offer.bedrooms,
     maxAdults: offer.max_adults,
     features: offer.goods,
     description: offer.description,
-    isPremium: offer.is_premium,
+
     owner: {
       avatar: offer.host.avatar_url,
       name: offer.host.name,
       isPro: offer.host.is_pro,
       id: offer.host.id,
     },
-    cityCoords: [offer.city.location.latitude, offer.city.location.longitude],
-    coords: [offer.location.latitude, offer.location.longitude],
   };
 };
 
@@ -73,8 +87,8 @@ export const adaptReviewToServer = (review, rating) => {
   };
 };
 
-export const sortReviewsByDate = (reviews) => {
+export const formatReviewsArray = (reviews) => {
   return reviews.slice().sort((left, right) => {
     return (new Date(right.date) - new Date(left.date));
-  });
+  }).slice(ReviewCount.MIN, ReviewCount.MAX);
 };

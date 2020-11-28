@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import OfferCard from "../offer-card/offer-card";
 
 const OfferList = (props) => {
-  const {offers, offerCardArticleClass, offerCardImgWrapperClass} = props;
+  const {offers, offerCardArticleClass, offerCardImgWrapperClass, favoriteButtonType} = props;
   return (
     <>
       {offers.map((offer) => (
@@ -11,6 +11,7 @@ const OfferList = (props) => {
           offer={offer}
           articleClass={offerCardArticleClass}
           imgWrapperClass={offerCardImgWrapperClass}
+          favoriteButtonType={favoriteButtonType}
           key={offer.id}
         />
       ))}
@@ -24,6 +25,7 @@ OfferList.propTypes = {
   })).isRequired,
 
   offerCardArticleClass: PropTypes.string.isRequired,
-  offerCardImgWrapperClass: PropTypes.string.isRequired
+  offerCardImgWrapperClass: PropTypes.string.isRequired,
+  favoriteButtonType: PropTypes.string.isRequired
 };
 export default OfferList;

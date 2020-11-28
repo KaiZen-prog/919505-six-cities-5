@@ -4,7 +4,9 @@ import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {AuthorizationStatus, AppRoute} from "../../const";
 
-const PrivateRoute = ({render, path, exact, authorizationStatus}) => {
+const PrivateRoute = (props) => {
+  const {render, path, exact, authorizationStatus} = props;
+
   return (
     <Route
       path={path}

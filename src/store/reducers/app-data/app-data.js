@@ -1,13 +1,17 @@
-import {extend, sortReviewsByDate} from "../../../utils/common";
-import {ActionType} from "../../action";
+import {extend, formatReviewsArray, removeItem, replaceItem} from "../../../utils/common";
+import {ActionType} from "../../actions";
 
 const initialState = {
   offers: [],
+  favoriteOffers: [],
+  isFavoriteOffersLoaded: false,
   offerDetails: {},
   isOfferDetailsLoaded: false,
   nearbyOffers: [],
   isNearbyOffersLoaded: false,
-  reviews: []
+  reviews: [],
+  isReviewRequestPosted: false,
+  postReviewError: null
 };
 
 const appData = (state = initialState, action) => {
@@ -28,9 +32,35 @@ const appData = (state = initialState, action) => {
         isOfferDetailsLoaded: true,
       });
 
+    case ActionType.GET_FAVORITE_OFFERS:
+      return extend(state, {
+        favoriteOffers: action.payload,
+        isFavoriteOffersLoaded: true,
+      });
+
+    case ActionType.FAVORITE_OFFERS_REQUESTED:
+      return extend(state, {
+        isFavoriteOffersLoaded: false,
+      });
+
     case ActionType.GET_REVIEWS:
       return extend(state, {
-        reviews: sortReviewsByDate(action.payload)
+        reviews: formatReviewsArray(action.payload)
+      });
+
+    case ActionType.POST_REVIEW_REQUESTED:
+      return extend(state, {
+        isReviewRequestPosted: true,
+      });
+
+    case ActionType.POST_REVIEW:
+      return extend(state, {
+        isReviewRequestPosted: false,
+      });
+
+    case ActionType.WRITE_ERROR:
+      return extend(state, {
+        postReviewError: action.payload,
       });
 
     case ActionType.NEARBY_OFFERS_REQUESTED:
@@ -42,6 +72,26 @@ const appData = (state = initialState, action) => {
       return extend(state, {
         nearbyOffers: action.payload,
         isNearbyOffersLoaded: true,
+      });
+
+    case ActionType.REMOVE_FROM_FAVORITE:
+      return extend(state, {
+        favoriteOffers: removeItem(state.favoriteOffers, action.payload)
+      });
+
+    case ActionType.CHANGE_OFFERS_FAVORITE_STATUS:
+      return extend(state, {
+        offers: replaceItem(state.offers, action.payload)
+      });
+
+    case ActionType.CHANGE_NEARBY_OFFERS_FAVORITE_STATUS:
+      return extend(state, {
+        nearbyOffers: replaceItem(state.nearbyOffers, action.payload)
+      });
+
+    case ActionType.CHANGE_OFFER_FAVORITE_STATUS:
+      return extend(state, {
+        offerDetails: action.payload
       });
   }
 

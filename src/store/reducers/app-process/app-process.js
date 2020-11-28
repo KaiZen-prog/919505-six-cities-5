@@ -1,14 +1,13 @@
 import {extend} from "../../../utils/common";
-import {ActionType} from "../../action";
-import {Cities, SortingTypes, ReviewFormState} from "../../../const";
+import {ActionType} from "../../actions";
+import {Cities, SortingTypes} from "../../../const";
 
 const initialState = {
   currentCity: Cities[0],
   isOffersSortOpened: false,
   currentOffersSort: SortingTypes.POPULAR,
   activeCard: null,
-  clickedCard: null,
-  reviewFormState: ReviewFormState.EDITING
+  clickedCard: null
 };
 
 const appProcess = (state = initialState, action) => {
@@ -40,11 +39,6 @@ const appProcess = (state = initialState, action) => {
       return extend(state, {
         clickedCard: action.payload,
         activeCard: null
-      });
-
-    case ActionType.SET_STATE_REVIEW_FORM:
-      return extend(state, {
-        reviewFormState: action.payload
       });
   }
 

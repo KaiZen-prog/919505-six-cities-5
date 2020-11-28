@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
 const MainEmpty = (props) => {
-  const {
-    currentCity
-  } = props;
+  const {currentCity} = props;
 
   return (
     <>

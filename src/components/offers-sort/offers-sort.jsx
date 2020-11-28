@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {toggleOffersSortPanel, changeOffersSort} from "../../store/action";
+import {toggleOffersSortPanel, changeOffersSort} from "../../store/actions";
 import {SortingTypes} from "../../const";
 
-const OffersSort = ({isOffersSortOpened, currentOffersSort, togglePanel, onOffersSortChange}) => {
+const OffersSort = (props) => {
+  const {isOffersSortOpened, currentOffersSort, togglePanel, onOffersSortChange} = props;
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>

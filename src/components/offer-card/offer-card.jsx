@@ -1,31 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {activateCard, clickCard} from "../../store/action";
+import browserHistory from "../../browser-history";
+import {activateCard, clickCard} from "../../store/actions";
 import {connect} from "react-redux";
-import {AppRoute, RATING_SCALE_MULTIPLIER} from "../../const";
+import {AppRoute, RATING_SCALE_MULTIPLIER, AuthorizationStatus} from "../../const";
+import {changeFavoriteStatus} from "../../store/api-actions";
 
 const OfferCard = (props) => {
   const {
-    offer, articleClass, imgWrapperClass, onCardActivate, onCardClick
+    offer,
+    authorizationStatus,
+    articleClass,
+    imgWrapperClass,
+    onCardActivate,
+    onCardClick,
+    changeFavoriteStatusAction,
+    favoriteButtonType
   } = props;
 
+  const handleFavoriteButtonClick = (evt) => {
+    evt.preventDefault();
+
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      browserHistory.push(AppRoute.LOGIN);
+      return;
+    }
+
+    changeFavoriteStatusAction(offer.id, favoriteButtonType, offer.isInBookmarks);
+  };
+
+  const handleCardEnter = () => {
+    onCardActivate(offer.id);
+  };
+
+  const handleCardLeave = () => {
+    onCardActivate(null);
+  };
+
   return (
-    <article
-      className={articleClass}
-      onMouseEnter={() => {
-        onCardActivate(offer.id);
-      }}
-      onFocus={() => {
-        onCardActivate(offer.id);
-      }}
-      onMouseLeave={() => {
-        onCardActivate(null);
-      }}
-      onBlur={() => {
-        onCardActivate(null);
-      }}
-    >
+    <article className={articleClass} onMouseEnter={handleCardEnter} onMouseLeave={handleCardLeave}>
       {offer.isPremium
         ? <div className="place-card__mark">
           <span>Premium</span>
@@ -34,6 +48,7 @@ const OfferCard = (props) => {
       }
       <div className={imgWrapperClass}>
         <Link
+          id="card-image-link"
           onClick={() => {
             onCardClick(offer.id);
           }}
@@ -48,6 +63,7 @@ const OfferCard = (props) => {
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
+            onClick={handleFavoriteButtonClick}
             className={
               offer.isInBookmarks
                 ? `place-card__bookmark-button place-card__bookmark-button--active button`
@@ -68,6 +84,7 @@ const OfferCard = (props) => {
         </div>
         <h2 className="place-card__name">
           <Link
+            id="card-name-link"
             onClick={() => {
               onCardClick(offer.id);
             }}
@@ -91,11 +108,19 @@ OfferCard.propTypes = {
     type: PropTypes.string.isRequired,
     isInBookmarks: PropTypes.bool.isRequired
   }).isRequired,
-
+  authorizationStatus: PropTypes.string.isRequired,
   articleClass: PropTypes.string.isRequired,
   imgWrapperClass: PropTypes.string.isRequired,
   onCardActivate: PropTypes.func.isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onCardClick: PropTypes.func.isRequired,
+  changeFavoriteStatusAction: PropTypes.func.isRequired,
+  favoriteButtonType: PropTypes.string.isRequired
+};
+
+const mapStateToProps = (state) => {
+  return {
+    authorizationStatus: state.USER.authorizationStatus
+  };
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -105,8 +130,12 @@ const mapDispatchToProps = (dispatch) => ({
 
   onCardClick(id) {
     dispatch(clickCard(id));
-  }
+  },
+
+  changeFavoriteStatusAction: (id, favoriteButtonType, isInBookmark) => (
+    dispatch(changeFavoriteStatus(id, favoriteButtonType, isInBookmark)
+    )),
 });
 
 export {OfferCard};
-export default connect(null, mapDispatchToProps)(OfferCard);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferCard);
