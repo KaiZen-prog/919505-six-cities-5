@@ -9,6 +9,8 @@ import {adaptOfferToApp, adaptUserToApp, adaptReviewToApp} from "../utils/common
 const api = createAPI(() => {});
 
 const offerFromServer = offersFromServer[0];
+const id = offerFromServer.id;
+
 const adaptedOffers = offersFromServer.map((offer) => adaptOfferToApp(offer));
 const adaptedOfferDetails = adaptOfferToApp(offerFromServer);
 const adaptedUserInfo = adaptUserToApp(userInfoFromServer);
@@ -41,7 +43,7 @@ describe(`Data Async operations work correctly`, () => {
     const fetchDetails = apiActions.fetchOfferDetails(offerFromServer.id);
 
     apiMock
-      .onGet(`/hotels/1`)
+      .onGet(`${APIRoute.HOTELS}${id}`)
       .reply(200, offerFromServer);
 
     return fetchDetails(dispatch, () => {}, api)
@@ -60,7 +62,6 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /hotels/id/nearby`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const id = offerFromServer.id;
     const fetchNearby = apiActions.fetchNearbyOffers(id);
 
     apiMock
@@ -143,7 +144,6 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /comments/id`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const id = offerFromServer.id;
     const getReviews = apiActions.fetchReviewsList(id);
 
     apiMock
@@ -170,7 +170,7 @@ describe(`Data Async operations work correctly`, () => {
     });
 
     apiMock
-      .onPost(`/comments/1`)
+      .onPost(`${APIRoute.COMMENTS}${id}`)
       .reply(200, reviewsFromServer);
 
     return postReview(dispatch, () => {}, api)
@@ -196,7 +196,6 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API POST /favorite/id/*`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const id = offerFromServer.id;
     const isInBookmarks = offerFromServer.is_favorite;
     const actionType = FavoriteStatus.ADD;
     const changeFavoriteStatus = apiActions.changeFavoriteStatus(id, null, isInBookmarks);
