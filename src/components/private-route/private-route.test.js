@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import PrivateRoute from "./private-route";
-import {Router as BrowserRouter} from "react-router-dom";
+import {Switch, Router as BrowserRouter} from "react-router-dom";
 import browserHistory from "../../browser-history";
 import {Provider} from "react-redux";
 import configureStore from 'redux-mock-store';
@@ -24,16 +24,14 @@ describe(`PrivateRoute render correctly`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter history={browserHistory}>
-              <PrivateRoute
-                authorizationStatus={`AUTH`}
-                exact
-                path={AppRoute.FAVORITES}
-                render={() => {
-                  return (
-                    <FavoritesScreen/>
-                  );
-                }}
-              />
+              <Switch>
+                <PrivateRoute
+                  authorizationStatus={`AUTH`}
+                  exact
+                  path="/"
+                  render={() => <div>Private test</div>}
+                />
+              </Switch>
             </BrowserRouter>
           </Provider>
       ).toJSON();
@@ -54,16 +52,14 @@ describe(`PrivateRoute render correctly`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter history={browserHistory}>
-              <PrivateRoute
-                authorizationStatus={`NO_AUTH`}
-                exact
-                path={AppRoute.FAVORITES}
-                render={() => {
-                  return (
-                    <FavoritesScreen/>
-                  );
-                }}
-              />
+              <Switch>
+                <PrivateRoute
+                  authorizationStatus={`NO_AUTH`}
+                  exact
+                  path="/"
+                  render={() => <div>Private test</div>}
+                />
+              </Switch>
             </BrowserRouter>
           </Provider>
       ).toJSON();
