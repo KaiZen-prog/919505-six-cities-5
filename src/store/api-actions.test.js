@@ -6,38 +6,25 @@ import {APIRoute} from "../const";
 import {offersFromServer, userInfoFromServer, reviewsFromServer} from "../__mocks__/mocks";
 import {adaptOfferToApp, adaptUserToApp, adaptReviewToApp} from "../utils/common";
 
+const api = createAPI(() => {});
+
+const offerFromServer = offersFromServer[0];
 const adaptedOffers = offersFromServer.map((offer) => adaptOfferToApp(offer));
-const adaptedOfferDetails = adaptOfferToApp(offersFromServer[0]);
+const adaptedOfferDetails = adaptOfferToApp(offerFromServer);
 const adaptedUserInfo = adaptUserToApp(userInfoFromServer);
 const adaptedReviews = reviewsFromServer.map((review) => adaptReviewToApp(review));
 
-const api = createAPI(() => {});
-
-const fetchOffers = apiActions.fetchOffersList();
-const fetchDetails = apiActions.fetchOfferDetails();
-const fetchFavorite = apiActions.fetchFavoriteOffers();
-const checkAuth = apiActions.checkAuth();
-const postLogin = apiActions.login({email: adaptedUserInfo.email, password: adaptedUserInfo.password});
-const fetchNearby = apiActions.fetchNearbyOffers();
-const getReviews = apiActions.fetchReviewsList();
-const postReview = apiActions.postReview({review: adaptedReviews[0].text, rating: adaptedReviews[0].rating, offerId: adaptedReviews[0].id});
-const changeFavoriteStatus = apiActions.changeFavoriteStatus();
-
-new MockAdapter(api)
-  .onGet(/hotels/).reply(200, offersFromServer)
-  .onGet(`/hotels/1`).reply(200, offersFromServer[0])
-  .onGet(`/hotels/1/nearby`).reply(200, offersFromServer)
-  .onGet(APIRoute.FAVORITE).reply(200, offersFromServer)
-  .onGet(APIRoute.LOGIN).reply(200, userInfoFromServer)
-  .onPost(APIRoute.LOGIN).reply(200, userInfoFromServer)
-  .onGet(`/comments/1`).reply(200, reviewsFromServer)
-  .onPost(`/comments/1`).reply(200, reviewsFromServer[0])
-  .onPost(`/favorite/1/1`).reply(200, offersFromServer[0])
-  .onPost(`/favorite/1/0`).reply(200, offersFromServer[0]);
-
 describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /hotels`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+
+    const fetchOffers = apiActions.fetchOffersList();
+
+    apiMock
+      .onGet(APIRoute.HOTELS)
+      .reply(200, offersFromServer);
+
     return fetchOffers(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
@@ -49,11 +36,21 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API GET /hotels/id`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const fetchDetails = apiActions.fetchOfferDetails(offerFromServer.id);
+
+    apiMock
+      .onGet(`/hotels/1`)
+      .reply(200, offerFromServer);
+
     return fetchDetails(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.OFFER_DETAILS_REQUESTED
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.GET_OFFER_DETAILS,
           payload: adaptedOfferDetails
         });
@@ -61,7 +58,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API GET /hotels/id/nearby`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const fetchNearby = apiActions.fetchNearbyOffers();
+
+    apiMock
+      .onGet(`/hotels/1/nearby`)
+      .reply(200, offersFromServer);
+
     return fetchNearby(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
@@ -76,7 +80,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API GET /favorite`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const fetchFavorite = apiActions.fetchFavoriteOffers();
+
+    apiMock
+      .onGet(APIRoute.FAVORITE)
+      .reply(200, offersFromServer);
+
     return fetchFavorite(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
@@ -91,7 +102,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API GET /login`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const checkAuth = apiActions.checkAuth();
+
+    apiMock
+      .onGet(APIRoute.LOGIN)
+      .reply(200, userInfoFromServer);
+
     return checkAuth(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
@@ -103,7 +121,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API POST /login`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const postLogin = apiActions.login({email: adaptedUserInfo.email, password: adaptedUserInfo.password});
+
+    apiMock
+      .onPost(APIRoute.LOGIN)
+      .reply(200, userInfoFromServer);
+
     return postLogin(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
@@ -115,7 +140,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API GET /comments/id`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const getReviews = apiActions.fetchReviewsList();
+
+    apiMock
+      .onGet(`/comments/1`)
+      .reply(200, reviewsFromServer);
+
     return getReviews(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
@@ -127,7 +159,18 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API POST /comments/id`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const postReview = apiActions.postReview({
+      review: adaptedReviews[0].text,
+      rating: adaptedReviews[0].rating,
+      offerId: adaptedReviews[0].id
+    });
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200, reviewsFromServer[0]);
+
     return postReview(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
@@ -149,7 +192,14 @@ describe(`Data Async operations work correctly`, () => {
   });
 
   it(`Should make a correct API POST /favorite/id/*`, () => {
+    const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
+    const changeFavoriteStatus = apiActions.changeFavoriteStatus();
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, offerFromServer);
+
     return changeFavoriteStatus(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);

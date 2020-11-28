@@ -80,60 +80,6 @@ exports[`OfferScreen render correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/15.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/16.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/9.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/10.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/4.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/19.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
               src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"
             />
           </div>
@@ -143,61 +89,7 @@ exports[`OfferScreen render correctly 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/3.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/2.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
               src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/11.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/1.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/17.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/5.jpg"
-            />
-          </div>
-          <div
-            className="property__image-wrapper"
-          >
-            <img
-              alt="Photo studio"
-              className="property__image"
-              src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/13.jpg"
             />
           </div>
         </div>
@@ -315,36 +207,6 @@ exports[`OfferScreen render correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Washer
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Towels
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Fridge
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Air conditioning
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Baby seat
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Coffee machine
-              </li>
-              <li
-                className="property__inside-item"
-              >
                 Breakfast
               </li>
             </ul>
@@ -383,7 +245,7 @@ exports[`OfferScreen render correctly 1`] = `
               <p
                 className="property__text"
               >
-                Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.
+                Discover daily local life in city center, friendly neighborhood.
               </p>
             </div>
           </div>
