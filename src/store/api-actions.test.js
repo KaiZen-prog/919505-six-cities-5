@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../services/api';
 import * as apiActions from './api-actions';
 import {ActionType} from './actions';
-import {APIRoute} from "../const";
+import {APIRoute, FavoriteStatus} from "../const";
 import {offersFromServer, userInfoFromServer, reviewsFromServer} from "../__mocks__/mocks";
 import {adaptOfferToApp, adaptUserToApp, adaptReviewToApp} from "../utils/common";
 
@@ -60,10 +60,11 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /hotels/id/nearby`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const fetchNearby = apiActions.fetchNearbyOffers();
+    const id = offerFromServer.id;
+    const fetchNearby = apiActions.fetchNearbyOffers(id);
 
     apiMock
-      .onGet(`/hotels/1/nearby`)
+      .onGet(`${APIRoute.HOTELS}${id}${APIRoute.NEARBY}`)
       .reply(200, offersFromServer);
 
     return fetchNearby(dispatch, () => {}, api)
@@ -142,16 +143,17 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API GET /comments/id`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const getReviews = apiActions.fetchReviewsList();
+    const id = offerFromServer.id;
+    const getReviews = apiActions.fetchReviewsList(id);
 
     apiMock
-      .onGet(`/comments/1`)
+      .onGet(`${APIRoute.COMMENTS}${id}`)
       .reply(200, reviewsFromServer);
 
     return getReviews(dispatch, () => {}, api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.GET_REVIEWS,
           payload: adaptedReviews
         });
@@ -169,7 +171,7 @@ describe(`Data Async operations work correctly`, () => {
 
     apiMock
       .onPost(`/comments/1`)
-      .reply(200, reviewsFromServer[0]);
+      .reply(200, reviewsFromServer);
 
     return postReview(dispatch, () => {}, api)
       .then(() => {
@@ -194,10 +196,13 @@ describe(`Data Async operations work correctly`, () => {
   it(`Should make a correct API POST /favorite/id/*`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
-    const changeFavoriteStatus = apiActions.changeFavoriteStatus();
+    const id = offerFromServer.id;
+    const isInBookmarks = offerFromServer.is_favorite;
+    const actionType = FavoriteStatus.ADD;
+    const changeFavoriteStatus = apiActions.changeFavoriteStatus(id, null, isInBookmarks);
 
     apiMock
-      .onPost(`/favorite/1/1`)
+      .onPost(`${APIRoute.FAVORITE}/${id}/${actionType}`)
       .reply(200, offerFromServer);
 
     return changeFavoriteStatus(dispatch, () => {}, api)
