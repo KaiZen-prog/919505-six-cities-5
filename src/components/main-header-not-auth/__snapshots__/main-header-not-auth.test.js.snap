@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NotAuthHeader render correctly 1`] = `
+exports[`MainHeaderNotAuth render correctly 1`] = `
 <div
   className="header__nav-link header__nav-link--profile"
 >
