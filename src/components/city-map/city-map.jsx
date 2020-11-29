@@ -47,24 +47,19 @@ class CityMap extends PureComponent {
     this.setMap(offers, activeCard, cityMapClass, clickedOfferCoords);
   }
 
-  render() {
-    const {cityMapClass} = this.props;
-
-    return (
-      <React.Fragment>
-        <section id="map" className={cityMapClass}></section>
-      </React.Fragment>
-    );
-  }
-
   setMap(offers, activeCard, cityMapClass, clickedOfferCoords) {
     this.markers.forEach((marker) => {
       this.map.removeLayer(marker);
     });
 
     offers.forEach((offer) => {
-      this.markers.push(
-          leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
+      if (cityMapClass === CityMapClasses.OFFER_SCREEN) {
+        this.markers.push(
+            leaflet.marker(offer.coords, {icon: defaultIcon}).addTo(this.map));
+      } else {
+        this.markers.push(
+            leaflet.marker(offer.coords, {icon: offer.id === activeCard ? activeIcon : defaultIcon}).addTo(this.map));
+      }
     });
 
     if (cityMapClass === CityMapClasses.OFFER_SCREEN) {
@@ -73,6 +68,16 @@ class CityMap extends PureComponent {
     }
 
     this.map.setView(offers[0].cityCoords, offers[0].mapZoom);
+  }
+
+  render() {
+    const {cityMapClass} = this.props;
+
+    return (
+      <React.Fragment>
+        <section id="map" className={cityMapClass}></section>
+      </React.Fragment>
+    );
   }
 }
 

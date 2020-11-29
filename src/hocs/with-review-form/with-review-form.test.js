@@ -30,13 +30,13 @@ it(`withReview is rendered correctly`, () => {
       <Provider store={store}>
         <Router history={browserHistory}>
           <MockComponentWrapped
-            sendReview={noop}
+            sendReviewAction={noop}
             offerId={1}
             loading={false}
           />
         </Router>
-      </Provider>)
-    .toJSON();
+      </Provider>
+  ).toJSON();
 
   expect(tree).toMatchSnapshot();
 });
