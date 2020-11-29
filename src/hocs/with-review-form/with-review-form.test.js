@@ -5,8 +5,8 @@ import {withReviewForm} from './with-review-form';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {Router} from 'react-router-dom';
-import {InitialState} from '../__mocks__/mocks';
-import browserHistory from '../browser-history';
+import {InitialState} from '../../__mocks__/mocks';
+import browserHistory from '../../browser-history';
 
 const mockStore = configureStore();
 const noop = () => {};

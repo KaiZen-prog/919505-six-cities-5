@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import {postReview} from '../store/api-actions';
+import {postReview} from '../../store/api-actions';
 
 const withReviewForm = (Component) => {
   class WithReview extends React.PureComponent {

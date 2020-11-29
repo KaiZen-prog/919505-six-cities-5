@@ -1,25 +1,12 @@
-import React, {createRef} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {login} from '../../store/api-actions';
+import withLoginForm from "../../hocs/with-login-form/with-login-form";
 import {AppRoute} from "../../const";
 import MainHeader from "../main-header/main-header";
 
-const LogInScreen = ({onSubmit, currentCity}) => {
-  const emailRef = createRef();
-  const passwordRef = createRef();
-
-  const handleLoginSubmit = (evt) => {
-    evt.preventDefault();
-
-    const authData = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-
-    onSubmit(authData);
-  };
+const LogInScreen = (props) => {
+  const {onSubmit, formRef, isValid, currentCity} = props;
 
   return (
     <div className="page page--gray page--login">
@@ -28,7 +15,12 @@ const LogInScreen = ({onSubmit, currentCity}) => {
         <div className="page__login-container container">
           <section className="login">
             <h1 className="login__title">Sign in</h1>
-            <form onSubmit={handleLoginSubmit} className="login__form form" action="#" method="post">
+            <form
+              onSubmit={onSubmit}
+              className="login__form form"
+              action="#"
+              method="post"
+              ref={formRef}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
@@ -37,7 +29,8 @@ const LogInScreen = ({onSubmit, currentCity}) => {
                   name="email"
                   placeholder="Email"
                   required={true}
-                  ref={emailRef}
+                  defaultValue=""
+                  autoComplete="off"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -48,10 +41,12 @@ const LogInScreen = ({onSubmit, currentCity}) => {
                   name="password"
                   placeholder="Password"
                   required={true}
-                  ref={passwordRef}
+                  defaultValue=""
+                  autoComplete="off"
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
+              {!isValid && <p style={{color: `red`}}>Invalid Email</p>}
             </form>
           </section>
           <section className="locations locations--login locations--current">
@@ -71,16 +66,10 @@ const LogInScreen = ({onSubmit, currentCity}) => {
 
 LogInScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  currentCity: PropTypes.string.isRequired,
+  formRef: PropTypes.object.isRequired,
+  isValid: PropTypes.bool.isRequired,
+  currentCity: PropTypes.string.isRequired
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (authInfo) => dispatch(login(authInfo))
-});
-
-const mapStateToProps = (state) => ({
-  currentCity: state.APP_PROCESS.currentCity
-});
-
 export {LogInScreen};
-export default connect(mapStateToProps, mapDispatchToProps)(LogInScreen);
+export default withLoginForm(LogInScreen);
