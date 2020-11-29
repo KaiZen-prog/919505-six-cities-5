@@ -7,9 +7,7 @@ export const InitialState = {
     isOfferDetailsLoaded: false,
     nearbyOffers: [],
     isNearbyOffersLoaded: false,
-    reviews: [],
-    isReviewRequestPosted: false,
-    postReviewError: null
+    reviews: []
   },
 
   APP_PROCESS: {

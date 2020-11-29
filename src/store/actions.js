@@ -7,16 +7,12 @@ export const ActionType = {
   NEARBY_OFFERS_REQUESTED: `NEARBY_OFFERS_REQUESTED`,
   GET_NEARBY_OFFERS: `GET_NEARBY_OFFERS`,
   GET_REVIEWS: `GET_REVIEWS`,
-  POST_REVIEW_REQUESTED: `POST_REVIEW_REQUESTED`,
-  POST_REVIEW: `POST_REVIEW`,
-  WRITE_ERROR: `WRITE_ERROR`,
   CHANGE_CITY: `CHANGE_CITY`,
   TOGGLE_OFFERS_SORT_PANEL: `TOGGLE_OFFERS_SORT_PANEL`,
   CHANGE_OFFERS_SORT: `CHANGE_OFFERS_SORT`,
   ACTIVATE_CARD: `ACTIVATE_CARD`,
   CLICK_CARD: `CLICK_CARD`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   CHANGE_OFFERS_FAVORITE_STATUS: `CHANGE_OFFERS_FAVORITE_STATUS`,
   REMOVE_FROM_FAVORITE: `REMOVE_FROM_FAVORITE`,
   CHANGE_NEARBY_OFFERS_FAVORITE_STATUS: `CHANGE_NEARBY_OFFERS_FAVORITE_STATUS`,
@@ -58,19 +54,6 @@ export const getNearbyOffers = (offers) => ({
 export const getReviews = (reviews) => ({
   type: ActionType.GET_REVIEWS,
   payload: reviews
-});
-
-export const postReviewRequested = () => ({
-  type: ActionType.POST_REVIEW_REQUESTED
-});
-
-export const reviewPost = () => ({
-  type: ActionType.POST_REVIEW
-});
-
-export const writeError = (error) => ({
-  type: ActionType.WRITE_ERROR,
-  payload: error
 });
 
 export const changeCity = (city) => ({

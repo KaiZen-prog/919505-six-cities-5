@@ -3,8 +3,6 @@ import {ActionType} from "../../actions";
 import {offers, reviews} from "../../../__mocks__/mocks";
 import {formatReviewsArray, removeItem, replaceItem} from "../../../utils/common";
 
-const error = `some error`;
-
 describe(`App-data reducer work correctly`, () => {
   it(`Reducer return initial state`, () => {
     expect(appData(undefined, {})).toEqual({
@@ -15,9 +13,7 @@ describe(`App-data reducer work correctly`, () => {
       isOfferDetailsLoaded: false,
       nearbyOffers: [],
       isNearbyOffersLoaded: false,
-      reviews: [],
-      isReviewRequestPosted: false,
-      postReviewError: null
+      reviews: []
     });
   });
 
@@ -72,31 +68,6 @@ describe(`App-data reducer work correctly`, () => {
       payload: reviews
     })).toEqual({
       reviews: formatReviewsArray(reviews)
-    });
-  });
-
-  it(`Reducer should request post review`, () => {
-    expect(appData({isReviewRequestPosted: false}, {
-      type: ActionType.POST_REVIEW_REQUESTED,
-    })).toEqual({
-      isReviewRequestPosted: true,
-    });
-  });
-
-  it(`Reducer should post review`, () => {
-    expect(appData({isReviewRequestPosted: true}, {
-      type: ActionType.POST_REVIEW,
-    })).toEqual({
-      isReviewRequestPosted: false,
-    });
-  });
-
-  it(`Reducer should write error`, () => {
-    expect(appData({postReviewError: ``}, {
-      type: ActionType.WRITE_ERROR,
-      payload: error,
-    })).toEqual({
-      postReviewError: error
     });
   });
 

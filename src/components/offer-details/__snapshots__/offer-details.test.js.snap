@@ -336,12 +336,14 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
             className="reviews__rating-form form__rating"
           >
             <input
+              checked={false}
               className="form__rating-input visually-hidden"
-              disabled=""
+              disabled={false}
               id="5-stars"
               name="rating"
+              onChange={[Function]}
               type="radio"
-              value={5}
+              value="5"
             />
             <label
               className="reviews__rating-label form__rating-label"
@@ -359,12 +361,14 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
               </svg>
             </label>
             <input
+              checked={false}
               className="form__rating-input visually-hidden"
-              disabled=""
+              disabled={false}
               id="4-stars"
               name="rating"
+              onChange={[Function]}
               type="radio"
-              value={4}
+              value="4"
             />
             <label
               className="reviews__rating-label form__rating-label"
@@ -382,12 +386,14 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
               </svg>
             </label>
             <input
+              checked={false}
               className="form__rating-input visually-hidden"
-              disabled=""
+              disabled={false}
               id="3-stars"
               name="rating"
+              onChange={[Function]}
               type="radio"
-              value={3}
+              value="3"
             />
             <label
               className="reviews__rating-label form__rating-label"
@@ -405,12 +411,14 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
               </svg>
             </label>
             <input
+              checked={false}
               className="form__rating-input visually-hidden"
-              disabled=""
+              disabled={false}
               id="2-stars"
               name="rating"
+              onChange={[Function]}
               type="radio"
-              value={2}
+              value="2"
             />
             <label
               className="reviews__rating-label form__rating-label"
@@ -428,16 +436,18 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
               </svg>
             </label>
             <input
+              checked={false}
               className="form__rating-input visually-hidden"
-              disabled=""
-              id="1-stars"
+              disabled={false}
+              id="1-star"
               name="rating"
+              onChange={[Function]}
               type="radio"
-              value={1}
+              value="1"
             />
             <label
               className="reviews__rating-label form__rating-label"
-              htmlFor="1-stars"
+              htmlFor="1-star"
               title="terribly"
             >
               <svg
@@ -453,14 +463,13 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
           </div>
           <textarea
             className="reviews__textarea form__textarea"
-            disabled=""
+            disabled={false}
             id="review"
-            maxLength="300"
-            minLength="50"
             name="review"
+            onChange={[Function]}
             placeholder="Tell how was your stay, what you like and what can be improved"
+            value=""
           />
-          
           <div
             className="reviews__button-wrapper"
           >
@@ -483,7 +492,7 @@ exports[`OfferDetails render correctly OfferDetails with authorized user 1`] = `
             </p>
             <button
               className="reviews__submit form__submit button"
-              disabled=""
+              disabled={true}
               type="submit"
             >
               Submit

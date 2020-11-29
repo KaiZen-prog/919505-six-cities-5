@@ -2,7 +2,6 @@ import * as actions from './actions';
 import {offers, reviews} from '../__mocks__/mocks';
 
 const ActionType = actions.ActionType;
-const error = `some error`;
 const city = `Paris`;
 const isOpened = false;
 const sort = `POPULAR`;
@@ -61,25 +60,6 @@ describe(`Actions work correctly`, () => {
     expect(actions.getReviews(reviews)).toEqual({
       type: ActionType.GET_REVIEWS,
       payload: reviews
-    });
-  });
-
-  it(`Action postReviewRequested work correctly`, () => {
-    expect(actions.postReviewRequested()).toEqual({
-      type: ActionType.POST_REVIEW_REQUESTED,
-    });
-  });
-
-  it(`Action reviewPost work correctly`, () => {
-    expect(actions.reviewPost()).toEqual({
-      type: ActionType.POST_REVIEW,
-    });
-  });
-
-  it(`Action writeError work correctly`, () => {
-    expect(actions.writeError(error)).toEqual({
-      type: ActionType.WRITE_ERROR,
-      payload: error
     });
   });
 

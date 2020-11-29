@@ -3,9 +3,6 @@ import {adaptOfferToApp, adaptReviewToApp, adaptReviewToServer} from "../utils/c
 import {
   getOffers,
   getReviews,
-  postReviewRequested,
-  reviewPost,
-  writeError,
   getFavoriteOffers,
   getOfferDetails,
   requestOfferDetails,
@@ -66,15 +63,12 @@ export const fetchReviewsList = (offerId) => (dispatch, _getState, api) => {
 };
 
 export const postReview = ({review, rating, offerId}) => (dispatch, _getState, api) => {
-  dispatch(postReviewRequested());
-  dispatch(writeError(null));
   return api.post(APIRoute.COMMENTS + offerId, adaptReviewToServer(review, rating))
     .then(({data}) => {
       dispatch(getReviews(data.map(adaptReviewToApp)));
-    }).then(() => dispatch(reviewPost()))
-    .catch((error) => {
-      dispatch(reviewPost());
-      dispatch(writeError(error.response.statusText));
+    })
+    .catch((err) => {
+      return Promise.reject(err);
     });
 };
 

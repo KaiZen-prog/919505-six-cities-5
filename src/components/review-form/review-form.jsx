@@ -1,79 +1,79 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {postReview} from "../../store/api-actions";
-import {STAR_VALUES} from "../../const";
-
-const FormFieldName = {
-  REVIEW: `review`,
-  RATING: `rating`,
-};
 
 const ReviewForm = (props) => {
-  const {
-    sendReviewAction,
-    offerId,
-    sendReviewError,
-    reviewRequestStatus
-  } = props;
-
-  const handleFormSubmit = (evt) => {
-    evt.preventDefault();
-    const formData = new FormData(evt.target);
-    const areaText = formData.get(FormFieldName.REVIEW);
-    const currentRating = Number(formData.get(FormFieldName.RATING));
-    evt.target.disabled = true;
-    sendReviewAction(areaText, currentRating, offerId);
-    evt.target.reset();
-  };
+  const {onSubmit, state, onTextInputChange, onRatingChange} = props;
 
   return (
     <form
-      onSubmit={handleFormSubmit}
+      onSubmit={onSubmit}
       className="reviews__form form"
       action="#"
       method="post"
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {
-          STAR_VALUES.map(({starValue, title}) => {
-            return (
-              <React.Fragment key={`rating-value-${starValue}`}>
-                <input
-                  className="form__rating-input visually-hidden"
-                  name="rating"
-                  value={starValue}
-                  id={`${starValue}-stars`}
-                  type="radio"
-                  disabled={reviewRequestStatus ? `disabled` : ``}
-                />
-                <label
-                  htmlFor={`${starValue}-stars`}
-                  className="reviews__rating-label form__rating-label"
-                  title={title}
-                >
-                  <svg className="form__star-image" width="37" height="33">
-                    <use xlinkHref="#icon-star"></use>
-                  </svg>
-                </label>
-              </React.Fragment>
-            );
-          })
-        }
+        <input className="form__rating-input visually-hidden" name="rating" value="5" id="5-stars"
+          type="radio"
+          checked={state.rating === `5`}
+          onChange={onRatingChange}
+          disabled={state.starDisabled}/>
+        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="4" id="4-stars" type="radio"
+          checked={state.rating === `4`}
+          onChange={onRatingChange}
+          disabled={state.starDisabled}/>
+        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="3" id="3-stars" type="radio"
+          checked={state.rating === `3`}
+          onChange={onRatingChange}
+          disabled={state.starDisabled}/>
+        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="2" id="2-stars" type="radio"
+          checked={state.rating === `2`}
+          onChange={onRatingChange}
+          disabled={state.starDisabled}/>
+        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
+
+        <input className="form__rating-input visually-hidden" name="rating" value="1" id="1-star" type="radio"
+          checked={state.rating === `1`}
+          onChange={onRatingChange}
+          disabled={state.starDisabled}/>
+        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
+          <svg className="form__star-image" width="37" height="33">
+            <use xlinkHref="#icon-star"></use>
+          </svg>
+        </label>
       </div>
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        maxLength="300"
-        minLength="50"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        disabled={reviewRequestStatus ? `disabled` : ``}>
+        disabled={state.textAreaDisabled}
+        onChange={onTextInputChange}
+        value={state.review}>
       </textarea>
-      {sendReviewError
-        ? <p style={{color: `red`}}>Error `{sendReviewError}`, please try later</p>
-        : ``}
+      {state.error && <p style={{color: `red`}}>Error `{state.errorText}`, please try later</p>}
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and
@@ -82,7 +82,7 @@ const ReviewForm = (props) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={reviewRequestStatus ? `disabled` : ``}>
+          disabled={state.buttonDisabled}>
           Submit
         </button>
       </div>
@@ -91,21 +91,10 @@ const ReviewForm = (props) => {
 };
 
 ReviewForm.propTypes = {
-  offerId: PropTypes.number.isRequired,
-  sendReviewAction: PropTypes.func.isRequired,
-  sendReviewError: PropTypes.string,
-  reviewRequestStatus: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+  onTextInputChange: PropTypes.func.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  sendReviewAction: (review, rating, offerId) => dispatch(postReview({review, rating, offerId}))
-});
-
-const mapStateToProps = (state) => ({
-  offerId: state.APP_PROCESS.clickedCard,
-  sendReviewError: state.APP_DATA.postReviewError,
-  reviewRequestStatus: state.APP_DATA.isReviewRequestPosted,
-});
-
-export {ReviewForm};
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
+export default ReviewForm;

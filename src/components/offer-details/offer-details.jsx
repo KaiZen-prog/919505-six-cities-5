@@ -11,10 +11,13 @@ import {
   FavoriteButtonTypes
 } from "../../const";
 
-import CommentForm from "../review-form/review-form";
+import ReviewForm from "../review-form/review-form";
+import withReviewCommentForm from "../../hocs/with-review-form";
 import ReviewsList from "../reviews-list/reviews-list";
 import CityMap from "../city-map/city-map";
 import {changeFavoriteStatus} from "../../store/api-actions";
+
+const ReviewFormWrapped = withReviewCommentForm(ReviewForm);
 
 const OfferDetails = (props) => {
   const {offerDetails, nearbyOffers, authorizationStatus, changeFavoriteStatusAction} = props;
@@ -151,7 +154,7 @@ const OfferDetails = (props) => {
             <ReviewsList/>
 
             {authorizationStatus === AuthorizationStatus.AUTH
-              ? <CommentForm/>
+              ? <ReviewFormWrapped offerId={offerDetails.id}/>
               : ``}
           </section>
         </div>

@@ -175,20 +175,10 @@ describe(`Data Async operations work correctly`, () => {
 
     return postReview(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.POST_REVIEW_REQUESTED
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.WRITE_ERROR,
-          payload: null
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.GET_REVIEWS,
           payload: adaptedReviews
-        });
-        expect(dispatch).toHaveBeenNthCalledWith(4, {
-          type: ActionType.POST_REVIEW
         });
       });
   });
